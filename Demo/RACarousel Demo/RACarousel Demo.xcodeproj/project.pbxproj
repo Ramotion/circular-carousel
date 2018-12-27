@@ -14,7 +14,7 @@
 		1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */; };
 		1DC1EAA021D0EDBA002F244E /* RACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9F21D0EDBA002F244E /* RACarousel.swift */; };
 		1DC1EAA221D0EDC9002F244E /* RACarouselDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EAA121D0EDC9002F244E /* RACarouselDelegate.swift */; };
-		1DC1EAA421D0EDD7002F244E /* RACarouselDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EAA321D0EDD7002F244E /* RACarouselDatasource.swift */; };
+		1DC1EAA421D0EDD7002F244E /* RACarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EAA321D0EDD7002F244E /* RACarouselDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		1DC1EA9821D0ED94002F244E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DC1EA9F21D0EDBA002F244E /* RACarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarousel.swift; sourceTree = "<group>"; };
 		1DC1EAA121D0EDC9002F244E /* RACarouselDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarouselDelegate.swift; sourceTree = "<group>"; };
-		1DC1EAA321D0EDD7002F244E /* RACarouselDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarouselDatasource.swift; sourceTree = "<group>"; };
+		1DC1EAA321D0EDD7002F244E /* RACarouselDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarouselDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			children = (
 				1DC1EA9F21D0EDBA002F244E /* RACarousel.swift */,
 				1DC1EAA121D0EDC9002F244E /* RACarouselDelegate.swift */,
-				1DC1EAA321D0EDD7002F244E /* RACarouselDatasource.swift */,
+				1DC1EAA321D0EDD7002F244E /* RACarouselDataSource.swift */,
 			);
 			path = RACoursel;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 			files = (
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,
 				1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */,
-				1DC1EAA421D0EDD7002F244E /* RACarouselDatasource.swift in Sources */,
+				1DC1EAA421D0EDD7002F244E /* RACarouselDataSource.swift in Sources */,
 				1DC1EAA021D0EDBA002F244E /* RACarousel.swift in Sources */,
 				1DC1EAA221D0EDC9002F244E /* RACarouselDelegate.swift in Sources */,
 			);
