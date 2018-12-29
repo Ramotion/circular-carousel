@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D57319921D640BB009383D1 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57319821D640BB009383D1 /* NSObjectExtension.swift */; };
 		1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */; };
 		1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8E21D0ED90002F244E /* ViewController.swift */; };
 		1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9021D0ED90002F244E /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D57319821D640BB009383D1 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
 		1DC1EA8921D0ED90002F244E /* RACarousel Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACarousel Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DC1EA8E21D0ED90002F244E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				1DC1EA9F21D0EDBA002F244E /* RACarousel.swift */,
 				1DC1EAA121D0EDC9002F244E /* RACarouselDelegate.swift */,
 				1DC1EAA321D0EDD7002F244E /* RACarouselDataSource.swift */,
+				1D57319821D640BB009383D1 /* NSObjectExtension.swift */,
 			);
 			path = RACoursel;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,
+				1D57319921D640BB009383D1 /* NSObjectExtension.swift in Sources */,
 				1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */,
 				1DC1EAA421D0EDD7002F244E /* RACarouselDataSource.swift in Sources */,
 				1DC1EAA021D0EDBA002F244E /* RACarousel.swift in Sources */,
