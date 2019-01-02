@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D57319921D640BB009383D1 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57319821D640BB009383D1 /* NSObjectExtension.swift */; };
+		1D6ACEF021DCE4C5007FFA63 /* CarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */; };
+		1D6ACEF221DCE51C007FFA63 /* CarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */; };
 		1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */; };
 		1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8E21D0ED90002F244E /* ViewController.swift */; };
 		1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9021D0ED90002F244E /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		1D57319821D640BB009383D1 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselTableViewCell.swift; sourceTree = "<group>"; };
+		1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselTableViewCell.xib; sourceTree = "<group>"; };
 		1DC1EA8921D0ED90002F244E /* RACarousel Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACarousel Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DC1EA8E21D0ED90002F244E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				1DC1EA9321D0ED94002F244E /* Assets.xcassets */,
 				1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */,
 				1DC1EA9821D0ED94002F244E /* Info.plist */,
+				1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */,
+				1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */,
 			);
 			path = "RACarousel Demo";
 			sourceTree = "<group>";
@@ -145,6 +151,7 @@
 				1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */,
 				1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */,
 				1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */,
+				1D6ACEF221DCE51C007FFA63 /* CarouselTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6ACEF021DCE4C5007FFA63 /* CarouselTableViewCell.swift in Sources */,
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,
 				1D57319921D640BB009383D1 /* NSObjectExtension.swift in Sources */,
 				1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */,
