@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CarouselTableViewCellDelegate {
 
     static let CarouselRow = 3
     static let NumberOfRows = 10
     static let CarouselTableViewCellIdentifier = "CarouselTableViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
+    static let CarouselCellRowHeight: CGFloat = 400.0
+    static let NormalCellRowHeight: CGFloat = 50.0
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -51,6 +53,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ViewController.NumberOfRows
+    }
+    
+    // MARK: -
+    // MARK: UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case ViewController.CarouselRow:
+            return ViewController.CarouselCellRowHeight
+        default:
+            return ViewController.NormalCellRowHeight
+        }
+    }
+    
+    // MARK: -
+    // MARK: CarouselTableViewCellDelegate
+    
+    func carousel(_ carousel: RACarousel, buttonPressed button: UIButton) {
+        let defaultAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // Do nothing
+        }
+        
+        let index = carousel.indexOfItem(forView: button)
+        let alert = UIAlertController(title: "Button Tapped", message: "Button tapped at index \(index)", preferredStyle: .alert)
+        alert.addAction(defaultAction)
+        
+        self.present(alert, animated: true)
+        
     }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol RACarouselDataSource : AnyObject {
+@objc protocol RACarouselDataSource : AnyObject {
     func numberOfItems(inCarousel carousel: RACarousel) -> Int
     func carousel(_: RACarousel, viewForItemAt: IndexPath, reuseView: UIView?) -> UIView
 }

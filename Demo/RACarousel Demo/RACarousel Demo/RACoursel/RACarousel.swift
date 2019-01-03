@@ -13,7 +13,7 @@
 import Foundation
 import UIKit
 
-enum RACarouselOption: Int {
+@objc enum RACarouselOption: Int {
     case wrap = 0
     case showBackfaces
     case visibleItems
@@ -47,7 +47,7 @@ class RACarousel : UIView {
     
     // Delegate and Datasource
     private weak var _delegate: RACarouselDelegate?
-    var delegate: RACarouselDelegate? {
+    @IBOutlet var delegate: RACarouselDelegate? {
         get {
             return _delegate
         }
@@ -60,7 +60,7 @@ class RACarousel : UIView {
     }
     
     private weak var _dataSource: RACarouselDataSource?
-    var dataSource: RACarouselDataSource? {
+    @IBOutlet var dataSource: RACarouselDataSource? {
         get {
             return _dataSource
         }
@@ -188,9 +188,10 @@ class RACarousel : UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        setupView()
         if let _ = self.superview {
-            // TODO
-            //startAnimation()
+            startAnimation()
         }
     }
     
@@ -241,7 +242,7 @@ class RACarousel : UIView {
         return _itemViews.keys.sorted()
     }
     
-    private func indexOfItem(forView view: UIView?) -> Int {
+    func indexOfItem(forView view: UIView?) -> Int {
         
         guard let aView = view else { return NSNotFound }
         
@@ -349,8 +350,17 @@ class RACarousel : UIView {
         return CGFloat(1.0 - min(factor, fadeRange) / fadeRange * (1.0 - fadeMinAlpha))
     }
     
-    private func value<T>(forOption option: RACarouselOption, withDefaultValue defaultValue: T) -> T {
-        return _delegate?.carousel(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
+    private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
+        
+        return _delegate?.carousel?(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
+    }
+    
+    private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: Bool) -> Bool {
+        return _delegate?.carousel?(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
+    }
+    
+    private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {
+        return _delegate?.carousel?(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
     }
     
     private func transformForItemView(withOffset offset: CGFloat) -> CATransform3D {
@@ -452,7 +462,7 @@ class RACarousel : UIView {
     }
     
     private func updateItemWidth() {
-        itemWidth = delegate?.itemWidth(self) ?? itemWidth
+        itemWidth = _delegate?.itemWidth?(self) ?? itemWidth
         if numberOfItems > 0 {
             if _itemViews.count == 0 {
                 loadView(atIndex: 0)
@@ -589,7 +599,6 @@ class RACarousel : UIView {
         }
         
         guard let _ = dataSource else { return }
-        guard let _ = delegate else { return }
         
         numberOfVisibleItems = 0
         numberOfItems = dataSource!.numberOfItems(inCarousel: self)
@@ -687,7 +696,7 @@ class RACarousel : UIView {
                 _endOffset = clampedOffset(_endOffset)
             }
             
-            delegate?.carouselWillBeginScrolling(self)
+            delegate?.carouselWillBeginScrolling?(self)
             startAnimation()
             //delegate?.carou
         } else {
@@ -893,7 +902,7 @@ class RACarousel : UIView {
                 depthSortViews()
                 pushAnimationState(enabled: true)
                 //delegate?.carousel(self, didEndScrollingToIndex: destIndex)
-                delegate?.carouselDidEndScrolling(self)
+                delegate?.carouselDidEndScrolling?(self)
                 popAnimationState()
             }
         } else if _decelerating {
@@ -987,7 +996,7 @@ class RACarousel : UIView {
         // Notify of change of item
         if _previousItemIndex != currentItemIdx {
             pushAnimationState(enabled: true)
-            delegate?.carousel(self, currentItemDidChangeToIndex: currentItemIdx)
+            delegate?.carousel?(self, currentItemDidChangeToIndex: currentItemIdx)
             popAnimationState()
         }
         
@@ -1071,15 +1080,15 @@ class RACarousel : UIView {
     }
     
     @objc private func didTap(withGesture gesture: UITapGestureRecognizer) {
-        var itemViewAtPoint: UIView? = itemView(atPoint: gesture.location(in: contentView))
+        let itemViewAtPoint: UIView? = itemView(atPoint: gesture.location(in: contentView))
         let index = indexOfItem(forView: itemViewAtPoint)
         if index != NSNotFound {
-            if let shouldSelect = delegate?.carousel(self, shouldSelectItemAtIndex: index),
+            if let shouldSelect = delegate?.carousel?(self, shouldSelectItemAtIndex: index),
                 shouldSelect == true {
                 if index != currentItemIdx {
                     scroll(toItemAtIndex: index, animated: true)
                 }
-                delegate?.carousel(self, didSelectItemAtIndex: index)
+                delegate?.carousel?(self, didSelectItemAtIndex: index)
             }
         } else {
             scroll(toItemAtIndex: currentItemIdx, animated: true)
