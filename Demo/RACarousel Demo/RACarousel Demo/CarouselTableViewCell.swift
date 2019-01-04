@@ -15,7 +15,7 @@ protocol CarouselTableViewCellDelegate {
 
 class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselDelegate {  
     
-    static let NumberOfButtons = 50
+    static let NumberOfButtons = 10
     static let ButtonImageNames = ["IconImage1", "IconImage2", "IconImage3", "IconImage4"]
     
     var delegate: CarouselTableViewCellDelegate?
@@ -34,7 +34,7 @@ class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselD
         var button = view as? UIButton
         if button == nil {
             button = UIButton(type: .custom)
-            button?.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+            button?.frame = CGRect(x: 0, y: 0, width: 75, height: 75)
             button?.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
         
@@ -45,10 +45,16 @@ class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselD
         
         return button!
     }
+    
+    // MARK: -
+    // MARK: RACarouselDelegate
+    @objc func itemWidth(_ carousel: RACarousel) -> CGFloat {
+        return 70
+    }
 
     // MARK: -
     // MARK: buttonTapped
     @objc private func buttonTapped(_ button: UIButton) {
-        
+        print ("Button Tapped!")
     }
 }

@@ -33,12 +33,14 @@ import UIKit
 class RACarousel : UIView {
     
     static let MaximumVisibleItems: Int         = 50
-    static let DecelerationMultiplier: CGFloat  = 30.0
+    static let DecelerationMultiplier: CGFloat  = 60.0
     static let ScrollSpeedThreshold: CGFloat    = 2.0
-    static let DecelerateThreshold: CGFloat     = 0.1
+    static let DecelerateThreshold: CGFloat     = 0.05
     static let ScrollDistanceThreshold: CGFloat = 0.1
     static let ScrollDuration: CGFloat          = 0.4
     static let InsertDuration: CGFloat          = 0.4
+    static let MinScale: CGFloat                = 0.75
+    static let MaxScale: CGFloat                = 1.1
     
     static let MinToggleDuration: TimeInterval  = 0.2
     static let MaxToggleDuration: TimeInterval  = 0.4
@@ -372,7 +374,13 @@ class RACarousel : UIView {
                                            -_viewPointOffset.height, 0)
         
         let spacing = value(forOption: .spacing, withDefaultValue: CGFloat(1.0))
-        return CATransform3DTranslate(transform, offset * itemWidth * spacing, 0.0, 0.0)
+        transform = CATransform3DTranslate(transform, offset * itemWidth * spacing, 0.0, 0.0)
+        
+        let scale = max(RACarousel.MinScale, RACarousel.MaxScale - abs(offset * 0.25))
+        
+        transform = CATransform3DScale(transform, scale, scale, 1.0)
+        
+        return transform
     }
     
     @objc private func depthSortViews() {
@@ -754,6 +762,7 @@ class RACarousel : UIView {
             UIView.setAnimationDuration(TimeInterval(RACarousel.InsertDuration))
             UIView.setAnimationDelegate(self)
             UIView.setAnimationDidStop(#selector(depthSortViews))
+            
             removeViewAtIndex(removeIndex)
             numberOfItems = numberOfItems - 1
             wrapEnabled = value(forOption: RACarouselOption.wrap, withDefaultValue: wrapEnabled)
@@ -826,10 +835,12 @@ class RACarousel : UIView {
     // MARK: -
     // MARK: Animation
     private func startAnimation() {
+        print ("startAnimation, timer is nil = \(_timer == nil)")
         if _timer == nil {
+            print ("New Timer")
             _timer = Timer(timeInterval: 1.0/60.0, target: self, selector: #selector(step), userInfo: nil, repeats: true)
             
-            RunLoop.main.add(_timer!, forMode: RunLoop.Mode.tracking)
+            RunLoop.main.add(_timer!, forMode: RunLoop.Mode.default)
         }
     }
     
@@ -845,6 +856,8 @@ class RACarousel : UIView {
     }
     
     private func shouldDecelerate() -> Bool {
+        print ("shouldDecelerate() - _startVelocity = \(_startVelocity), " +
+               "decelerationDistance = \(decelerationDistance())")
         return (abs(_startVelocity) > RACarousel.ScrollSpeedThreshold) &&
                 (abs(decelerationDistance()) > RACarousel.DecelerateThreshold)
     }
@@ -873,6 +886,7 @@ class RACarousel : UIView {
         _scrollDuration = TimeInterval(abs(distance) / abs(0.5 * _startVelocity))
         
         if distance != 0.0 {
+            print ("_decelerating = TRUE")
             _decelerating = true
             startAnimation()
         }
@@ -906,12 +920,16 @@ class RACarousel : UIView {
                 popAnimationState()
             }
         } else if _decelerating {
+            
             let time: CGFloat = CGFloat(min(_scrollDuration, currentTime - _startTime))
             let acceleration: CGFloat = -_startVelocity / CGFloat(_scrollDuration)
             let distance: CGFloat = _startVelocity * time + 0.5 * acceleration * pow(time, 2.0)
             
+            print("_Decelerating time = \(time), acceleration = \(acceleration), distance = \(distance)")
+            
             _scrollOffset = _startOffset + distance
             didScroll()
+            
             if abs(time - CGFloat(_scrollDuration)) < RACarousel.FloatErrorMargin {
                 _decelerating = false
                 pushAnimationState(enabled: true)
@@ -1108,6 +1126,7 @@ class RACarousel : UIView {
                 dragging = false
                 _didDrag = true
                 if shouldDecelerate() {
+                    print ("shouldDecelerate() - TRUE")
                     _didDrag = false
                     startDecelerating()
                 }
