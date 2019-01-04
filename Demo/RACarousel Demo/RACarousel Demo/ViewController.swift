@@ -11,10 +11,10 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CarouselTableViewCellDelegate {
 
     static let CarouselRow = 3
-    static let NumberOfRows = 10
+    static let NumberOfRows = 30
     static let CarouselTableViewCellIdentifier = "CarouselTableViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
-    static let CarouselCellRowHeight: CGFloat = 400.0
+    static let CarouselCellRowHeight: CGFloat = 300.0
     static let NormalCellRowHeight: CGFloat = 50.0
     
     @IBOutlet weak var tableView: UITableView!
@@ -26,6 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Register custom cell for carousel
         tableView.register(UINib(nibName: "CarouselTableViewCell", bundle: nil), forCellReuseIdentifier: ViewController.CarouselTableViewCellIdentifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewController.UITableViewCellIdentifier)
+        tableView.allowsSelection = false
     }
 
     // MARK: -

@@ -1101,8 +1101,8 @@ class RACarousel : UIView {
         let itemViewAtPoint: UIView? = itemView(atPoint: gesture.location(in: contentView))
         let index = indexOfItem(forView: itemViewAtPoint)
         if index != NSNotFound {
-            if let shouldSelect = delegate?.carousel?(self, shouldSelectItemAtIndex: index),
-                shouldSelect == true {
+            let shouldSelect = delegate?.carousel?(self, shouldSelectItemAtIndex: index) ?? true
+            if shouldSelect {
                 if index != currentItemIdx {
                     scroll(toItemAtIndex: index, animated: true)
                 }

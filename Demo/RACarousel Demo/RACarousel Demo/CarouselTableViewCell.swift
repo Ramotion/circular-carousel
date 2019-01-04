@@ -41,7 +41,7 @@ class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselD
         let arraySize = CarouselTableViewCell.ButtonImageNames.count
         let image: UIImage = UIImage(named: CarouselTableViewCell.ButtonImageNames[indexPath.row % arraySize])!
         
-        button?.setImage(image, for: .normal)
+        button?.setBackgroundImage(image, for: .normal)
         
         return button!
     }
