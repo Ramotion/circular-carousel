@@ -30,12 +30,12 @@ import UIKit
     case offsetMultiplier
 }
 
-class RACarousel : UIView {
+@IBDesignable open class RACarousel : UIView {
     
     static let MaximumVisibleItems: Int         = 50
     static let DecelerationMultiplier: CGFloat  = 60.0
     static let ScrollSpeedThreshold: CGFloat    = 2.0
-    static let DecelerateThreshold: CGFloat     = 0.05
+    static let DecelerateThreshold: CGFloat     = 0.1
     static let ScrollDistanceThreshold: CGFloat = 0.1
     static let ScrollDuration: CGFloat          = 0.4
     static let InsertDuration: CGFloat          = 0.4
@@ -92,6 +92,71 @@ class RACarousel : UIView {
     var pagingEnabled: Bool = false
     var wrapEnabled: Bool = true
     var bounceEnabled: Bool = true
+    
+    @IBInspectable var tapEnabled: Bool {
+        get {
+            return _tapGesture != nil
+        }
+        
+        set {
+            if let tapGesture = _tapGesture, newValue == false {
+                contentView.removeGestureRecognizer(tapGesture)
+                _tapGesture = nil
+            } else if _tapGesture == nil && newValue == true {
+                _tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+                _tapGesture?.delegate = self as? UIGestureRecognizerDelegate
+                contentView.addGestureRecognizer(_tapGesture!)
+            }
+        }
+    }
+    
+    @IBInspectable var swipeEnabled: Bool {
+        get {
+            return _swipeLeftGesture != nil && _swipeRightGesture != nil
+        }
+        
+        set {
+            if newValue == false {
+                if let swipeRightGesture = _swipeRightGesture {
+                    contentView.removeGestureRecognizer(swipeRightGesture)
+                    _swipeRightGesture = nil
+                }
+                
+                if let swipeLeftGesture = _swipeLeftGesture {
+                    contentView.removeGestureRecognizer(swipeLeftGesture)
+                    _swipeRightGesture = nil
+                }
+                
+            } else if _swipeLeftGesture == nil && _swipeRightGesture == nil && newValue == true {
+                _swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
+                _swipeLeftGesture?.direction = .left
+                _swipeLeftGesture?.delegate = self as? UIGestureRecognizerDelegate
+                contentView.addGestureRecognizer(_swipeLeftGesture!)
+                
+                _swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
+                _swipeRightGesture?.direction = .right
+                _swipeRightGesture?.delegate = self as? UIGestureRecognizerDelegate
+                contentView.addGestureRecognizer(_swipeRightGesture!)
+            }
+        }
+    }
+    
+    @IBInspectable var panEnabled: Bool {
+        get {
+            return _panGesture != nil
+        }
+        
+        set {
+            if let panGesture = _panGesture, newValue == false {
+                contentView.removeGestureRecognizer(panGesture)
+                _panGesture = nil
+            } else if _panGesture == nil && newValue == true {
+                _panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+                _panGesture?.delegate = self as? UIGestureRecognizerDelegate
+                contentView.addGestureRecognizer(_panGesture!)
+            }
+        }
+    }
     
     private var _scrollOffset: CGFloat = 0.0
     var scrollOffset: CGFloat {
@@ -177,9 +242,13 @@ class RACarousel : UIView {
     private let _scrollSpeed: CGFloat = 1.0
     private let _bounceDist: CGFloat = 1.0
     
+    private var _panGesture: UIPanGestureRecognizer?
+    private var _swipeLeftGesture: UISwipeGestureRecognizer?
+    private var _swipeRightGesture: UISwipeGestureRecognizer?
+    private var _tapGesture: UITapGestureRecognizer?
     
     // Public functions
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
@@ -188,7 +257,7 @@ class RACarousel : UIView {
         self.init(frame: CGRect.zero)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setupView()
@@ -209,15 +278,24 @@ class RACarousel : UIView {
         contentView = UIView(frame: self.bounds)
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        _panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+        _panGesture?.delegate = self as? UIGestureRecognizerDelegate
+        contentView.addGestureRecognizer(_panGesture!)
         
-        panGesture.delegate = self as? UIGestureRecognizerDelegate
-        tapGesture.delegate = self as? UIGestureRecognizerDelegate
+        _tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        _tapGesture?.delegate = self as? UIGestureRecognizerDelegate
+        contentView.addGestureRecognizer(_tapGesture!)
         
-        contentView.addGestureRecognizer(panGesture)
-        contentView.addGestureRecognizer(tapGesture)
+        _swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
+        _swipeLeftGesture?.delegate = self as? UIGestureRecognizerDelegate
+        _swipeLeftGesture?.direction = .left
+        contentView.addGestureRecognizer(_swipeLeftGesture!)
         
+        _swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
+        _swipeRightGesture?.delegate = self as? UIGestureRecognizerDelegate
+        _swipeRightGesture?.direction = .right
+        contentView.addGestureRecognizer(_swipeRightGesture!)
+    
         accessibilityTraits = UIAccessibilityTraits.allowsDirectInteraction
         isAccessibilityElement = true
         
@@ -457,7 +535,7 @@ class RACarousel : UIView {
         view.superview?.isHidden = !(showBackfaces ? showBackfaces : (transform.m33 > 0.0))
     }
     
-    override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = bounds
         layoutItemViews()
@@ -931,6 +1009,7 @@ class RACarousel : UIView {
             didScroll()
             
             if abs(time - CGFloat(_scrollDuration)) < RACarousel.FloatErrorMargin {
+                print ("Finishing Deceleration")
                 _decelerating = false
                 pushAnimationState(enabled: true)
                 //delegate?.didEndDecelerating(self)
@@ -939,12 +1018,16 @@ class RACarousel : UIView {
                 if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarousel.FloatErrorMargin {
                     if abs(_scrollOffset - CGFloat(currentItemIdx)) < RACarousel.FloatErrorMargin {
                         // Legacy support, does this ever get triggered?
+                        print ("Finished decel - Legacy scroll to currentItemIdx")
                         scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                     } else {
+                        print ("Finished Decel with standard scroll to item index")
                         scroll(toItemAtIndex: currentItemIdx, animated: true)
                     }
                     
                 } else {
+                    print ("Finished Decel with distant scroll to item")
+                    
                     var difference:CGFloat = round(_scrollOffset) - _scrollOffset
                     if difference > 0.5 {
                         difference = difference - 1.0
@@ -952,16 +1035,26 @@ class RACarousel : UIView {
                         difference = 1.0 + difference
                     }
                     
-                    _toggleTime = currentTime - Double(RACarousel.MaxToggleDuration)
+                    _toggleTime = currentTime - Double(RACarousel.MaxToggleDuration) * Double(abs(difference))
                     toggle = max(-1.0, min(1.0, -difference))
+                    
+                    scroll(toItemAtIndex: Int(round(CGFloat(currentItemIdx) + difference)), animated: true)
+                    
+                    print ("Scroll with toggle : \(toggle) and _toggleTime : \(_toggleTime)")
                 }
             }
         } else if abs(toggle) > RACarousel.FloatErrorMargin {
+            print ("Toggle scroll")
             var toggleDuration: TimeInterval = _startVelocity != 0.0 ? TimeInterval(min(1.0, max(0.0, 1.0 / abs(_startVelocity)))) : 1.0
             toggleDuration = RACarousel.MinToggleDuration + (RACarousel.MaxToggleDuration - RACarousel.MinToggleDuration) * toggleDuration
             
             let time: TimeInterval = min(1.0, (currentTime - _toggleTime) / toggleDuration)
             delta = easeInOut(inTime: CGFloat(time))
+            
+            print("Toggle Scroll : " +
+                "\ntoggleDuration - \(toggleDuration)" +
+                "\ntime - \(time)" +
+                "\ndelta - \(delta)")
             
             toggle = (toggle < 0.0) ? (delta - 1.0) : (1.0 - delta)
             didScroll()
@@ -972,7 +1065,7 @@ class RACarousel : UIView {
         popAnimationState()
     }
     
-    override func didMoveToSuperview() {
+    override open func didMoveToSuperview() {
         if let _ = superview {
             startAnimation()
         } else {
@@ -992,10 +1085,12 @@ class RACarousel : UIView {
                 _startVelocity = 0.0
             } else if _scrollOffset > maxVal {
                 _scrollOffset = maxVal
+                _startVelocity = 0.0
             }
         }
         
         let difference = minScrollDistance(fromIndex: currentItemIdx, toIndex: _previousItemIndex)
+        
         if difference != 0 {
             _toggleTime = CACurrentMediaTime()
             toggle = max(-1.0, min(1.0, CGFloat(difference)))
@@ -1088,7 +1183,7 @@ class RACarousel : UIView {
         return true
     }
     
-    override func gestureRecognizerShouldBegin(_ gesture: UIGestureRecognizer) -> Bool {
+    override open func gestureRecognizerShouldBegin(_ gesture: UIGestureRecognizer) -> Bool {
         if let panGesture = gesture as? UIPanGestureRecognizer {
             let translation = panGesture.translation(in: self)
             return abs(translation.x) >= abs(translation.y)
@@ -1168,6 +1263,30 @@ class RACarousel : UIView {
                 break
             }
             
+        }
+    }
+    
+    @objc private func didSwipe(withGesture gesture: UISwipeGestureRecognizer) {
+        print ("Swipe Detected")
+        
+        guard scrollEnabled && numberOfItems > 1 else { return }
+        guard scrolling == false && _decelerating == false else { return }
+        
+        switch gesture.direction {
+        case UISwipeGestureRecognizer.Direction.right:
+            guard currentItemIdx > 0 else { return }
+            print ("Will swipe - Right")
+            
+            scroll(toItemAtIndex: currentItemIdx - 1, animated: true)
+            
+        case UISwipeGestureRecognizer.Direction.left:
+            guard currentItemIdx < numberOfItems - 1 else { return }
+            print ("Will swipe - Left")
+            
+            scroll(toItemAtIndex: currentItemIdx + 1, animated: true)
+        default:
+            // Do nothing
+            break
         }
     }
 }
