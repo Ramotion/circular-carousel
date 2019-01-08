@@ -18,10 +18,6 @@ import UIKit
     case showBackfaces
     case visibleItems
     case count
-    case arc
-    case angle
-    case radius
-    case tilt
     case spacing
     case fadeMin
     case fadeMax
@@ -30,7 +26,7 @@ import UIKit
     case offsetMultiplier
 }
 
-open class RACarousel : UIView {
+@IBDesignable open class RACarousel : UIView {
     
     static let MaximumVisibleItems: Int         = 50
     static let DecelerationMultiplier: CGFloat  = 60.0
@@ -91,10 +87,10 @@ open class RACarousel : UIView {
     // MARK: TODO - Update these to be private
     var scrollEnabled: Bool = true
     var pagingEnabled: Bool = false
-    var wrapEnabled: Bool = true
-    var bounceEnabled: Bool = true
+    @IBInspectable public var wrapEnabled: Bool = true
+    @IBInspectable public var bounceEnabled: Bool = true
     
-    public var tapEnabled: Bool {
+    @IBInspectable public var tapEnabled: Bool {
         get {
             return _tapGesture != nil
         }
@@ -111,7 +107,7 @@ open class RACarousel : UIView {
         }
     }
     
-    public var swipeEnabled: Bool {
+    @IBInspectable public var swipeEnabled: Bool {
         get {
             return _swipeLeftGesture != nil && _swipeRightGesture != nil
         }
@@ -142,7 +138,7 @@ open class RACarousel : UIView {
         }
     }
     
-    public var panEnabled: Bool {
+    @IBInspectable public var panEnabled: Bool {
         get {
             return _panGesture != nil
         }
@@ -571,7 +567,7 @@ open class RACarousel : UIView {
     private func layoutItemViews() {
         guard let _ = _dataSource else { return }
         
-        wrapEnabled = value(forOption: RACarouselOption.wrap, withDefaultValue: false)
+        wrapEnabled = value(forOption: RACarouselOption.wrap, withDefaultValue: wrapEnabled)
         
         updateItemWidth()
         updateNumberOfVisibleItems()
@@ -813,6 +809,7 @@ open class RACarousel : UIView {
     }
     
     public func scroll(toItemAtIndex index: Int, withDuration duration: TimeInterval) {
+        _delegate?.carousel?(self, willBeginScrollingToIndex: index)
         scroll(toOffset: CGFloat(index), withDuration: duration)
     }
     
@@ -1263,7 +1260,6 @@ open class RACarousel : UIView {
                 // Do nothing
                 break
             }
-            
         }
     }
     

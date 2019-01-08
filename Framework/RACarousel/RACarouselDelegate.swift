@@ -16,7 +16,6 @@ import UIKit
     @objc optional func carousel(_ carousel: RACarousel, currentItemDidChangeToIndex index: Int)
     @objc optional func carousel(_ carousel: RACarousel, willBeginScrollingToIndex index: Int)
     @objc optional func carousel(_ carousel: RACarousel, didEndScrollingToIndex index: Int)
-    @objc optional func carousel(_ carousel: RACarousel, willBeginScrollingToView view: UIView)
     @objc optional func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int)
     @objc optional func itemWidth(_ carousel: RACarousel) -> CGFloat
     @objc optional func carousel(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultInt defaultValue: Int) -> Int
