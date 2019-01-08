@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CarouselTableViewCellDelegate {
 
-    static let CarouselRow = 3
+    static let CarouselRows = [3, 10]
     static let NumberOfRows = 30
     static let CarouselTableViewCellIdentifier = "CarouselTableViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
@@ -35,21 +35,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         
-        switch row {
-        case ViewController.CarouselRow:
+        if ViewController.CarouselRows.contains(row) {
             let cell: CarouselTableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewController.CarouselTableViewCellIdentifier) as! CarouselTableViewCell
             
             cell.title.text = "CAROUSEL CELL"
             return cell
-            
-        default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewController.UITableViewCellIdentifier)!
-            
-            cell.textLabel?.text = "CELL : \(row)"
-            return cell
-            
         }
         
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewController.UITableViewCellIdentifier)!
+        cell.textLabel?.text = "CELL : \(row)"
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,12 +56,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case ViewController.CarouselRow:
+        if ViewController.CarouselRows.contains(indexPath.row) {
             return ViewController.CarouselCellRowHeight
-        default:
-            return ViewController.NormalCellRowHeight
         }
+        
+        return ViewController.NormalCellRowHeight
     }
     
     // MARK: -
@@ -81,7 +76,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         alert.addAction(defaultAction)
         
         self.present(alert, animated: true)
-        
     }
 }
 
