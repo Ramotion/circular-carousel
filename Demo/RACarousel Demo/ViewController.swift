@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RACarousel
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CarouselTableViewCellDelegate {
 

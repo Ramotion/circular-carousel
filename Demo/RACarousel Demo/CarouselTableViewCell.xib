@@ -22,12 +22,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0M3-Pt-pCY" customClass="RACarousel" customModule="RACarousel_Demo" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0M3-Pt-pCY" customClass="RACarousel" customModule="RACarousel">
                     <rect key="frame" x="0.0" y="72" width="375" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
-                        <outlet property="dataSource" destination="iN0-l3-epB" id="fSr-U3-MoR"/>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="hzh-bq-hdS"/>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="Uxy-Y2-hTc"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="dP2-58-jRR"/>
                     </connections>
                 </view>
             </subviews>
@@ -44,7 +44,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="carousel" destination="0M3-Pt-pCY" id="GIi-Rm-dzF"/>
+                <outlet property="carousel" destination="0M3-Pt-pCY" id="7rc-3O-OgH"/>
                 <outlet property="title" destination="Add-Fu-wRa" id="WLO-44-77L"/>
             </connections>
             <point key="canvasLocation" x="-519" y="76"/>

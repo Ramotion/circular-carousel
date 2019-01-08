@@ -13,7 +13,7 @@
 import Foundation
 import UIKit
 
-@objc enum RACarouselOption: Int {
+@objc public enum RACarouselOption: Int {
     case wrap = 0
     case showBackfaces
     case visibleItems
@@ -49,7 +49,7 @@ import UIKit
     
     // Delegate and Datasource
     private weak var _delegate: RACarouselDelegate?
-    @IBOutlet var delegate: RACarouselDelegate? {
+    @IBOutlet public var delegate: RACarouselDelegate? {
         get {
             return _delegate
         }
@@ -62,7 +62,7 @@ import UIKit
     }
     
     private weak var _dataSource: RACarouselDataSource?
-    @IBOutlet var dataSource: RACarouselDataSource? {
+    @IBOutlet public var dataSource: RACarouselDataSource? {
         get {
             return _dataSource
         }
@@ -75,7 +75,7 @@ import UIKit
     }
     
     // Public Variables
-    private (set) var numberOfItems: Int = 0
+    private (set) public var numberOfItems: Int = 0
     
     var currentItemIdx: Int {
         get {
@@ -88,12 +88,13 @@ import UIKit
         }
     }
     
+    // MARK: TODO - Update these to be private
     var scrollEnabled: Bool = true
     var pagingEnabled: Bool = false
     var wrapEnabled: Bool = true
     var bounceEnabled: Bool = true
     
-    @IBInspectable var tapEnabled: Bool {
+    @IBInspectable public var tapEnabled: Bool {
         get {
             return _tapGesture != nil
         }
@@ -110,7 +111,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var swipeEnabled: Bool {
+    @IBInspectable public var swipeEnabled: Bool {
         get {
             return _swipeLeftGesture != nil && _swipeRightGesture != nil
         }
@@ -141,7 +142,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var panEnabled: Bool {
+    @IBInspectable public var panEnabled: Bool {
         get {
             return _panGesture != nil
         }
@@ -322,7 +323,7 @@ import UIKit
         return _itemViews.keys.sorted()
     }
     
-    func indexOfItem(forView view: UIView?) -> Int {
+    public func indexOfItem(forView view: UIView?) -> Int {
         
         guard let aView = view else { return NSNotFound }
         
@@ -432,15 +433,15 @@ import UIKit
     
     private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
         
-        return _delegate?.carousel?(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
+        return _delegate?.carousel?(self, valueForOption: option, withDefaultFloat: defaultValue) ?? defaultValue
     }
     
     private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: Bool) -> Bool {
-        return _delegate?.carousel?(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
+        return _delegate?.carousel?(self, valueForOption: option, withDefaultBool: defaultValue) ?? defaultValue
     }
     
     private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {
-        return _delegate?.carousel?(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
+        return _delegate?.carousel?(self, valueForOption: option, withDefaultInt: defaultValue) ?? defaultValue
     }
     
     private func transformForItemView(withOffset offset: CGFloat) -> CATransform3D {

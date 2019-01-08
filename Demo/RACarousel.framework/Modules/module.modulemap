@@ -1,0 +1,11 @@
+framework module RACarousel {
+  umbrella header "RACarousel.h"
+
+  export *
+  module * { export * }
+}
+
+module RACarousel.Swift {
+    header "RACarousel-Swift.h"
+    requires objc
+}

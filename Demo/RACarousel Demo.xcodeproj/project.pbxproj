@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D57319921D640BB009383D1 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57319821D640BB009383D1 /* NSObjectExtension.swift */; };
+		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
+		1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; };
 		1D6ACEF021DCE4C5007FFA63 /* CarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */; };
 		1D6ACEF221DCE51C007FFA63 /* CarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */; };
 		1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */; };
@@ -15,13 +16,11 @@
 		1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9021D0ED90002F244E /* Main.storyboard */; };
 		1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9321D0ED94002F244E /* Assets.xcassets */; };
 		1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */; };
-		1DC1EAA021D0EDBA002F244E /* RACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9F21D0EDBA002F244E /* RACarousel.swift */; };
-		1DC1EAA221D0EDC9002F244E /* RACarouselDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EAA121D0EDC9002F244E /* RACarouselDelegate.swift */; };
-		1DC1EAA421D0EDD7002F244E /* RACarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EAA321D0EDD7002F244E /* RACarouselDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D57319821D640BB009383D1 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		1D5AE77121E4B6460088B3D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RACarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselTableViewCell.swift; sourceTree = "<group>"; };
 		1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselTableViewCell.xib; sourceTree = "<group>"; };
 		1DC1EA8921D0ED90002F244E /* RACarousel Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACarousel Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,9 +30,6 @@
 		1DC1EA9321D0ED94002F244E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DC1EA9621D0ED94002F244E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DC1EA9821D0ED94002F244E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1DC1EA9F21D0EDBA002F244E /* RACarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarousel.swift; sourceTree = "<group>"; };
-		1DC1EAA121D0EDC9002F244E /* RACarouselDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarouselDelegate.swift; sourceTree = "<group>"; };
-		1DC1EAA321D0EDD7002F244E /* RACarouselDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarouselDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */,
+				1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D5AE76E21E4B2C50088B3D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */,
+				1D5AE77121E4B6460088B3D8 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1DC1EA8021D0ED90002F244E = {
 			isa = PBXGroup;
 			children = (
 				1DC1EA8B21D0ED90002F244E /* RACarousel Demo */,
 				1DC1EA8A21D0ED90002F244E /* Products */,
+				1D5AE76E21E4B2C50088B3D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,7 +74,6 @@
 		1DC1EA8B21D0ED90002F244E /* RACarousel Demo */ = {
 			isa = PBXGroup;
 			children = (
-				1DC1EA9E21D0EDA1002F244E /* RACoursel */,
 				1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */,
 				1DC1EA8E21D0ED90002F244E /* ViewController.swift */,
 				1DC1EA9021D0ED90002F244E /* Main.storyboard */,
@@ -77,17 +84,6 @@
 				1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */,
 			);
 			path = "RACarousel Demo";
-			sourceTree = "<group>";
-		};
-		1DC1EA9E21D0EDA1002F244E /* RACoursel */ = {
-			isa = PBXGroup;
-			children = (
-				1DC1EA9F21D0EDBA002F244E /* RACarousel.swift */,
-				1DC1EAA121D0EDC9002F244E /* RACarouselDelegate.swift */,
-				1DC1EAA321D0EDD7002F244E /* RACarouselDataSource.swift */,
-				1D57319821D640BB009383D1 /* NSObjectExtension.swift */,
-			);
-			path = RACoursel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,11 +160,7 @@
 			files = (
 				1D6ACEF021DCE4C5007FFA63 /* CarouselTableViewCell.swift in Sources */,
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,
-				1D57319921D640BB009383D1 /* NSObjectExtension.swift in Sources */,
 				1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */,
-				1DC1EAA421D0EDD7002F244E /* RACarouselDataSource.swift in Sources */,
-				1DC1EAA021D0EDBA002F244E /* RACarousel.swift in Sources */,
-				1DC1EAA221D0EDC9002F244E /* RACarouselDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +312,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(CONFIGURATION_BUILD_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Realityworks.RACarousel-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -338,6 +331,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(CONFIGURATION_BUILD_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Realityworks.RACarousel-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";

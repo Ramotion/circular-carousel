@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RACarousel
 
 protocol CarouselTableViewCellDelegate {
     func carousel(_ carousel: RACarousel, buttonPressed: UIButton)
