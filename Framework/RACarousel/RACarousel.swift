@@ -24,6 +24,7 @@ import UIKit
     case fadeRange
     case fadeMinAlpha
     case offsetMultiplier
+    case startingIndex
 }
 
 @IBDesignable open class RACarousel : UIView {
@@ -473,7 +474,7 @@ import UIKit
         if wrapEnabled {
             if offset > (CGFloat(numberOfItems) / 2.0) {
                 offset = offset - CGFloat(numberOfItems)
-            } else if offset > -CGFloat(numberOfItems) / 2.0 {
+            } else if offset < -CGFloat(numberOfItems) / 2.0 {
                 offset = offset + CGFloat(numberOfItems)
             }
         }
@@ -541,6 +542,7 @@ import UIKit
     private func transformItemViews() {
         for index in _itemViews.keys {
             transform(itemView: _itemViews[index]!, atIndex: index)
+            print("Transforming Index : \(index)")
         }
     }
     
@@ -781,7 +783,7 @@ import UIKit
             
             delegate?.carouselWillBeginScrolling?(self)
             startAnimation()
-            //delegate?.carou
+            
         } else {
             scrollOffset += offset
         }
@@ -932,8 +934,8 @@ import UIKit
     }
     
     private func shouldDecelerate() -> Bool {
-        print ("shouldDecelerate() - _startVelocity = \(_startVelocity), " +
-               "decelerationDistance = \(decelerationDistance())")
+        //print ("shouldDecelerate() - _startVelocity = \(_startVelocity), " +
+        //       "decelerationDistance = \(decelerationDistance())")
         return (abs(_startVelocity) > RACarousel.ScrollSpeedThreshold) &&
                 (abs(decelerationDistance()) > RACarousel.DecelerateThreshold)
     }
@@ -1001,13 +1003,13 @@ import UIKit
             let acceleration: CGFloat = -_startVelocity / CGFloat(_scrollDuration)
             let distance: CGFloat = _startVelocity * time + 0.5 * acceleration * pow(time, 2.0)
             
-            print("_Decelerating time = \(time), acceleration = \(acceleration), distance = \(distance)")
+            //print("_Decelerating time = \(time), acceleration = \(acceleration), distance = \(distance)")
             
             _scrollOffset = _startOffset + distance
             didScroll()
             
             if abs(time - CGFloat(_scrollDuration)) < RACarousel.FloatErrorMargin {
-                print ("Finishing Deceleration")
+                //print ("Finishing Deceleration")
                 _decelerating = false
                 pushAnimationState(enabled: true)
                 //delegate?.didEndDecelerating(self)
@@ -1016,15 +1018,15 @@ import UIKit
                 if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarousel.FloatErrorMargin {
                     if abs(_scrollOffset - CGFloat(currentItemIdx)) < RACarousel.FloatErrorMargin {
                         // Legacy support, does this ever get triggered?
-                        print ("Finished decel - Legacy scroll to currentItemIdx")
+                        //print ("Finished decel - Legacy scroll to currentItemIdx")
                         scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                     } else {
-                        print ("Finished Decel with standard scroll to item index")
+                        //print ("Finished Decel with standard scroll to item index")
                         scroll(toItemAtIndex: currentItemIdx, animated: true)
                     }
                     
                 } else {
-                    print ("Finished Decel with distant scroll to item")
+                    //print ("Finished Decel with distant scroll to item")
                     
                     var difference:CGFloat = round(_scrollOffset) - _scrollOffset
                     if difference > 0.5 {
@@ -1038,21 +1040,21 @@ import UIKit
                     
                     scroll(toItemAtIndex: Int(round(CGFloat(currentItemIdx) + difference)), animated: true)
                     
-                    print ("Scroll with toggle : \(toggle) and _toggleTime : \(_toggleTime)")
+                    //print ("Scroll with toggle : \(toggle) and _toggleTime : \(_toggleTime)")
                 }
             }
         } else if abs(toggle) > RACarousel.FloatErrorMargin {
-            print ("Toggle scroll")
+//            print ("Toggle scroll")
             var toggleDuration: TimeInterval = _startVelocity != 0.0 ? TimeInterval(min(1.0, max(0.0, 1.0 / abs(_startVelocity)))) : 1.0
             toggleDuration = RACarousel.MinToggleDuration + (RACarousel.MaxToggleDuration - RACarousel.MinToggleDuration) * toggleDuration
             
             let time: TimeInterval = min(1.0, (currentTime - _toggleTime) / toggleDuration)
             delta = easeInOut(inTime: CGFloat(time))
             
-            print("Toggle Scroll : " +
-                "\ntoggleDuration - \(toggleDuration)" +
-                "\ntime - \(time)" +
-                "\ndelta - \(delta)")
+//            print("Toggle Scroll : " +
+//                "\ntoggleDuration - \(toggleDuration)" +
+//                "\ntime - \(time)" +
+//                "\ndelta - \(delta)")
             
             toggle = (toggle < 0.0) ? (delta - 1.0) : (1.0 - delta)
             didScroll()
@@ -1248,7 +1250,7 @@ import UIKit
                 
                 var factor: CGFloat = 1.0
                 
-                if wrapEnabled && bounceEnabled {
+                if !wrapEnabled && bounceEnabled {
                     factor = 1.0 - min (abs(_scrollOffset - clampedOffset(_scrollOffset)), _bounceDist) / _bounceDist
                 }
                 

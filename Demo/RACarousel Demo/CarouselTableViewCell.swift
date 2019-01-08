@@ -50,7 +50,11 @@ class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselD
     // MARK: -
     // MARK: RACarouselDelegate
     @objc func itemWidth(_ carousel: RACarousel) -> CGFloat {
-        return 70
+        return 100
+    }
+    
+    @objc func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {
+        print ("Selected Item at Index : \(index)")
     }
 
     // MARK: -
