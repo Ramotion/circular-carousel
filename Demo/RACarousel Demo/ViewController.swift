@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CarouselTableViewCellDelegate {
 
-    static let CarouselRows = [3, 10]
+    static let CarouselRows = [3]
     static let NumberOfRows = 30
     static let CarouselTableViewCellIdentifier = "CarouselTableViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
@@ -18,6 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     static let NormalCellRowHeight: CGFloat = 50.0
     
     @IBOutlet weak var tableView: UITableView!
+    
+    private var swipePanToggle: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if ViewController.CarouselRows.contains(row) {
             let cell: CarouselTableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewController.CarouselTableViewCellIdentifier) as! CarouselTableViewCell
             
-            cell.title.text = "CAROUSEL CELL"
+            let swipeRow = (row % 2) == 1
+            
+            cell.carousel.panEnabled = !swipeRow
+            cell.carousel.swipeEnabled = swipeRow
+                
+            cell.title.text = swipeRow ? "SWIPE CAROUSEL" : "PAN CAROUSEL"
+            
+            swipePanToggle = !swipeRow
+            
             return cell
         }
         
