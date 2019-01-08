@@ -30,7 +30,7 @@ import UIKit
     case offsetMultiplier
 }
 
-@IBDesignable open class RACarousel : UIView {
+open class RACarousel : UIView {
     
     static let MaximumVisibleItems: Int         = 50
     static let DecelerationMultiplier: CGFloat  = 60.0
@@ -94,7 +94,7 @@ import UIKit
     var wrapEnabled: Bool = true
     var bounceEnabled: Bool = true
     
-    @IBInspectable public var tapEnabled: Bool {
+    public var tapEnabled: Bool {
         get {
             return _tapGesture != nil
         }
@@ -111,7 +111,7 @@ import UIKit
         }
     }
     
-    @IBInspectable public var swipeEnabled: Bool {
+    public var swipeEnabled: Bool {
         get {
             return _swipeLeftGesture != nil && _swipeRightGesture != nil
         }
@@ -142,7 +142,7 @@ import UIKit
         }
     }
     
-    @IBInspectable public var panEnabled: Bool {
+    public var panEnabled: Bool {
         get {
             return _panGesture != nil
         }
