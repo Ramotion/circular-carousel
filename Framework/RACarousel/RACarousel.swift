@@ -214,8 +214,8 @@ struct RACarouselConstants {
     
     // Private variables
     var itemViews: Dictionary<Int, UIView> = Dictionary<Int, UIView>()
-    var _previousItemIndex: Int = 0
-    var _itemViewPool: Set<UIView> = Set<UIView>()
+    var previousItemIndex: Int = 0
+    var itemViewPool: Set<UIView> = Set<UIView>()
     var _prevScrollOffset: CGFloat = 0.0
     var _startOffset: CGFloat = 0.0
     var _endOffset: CGFloat = 0.0
@@ -231,9 +231,9 @@ struct RACarouselConstants {
     var _toggleTime: TimeInterval = 0.0
     var _previousTranslation: CGFloat = 0.0
     
-    let _decelSpeed: CGFloat = 0.9
-    let _scrollSpeed: CGFloat = 1.0
-    let _bounceDist: CGFloat = 1.0
+    let decelSpeed: CGFloat = 0.9
+    let scrollSpeed: CGFloat = 1.0
+    let bounceDist: CGFloat = 1.0
     
     var panGesture: UIPanGestureRecognizer?
     var swipeLeftGesture: UISwipeGestureRecognizer?
@@ -668,7 +668,7 @@ struct RACarouselConstants {
         numberOfItems = dataSource!.numberOfItems(inCarousel: self)
         
         itemViews = Dictionary<Int, UIView>()
-        _itemViewPool = Set<UIView>()
+        itemViewPool = Set<UIView>()
         
         setNeedsLayout()
         
@@ -680,12 +680,12 @@ struct RACarouselConstants {
     // MARK: -
     // MARK: View Queing
     @objc private func queue(itemView view: UIView) {
-        _itemViewPool.insert(view)
+        itemViewPool.insert(view)
     }
     
     private func dequeItemView() -> UIView? {
-        if let view = _itemViewPool.first {
-            _itemViewPool.remove(view)
+        if let view = itemViewPool.first {
+            itemViewPool.remove(view)
             return view
         }
         
@@ -784,7 +784,7 @@ struct RACarouselConstants {
             
             scroll(byOffset: offset, withDuration: duration)
         } else {
-          scrollOffset = CGFloat(clampedIndex(_previousItemIndex + itemCount))
+          scrollOffset = CGFloat(clampedIndex(previousItemIndex + itemCount))
         }
     }
     
@@ -926,7 +926,7 @@ struct RACarouselConstants {
         
         if !wrapEnabled {
             if bounceEnabled {
-                _endOffset = max(-_bounceDist, min(CGFloat(numberOfItems) - 1.0 + _bounceDist, _endOffset))
+                _endOffset = max(-bounceDist, min(CGFloat(numberOfItems) - 1.0 + bounceDist, _endOffset))
             } else {
                 _endOffset = clampedOffset(_endOffset)
             }
@@ -1035,8 +1035,8 @@ struct RACarouselConstants {
         if wrapEnabled || !bounceEnabled {
             _scrollOffset = clampedOffset(_scrollOffset)
         } else {
-            let minVal: CGFloat = -_bounceDist
-            let maxVal: CGFloat = max(CGFloat(numberOfItems) - 1.0, 0.0) + _bounceDist
+            let minVal: CGFloat = -bounceDist
+            let maxVal: CGFloat = max(CGFloat(numberOfItems) - 1.0, 0.0) + bounceDist
             
             if _scrollOffset < minVal {
                 _scrollOffset = minVal
@@ -1047,7 +1047,7 @@ struct RACarouselConstants {
             }
         }
         
-        let difference = minScrollDistance(fromIndex: currentItemIdx, toIndex: _previousItemIndex)
+        let difference = minScrollDistance(fromIndex: currentItemIdx, toIndex: previousItemIndex)
         
         if difference != 0 {
             _toggleTime = CACurrentMediaTime()
@@ -1065,14 +1065,14 @@ struct RACarouselConstants {
         }
         
         // Notify of change of item
-        if _previousItemIndex != currentItemIdx {
+        if previousItemIndex != currentItemIdx {
             pushAnimationState(enabled: true)
             delegate?.carousel(self, currentItemDidChangeToIndex: currentItemIdx)
             popAnimationState()
         }
         
         _prevScrollOffset = _scrollOffset
-        _previousItemIndex = currentItemIdx
+        previousItemIndex = currentItemIdx
     }
     
     // MARK: -
@@ -1202,10 +1202,10 @@ struct RACarouselConstants {
                 var factor: CGFloat = 1.0
                 
                 if !wrapEnabled && bounceEnabled {
-                    factor = 1.0 - min (abs(_scrollOffset - clampedOffset(_scrollOffset)), _bounceDist) / _bounceDist
+                    factor = 1.0 - min (abs(_scrollOffset - clampedOffset(_scrollOffset)), bounceDist) / bounceDist
                 }
                 
-                _startVelocity = -velocity * factor * _scrollSpeed / (CGFloat(itemWidth))
+                _startVelocity = -velocity * factor * scrollSpeed / (CGFloat(itemWidth))
                 _scrollOffset = _scrollOffset - ((translation - _previousTranslation) * factor * offsetMultiplier / itemWidth)
                 _previousTranslation = translation
                 didScroll()
