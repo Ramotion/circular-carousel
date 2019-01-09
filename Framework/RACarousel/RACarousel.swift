@@ -24,10 +24,10 @@ import UIKit
     case fadeRange
     case fadeMinAlpha
     case offsetMultiplier
+    case itemWidth
 }
 
-@IBDesignable open class RACarousel : UIView {
-    
+struct RACarouselConstants {
     static let MaximumVisibleItems: Int         = 50
     static let DecelerationMultiplier: CGFloat  = 60.0
     static let ScrollSpeedThreshold: CGFloat    = 2.0
@@ -42,10 +42,13 @@ import UIKit
     static let MaxToggleDuration: TimeInterval  = 0.4
     
     static let FloatErrorMargin: CGFloat        = 0.000001
+}
+
+@IBDesignable open class RACarousel : UIView {
     
     // Delegate and Datasource
-    private weak var _delegate: RACarouselDelegate?
-    @IBOutlet public var delegate: RACarouselDelegate? {
+    private var _delegate: RACarouselDelegate?
+    public var delegate: RACarouselDelegate? {
         get {
             return _delegate
         }
@@ -57,8 +60,8 @@ import UIKit
         }
     }
     
-    private weak var _dataSource: RACarouselDataSource?
-    @IBOutlet public var dataSource: RACarouselDataSource? {
+    private var _dataSource: RACarouselDataSource?
+    public var dataSource: RACarouselDataSource? {
         get {
             return _dataSource
         }
@@ -263,10 +266,6 @@ import UIKit
         }
     }
     
-    deinit {
-        
-    }
-    
     public func itemView(atIndex index: Int) -> UIView? {
         return _itemViews[index]
     }
@@ -427,17 +426,8 @@ import UIKit
         return CGFloat(1.0 - min(factor, fadeRange) / fadeRange * (1.0 - fadeMinAlpha))
     }
     
-    private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
-        
-        return _delegate?.carousel?(self, valueForOption: option, withDefaultFloat: defaultValue) ?? defaultValue
-    }
-    
-    private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: Bool) -> Bool {
-        return _delegate?.carousel?(self, valueForOption: option, withDefaultBool: defaultValue) ?? defaultValue
-    }
-    
-    private func value(forOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {
-        return _delegate?.carousel?(self, valueForOption: option, withDefaultInt: defaultValue) ?? defaultValue
+    private func value<T>(forOption option: RACarouselOption, withDefaultValue defaultValue: T) -> T {
+        return _delegate?.carousel(self, valueForOption: option, withDefaultValue: defaultValue) ?? defaultValue
     }
     
     private func transformForItemView(withOffset offset: CGFloat) -> CATransform3D {
@@ -451,7 +441,7 @@ import UIKit
         let spacing = value(forOption: .spacing, withDefaultValue: CGFloat(1.0))
         transform = CATransform3DTranslate(transform, offset * itemWidth * spacing, 0.0, 0.0)
         
-        let scale = max(RACarousel.MinScale, RACarousel.MaxScale - abs(offset * 0.25))
+        let scale = max(RACarouselConstants.MinScale, RACarouselConstants.MaxScale - abs(offset * 0.25))
         
         transform = CATransform3DScale(transform, scale, scale, 1.0)
         
@@ -546,12 +536,11 @@ import UIKit
     }
     
     private func updateItemWidth() {
-        itemWidth = _delegate?.itemWidth?(self) ?? itemWidth
+        itemWidth = value(forOption: .itemWidth, withDefaultValue: itemWidth)
         if numberOfItems > 0 {
             if _itemViews.count == 0 {
                 loadView(atIndex: 0)
             }
-            
         }
     }
     
@@ -561,7 +550,7 @@ import UIKit
         let itemWidthWithSpacing = itemWidth * spacing
         
         numberOfVisibleItems = Int(ceil(width / itemWidthWithSpacing)) + 2
-        numberOfVisibleItems = min(RACarousel.MaximumVisibleItems, numberOfVisibleItems)
+        numberOfVisibleItems = min(RACarouselConstants.MaximumVisibleItems, numberOfVisibleItems)
         numberOfVisibleItems = value(forOption: .visibleItems, withDefaultValue: numberOfVisibleItems)
     }
     
@@ -693,7 +682,7 @@ import UIKit
         setNeedsLayout()
         
         if numberOfItems > 0 {
-            scroll(toItemAtIndex: dataSource!.startingItemIndex?(inCarousel: self) ?? 0, animated: false)
+            scroll(toItemAtIndex: dataSource!.startingItemIndex(inCarousel: self), animated: false)
         }
     }
     
@@ -780,7 +769,7 @@ import UIKit
                 _endOffset = clampedOffset(_endOffset)
             }
             
-            delegate?.carouselWillBeginScrolling?(self)
+            delegate?.carouselWillBeginScrolling(self)
             startAnimation()
             
         } else {
@@ -810,12 +799,12 @@ import UIKit
     }
     
     public func scroll(toItemAtIndex index: Int, withDuration duration: TimeInterval) {
-        _delegate?.carousel?(self, willBeginScrollingToIndex: index)
+        _delegate?.carousel(self, willBeginScrollingToIndex: index)
         scroll(toOffset: CGFloat(index), withDuration: duration)
     }
     
     public func scroll(toItemAtIndex index: Int, animated: Bool) {
-        scroll(toItemAtIndex: index, withDuration: animated ? TimeInterval(RACarousel.ScrollDuration) : 0.0)
+        scroll(toItemAtIndex: index, withDuration: animated ? TimeInterval(RACarouselConstants.ScrollDuration) : 0.0)
     }
     
     public func removeItem(atIndex index: Int, animated: Bool) {
@@ -836,7 +825,7 @@ import UIKit
             
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDelay(0.1)
-            UIView.setAnimationDuration(TimeInterval(RACarousel.InsertDuration))
+            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.InsertDuration))
             UIView.setAnimationDelegate(self)
             UIView.setAnimationDidStop(#selector(depthSortViews))
             
@@ -872,13 +861,13 @@ import UIKit
         insertView(nil, atIndex: insert)
         loadView(atIndex: insert)
         
-        if abs(itemWidth) < RACarousel.FloatErrorMargin {
+        if abs(itemWidth) < RACarouselConstants.FloatErrorMargin {
             updateItemWidth()
         }
         
         if animated {
             UIView.beginAnimations(nil, context: nil)
-            UIView.setAnimationDuration(TimeInterval(RACarousel.InsertDuration))
+            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.InsertDuration))
             UIView.setAnimationDelegate(self)
             UIView.setAnimationDidStop(#selector(didScroll))
             transformItemViews()
@@ -898,7 +887,7 @@ import UIKit
         if let containerView = itemView(atIndex: index)?.superview {
             if animated {
                 let transition = CATransition.init()
-                transition.duration = TimeInterval(RACarousel.InsertDuration)
+                transition.duration = TimeInterval(RACarouselConstants.InsertDuration)
                 transition.timingFunction = CAMediaTimingFunction(name:
                     CAMediaTimingFunctionName.easeInEaseOut)
                 transition.type = CATransitionType.push
@@ -927,7 +916,7 @@ import UIKit
     }
     
     private func decelerationDistance() -> CGFloat {
-        let acceleration: CGFloat = -_startVelocity * RACarousel.DecelerationMultiplier * (1.0 - _decelerationRate)
+        let acceleration: CGFloat = -_startVelocity * RACarouselConstants.DecelerationMultiplier * (1.0 - _decelerationRate)
         
         return -pow(_startVelocity, 2.0) / (2.0 * acceleration)
     }
@@ -935,13 +924,13 @@ import UIKit
     private func shouldDecelerate() -> Bool {
         //print ("shouldDecelerate() - _startVelocity = \(_startVelocity), " +
         //       "decelerationDistance = \(decelerationDistance())")
-        return (abs(_startVelocity) > RACarousel.ScrollSpeedThreshold) &&
-                (abs(decelerationDistance()) > RACarousel.DecelerateThreshold)
+        return (abs(_startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
+                (abs(decelerationDistance()) > RACarouselConstants.DecelerateThreshold)
     }
     
     private func shouldScroll() -> Bool {
-        return (abs(_startVelocity) > RACarousel.ScrollSpeedThreshold) &&
-                (abs(_scrollOffset - CGFloat(currentItemIdx)) > RACarousel.ScrollDistanceThreshold)
+        return (abs(_startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
+                (abs(_scrollOffset - CGFloat(currentItemIdx)) > RACarouselConstants.ScrollDistanceThreshold)
     }
     
     private func startDecelerating() {
@@ -993,7 +982,7 @@ import UIKit
                 depthSortViews()
                 pushAnimationState(enabled: true)
                 //delegate?.carousel(self, didEndScrollingToIndex: destIndex)
-                delegate?.carouselDidEndScrolling?(self)
+                delegate?.carouselDidEndScrolling(self)
                 popAnimationState()
             }
         } else if _decelerating {
@@ -1007,15 +996,15 @@ import UIKit
             _scrollOffset = _startOffset + distance
             didScroll()
             
-            if abs(time - CGFloat(_scrollDuration)) < RACarousel.FloatErrorMargin {
+            if abs(time - CGFloat(_scrollDuration)) < RACarouselConstants.FloatErrorMargin {
                 //print ("Finishing Deceleration")
                 _decelerating = false
                 pushAnimationState(enabled: true)
                 //delegate?.didEndDecelerating(self)
                 popAnimationState()
                 
-                if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarousel.FloatErrorMargin {
-                    if abs(_scrollOffset - CGFloat(currentItemIdx)) < RACarousel.FloatErrorMargin {
+                if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.FloatErrorMargin {
+                    if abs(_scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.FloatErrorMargin {
                         // Legacy support, does this ever get triggered?
                         //print ("Finished decel - Legacy scroll to currentItemIdx")
                         scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
@@ -1034,7 +1023,7 @@ import UIKit
                         difference = 1.0 + difference
                     }
                     
-                    _toggleTime = currentTime - Double(RACarousel.MaxToggleDuration) * Double(abs(difference))
+                    _toggleTime = currentTime - Double(RACarouselConstants.MaxToggleDuration) * Double(abs(difference))
                     toggle = max(-1.0, min(1.0, -difference))
                     
                     scroll(toItemAtIndex: Int(round(CGFloat(currentItemIdx) + difference)), animated: true)
@@ -1042,18 +1031,12 @@ import UIKit
                     //print ("Scroll with toggle : \(toggle) and _toggleTime : \(_toggleTime)")
                 }
             }
-        } else if abs(toggle) > RACarousel.FloatErrorMargin {
-//            print ("Toggle scroll")
+        } else if abs(toggle) > RACarouselConstants.FloatErrorMargin {
             var toggleDuration: TimeInterval = _startVelocity != 0.0 ? TimeInterval(min(1.0, max(0.0, 1.0 / abs(_startVelocity)))) : 1.0
-            toggleDuration = RACarousel.MinToggleDuration + (RACarousel.MaxToggleDuration - RACarousel.MinToggleDuration) * toggleDuration
+            toggleDuration = RACarouselConstants.MinToggleDuration + (RACarouselConstants.MaxToggleDuration - RACarouselConstants.MinToggleDuration) * toggleDuration
             
             let time: TimeInterval = min(1.0, (currentTime - _toggleTime) / toggleDuration)
             delta = easeInOut(inTime: CGFloat(time))
-            
-//            print("Toggle Scroll : " +
-//                "\ntoggleDuration - \(toggleDuration)" +
-//                "\ntime - \(time)" +
-//                "\ndelta - \(delta)")
             
             toggle = (toggle < 0.0) ? (delta - 1.0) : (1.0 - delta)
             didScroll()
@@ -1099,7 +1082,7 @@ import UIKit
         loadUnloadViews()
         transformItemViews()
         
-        if abs(_scrollOffset - _prevScrollOffset) > RACarousel.FloatErrorMargin {
+        if abs(_scrollOffset - _prevScrollOffset) > RACarouselConstants.FloatErrorMargin {
             pushAnimationState(enabled: true)
             //delegate?.carouselDidScroll(self)
             popAnimationState()
@@ -1108,7 +1091,7 @@ import UIKit
         // Notify of change of item
         if _previousItemIndex != currentItemIdx {
             pushAnimationState(enabled: true)
-            delegate?.carousel?(self, currentItemDidChangeToIndex: currentItemIdx)
+            delegate?.carousel(self, currentItemDidChangeToIndex: currentItemIdx)
             popAnimationState()
         }
         
@@ -1195,12 +1178,12 @@ import UIKit
         let itemViewAtPoint: UIView? = itemView(atPoint: gesture.location(in: contentView))
         let index = indexOfItem(forView: itemViewAtPoint)
         if index != NSNotFound {
-            let shouldSelect = delegate?.carousel?(self, shouldSelectItemAtIndex: index) ?? true
+            let shouldSelect = delegate?.carousel(self, shouldSelectItemAtIndex: index) ?? true
             if shouldSelect {
                 if index != currentItemIdx {
                     scroll(toItemAtIndex: index, animated: true)
                 }
-                delegate?.carousel?(self, didSelectItemAtIndex: index)
+                delegate?.carousel(self, didSelectItemAtIndex: index)
             }
         } else {
             scroll(toItemAtIndex: currentItemIdx, animated: true)
@@ -1230,8 +1213,8 @@ import UIKit
                 popAnimationState()
                 
                 if !_decelerating {
-                    if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarousel.FloatErrorMargin {
-                        if abs(scrollOffset - CGFloat(currentItemIdx)) < RACarousel.FloatErrorMargin {
+                    if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.FloatErrorMargin {
+                        if abs(scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.FloatErrorMargin {
                             scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                         }
                     } else if shouldScroll() {

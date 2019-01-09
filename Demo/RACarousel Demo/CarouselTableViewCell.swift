@@ -14,16 +14,28 @@ protocol CarouselTableViewCellDelegate {
     func carousel(_ carousel: RACarousel, buttonPressed: UIButton)
 }
 
-class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselDelegate {  
+class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselDelegate {
     
     static let NumberOfButtons = 10
     static let ButtonImageNames = ["IconImage1", "IconImage2", "IconImage3", "IconImage4"]
     
     var delegate: CarouselTableViewCellDelegate?
     
-    @IBOutlet weak var carousel : RACarousel!
-    @IBOutlet weak var title : UILabel!
+    private weak var _carousel : RACarousel!
+    @IBOutlet var carousel : RACarousel! {
+        set {
+            _carousel = newValue
+            _carousel.delegate = self
+            _carousel.dataSource = self
+        }
+        
+        get {
+            return _carousel
+        }
+    }
     
+    @IBOutlet weak var title : UILabel!
+       
     // MARK: -
     // MARK: RACarouselDataSource
     
@@ -53,11 +65,15 @@ class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselD
     
     // MARK: -
     // MARK: RACarouselDelegate
-    @objc func itemWidth(_ carousel: RACarousel) -> CGFloat {
-        return 100
+    func carousel(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {
+        if option == .itemWidth {
+            return 100
+        }
+        
+        return defaultValue
     }
     
-    @objc func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {
+    func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {
         print ("Selected Item at Index : \(index)")
     }
 

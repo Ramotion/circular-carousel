@@ -9,9 +9,13 @@
 import Foundation
 import UIKit
 
-@objc public protocol RACarouselDataSource : AnyObject {
+public protocol RACarouselDataSource {
     func numberOfItems(inCarousel carousel: RACarousel) -> Int
-    @objc optional func startingItemIndex(inCarousel carousel: RACarousel) -> Int
     func carousel(_: RACarousel, viewForItemAt: IndexPath, reuseView: UIView?) -> UIView
-    
+}
+
+public extension RACarouselDataSource {
+    func startingItemIndex(inCarousel carousel: RACarousel) -> Int {
+        return 0
+    }
 }
