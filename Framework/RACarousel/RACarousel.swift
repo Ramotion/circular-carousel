@@ -24,7 +24,6 @@ import UIKit
     case fadeRange
     case fadeMinAlpha
     case offsetMultiplier
-    case startingIndex
 }
 
 @IBDesignable open class RACarousel : UIView {
@@ -693,8 +692,8 @@ import UIKit
         
         setNeedsLayout()
         
-        if numberOfItems > 0 && scrollOffset < 0.0 {
-            scroll(toItemAtIndex: 0, animated: false)
+        if numberOfItems > 0 {
+            scroll(toItemAtIndex: dataSource!.startingItemIndex?(inCarousel: self) ?? 0, animated: false)
         }
     }
     

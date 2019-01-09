@@ -11,5 +11,7 @@ import UIKit
 
 @objc public protocol RACarouselDataSource : AnyObject {
     func numberOfItems(inCarousel carousel: RACarousel) -> Int
+    @objc optional func startingItemIndex(inCarousel carousel: RACarousel) -> Int
     func carousel(_: RACarousel, viewForItemAt: IndexPath, reuseView: UIView?) -> UIView
+    
 }

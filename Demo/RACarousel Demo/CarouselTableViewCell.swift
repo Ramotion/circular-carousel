@@ -47,6 +47,10 @@ class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselD
         return button!
     }
     
+    func startingItemIndex(inCarousel carousel: RACarousel) -> Int {
+        return 2
+    }
+    
     // MARK: -
     // MARK: RACarouselDelegate
     @objc func itemWidth(_ carousel: RACarousel) -> CGFloat {
