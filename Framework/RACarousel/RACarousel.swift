@@ -225,11 +225,11 @@ struct RACarouselConstants {
     var lastTime: TimeInterval = 0.0
     var decelerating: Bool = false
     var decelerationRate: CGFloat = 0.95
-    var _startVelocity: CGFloat = 0.0
-    var _timer: Timer?
-    var _didDrag: Bool = false
-    var _toggleTime: TimeInterval = 0.0
-    var _previousTranslation: CGFloat = 0.0
+    var startVelocity: CGFloat = 0.0
+    var timer: Timer?
+    var didDrag: Bool = false
+    var toggleTime: TimeInterval = 0.0
+    var previousTranslation: CGFloat = 0.0
     
     let decelSpeed: CGFloat = 0.9
     let scrollSpeed: CGFloat = 1.0
@@ -891,31 +891,31 @@ struct RACarouselConstants {
     // MARK: -
     // MARK: Animation
     private func startAnimation() {
-        if _timer == nil {
-            _timer = Timer(timeInterval: 1.0/60.0, target: self, selector: #selector(step), userInfo: nil, repeats: true)
+        if timer == nil {
+            timer = Timer(timeInterval: 1.0/60.0, target: self, selector: #selector(step), userInfo: nil, repeats: true)
             
-            RunLoop.main.add(_timer!, forMode: RunLoop.Mode.default)
+            RunLoop.main.add(timer!, forMode: RunLoop.Mode.default)
         }
     }
     
     private func stopAnimation() {
-        _timer?.invalidate()
-        _timer = nil
+        timer?.invalidate()
+        timer = nil
     }
     
     private func decelerationDistance() -> CGFloat {
-        let acceleration: CGFloat = -_startVelocity * RACarouselConstants.DecelerationMultiplier * (1.0 - decelerationRate)
+        let acceleration: CGFloat = -startVelocity * RACarouselConstants.DecelerationMultiplier * (1.0 - decelerationRate)
         
-        return -pow(_startVelocity, 2.0) / (2.0 * acceleration)
+        return -pow(startVelocity, 2.0) / (2.0 * acceleration)
     }
     
     private func shouldDecelerate() -> Bool {
-        return (abs(_startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
+        return (abs(startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
                 (abs(decelerationDistance()) > RACarouselConstants.DecelerateThreshold)
     }
     
     private func shouldScroll() -> Bool {
-        return (abs(_startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
+        return (abs(startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
                 (abs(_scrollOffset - CGFloat(currentItemIdx)) > RACarouselConstants.ScrollDistanceThreshold)
     }
     
@@ -935,7 +935,7 @@ struct RACarouselConstants {
         distance = endOffset - startOffset
         
         startTime = CACurrentMediaTime()
-        scrollDuration = TimeInterval(abs(distance) / abs(0.5 * _startVelocity))
+        scrollDuration = TimeInterval(abs(distance) / abs(0.5 * startVelocity))
         
         if distance != 0.0 {
             decelerating = true
@@ -973,8 +973,8 @@ struct RACarouselConstants {
         } else if decelerating {
             
             let time: CGFloat = CGFloat(min(scrollDuration, currentTime - startTime))
-            let acceleration: CGFloat = -_startVelocity / CGFloat(scrollDuration)
-            let distance: CGFloat = _startVelocity * time + 0.5 * acceleration * pow(time, 2.0)
+            let acceleration: CGFloat = -startVelocity / CGFloat(scrollDuration)
+            let distance: CGFloat = startVelocity * time + 0.5 * acceleration * pow(time, 2.0)
             
             _scrollOffset = startOffset + distance
             didScroll()
@@ -1001,17 +1001,17 @@ struct RACarouselConstants {
                         difference = 1.0 + difference
                     }
                     
-                    _toggleTime = currentTime - Double(RACarouselConstants.MaxToggleDuration) * Double(abs(difference))
+                    toggleTime = currentTime - Double(RACarouselConstants.MaxToggleDuration) * Double(abs(difference))
                     toggle = max(-1.0, min(1.0, -difference))
                     
                     scroll(toItemAtIndex: Int(round(CGFloat(currentItemIdx) + difference)), animated: true)
                 }
             }
         } else if abs(toggle) > RACarouselConstants.FloatErrorMargin {
-            var toggleDuration: TimeInterval = _startVelocity != 0.0 ? TimeInterval(min(1.0, max(0.0, 1.0 / abs(_startVelocity)))) : 1.0
+            var toggleDuration: TimeInterval = startVelocity != 0.0 ? TimeInterval(min(1.0, max(0.0, 1.0 / abs(startVelocity)))) : 1.0
             toggleDuration = RACarouselConstants.MinToggleDuration + (RACarouselConstants.MaxToggleDuration - RACarouselConstants.MinToggleDuration) * toggleDuration
             
-            let time: TimeInterval = min(1.0, (currentTime - _toggleTime) / toggleDuration)
+            let time: TimeInterval = min(1.0, (currentTime - toggleTime) / toggleDuration)
             delta = easeInOut(inTime: CGFloat(time))
             
             toggle = (toggle < 0.0) ? (delta - 1.0) : (1.0 - delta)
@@ -1040,17 +1040,17 @@ struct RACarouselConstants {
             
             if _scrollOffset < minVal {
                 _scrollOffset = minVal
-                _startVelocity = 0.0
+                startVelocity = 0.0
             } else if _scrollOffset > maxVal {
                 _scrollOffset = maxVal
-                _startVelocity = 0.0
+                startVelocity = 0.0
             }
         }
         
         let difference = minScrollDistance(fromIndex: currentItemIdx, toIndex: previousItemIndex)
         
         if difference != 0 {
-            _toggleTime = CACurrentMediaTime()
+            toggleTime = CACurrentMediaTime()
             toggle = max(-1.0, min(1.0, CGFloat(difference)))
             startAnimation()
         }
@@ -1167,13 +1167,13 @@ struct RACarouselConstants {
                 dragging = true
                 scrolling = false
                 decelerating = false
-                _previousTranslation = gesture.translation(in: self).x
+                previousTranslation = gesture.translation(in: self).x
                 //delegate?.carouselWillBeginDragging(self)
             case .ended, .cancelled, .failed:
                 dragging = false
-                _didDrag = true
+                didDrag = true
                 if shouldDecelerate() {
-                    _didDrag = false
+                    didDrag = false
                     startDecelerating()
                 }
                 
@@ -1187,7 +1187,7 @@ struct RACarouselConstants {
                             scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                         }
                     } else if shouldScroll() {
-                        let direction: Int = Int(_startVelocity / abs(_startVelocity))
+                        let direction: Int = Int(startVelocity / abs(startVelocity))
                         scroll(toItemAtIndex: currentItemIdx + direction, animated: true)
                     } else {
                         scroll(toItemAtIndex: currentItemIdx, animated: true)
@@ -1205,9 +1205,9 @@ struct RACarouselConstants {
                     factor = 1.0 - min (abs(_scrollOffset - clampedOffset(_scrollOffset)), bounceDist) / bounceDist
                 }
                 
-                _startVelocity = -velocity * factor * scrollSpeed / (CGFloat(itemWidth))
-                _scrollOffset = _scrollOffset - ((translation - _previousTranslation) * factor * offsetMultiplier / itemWidth)
-                _previousTranslation = translation
+                startVelocity = -velocity * factor * scrollSpeed / (CGFloat(itemWidth))
+                _scrollOffset = _scrollOffset - ((translation - previousTranslation) * factor * offsetMultiplier / itemWidth)
+                previousTranslation = translation
                 didScroll()
             case .possible:
                 // Do nothing
