@@ -219,9 +219,9 @@ struct RACarouselConstants {
     var prevScrollOffset: CGFloat = 0.0
     var startOffset: CGFloat = 0.0
     var endOffset: CGFloat = 0.0
-    var _scrollDuration: TimeInterval = 0.0
-    var _startTime: TimeInterval = 0.0
-    var _endTime: TimeInterval = 0.0
+    var scrollDuration: TimeInterval = 0.0
+    var startTime: TimeInterval = 0.0
+    var endTime: TimeInterval = 0.0
     var _lastTime: TimeInterval = 0.0
     var _decelerating: Bool = false
     var _decelerationRate: CGFloat = 0.95
@@ -749,12 +749,12 @@ struct RACarouselConstants {
             _decelerating = false
             scrolling = true
             
-            _startTime = CACurrentMediaTime()
+            startTime = CACurrentMediaTime()
             
             startOffset = _scrollOffset
             endOffset = startOffset + offset
             
-            _scrollDuration = duration
+            scrollDuration = duration
             if !wrapEnabled {
                 endOffset = clampedOffset(endOffset)
             }
@@ -934,8 +934,8 @@ struct RACarouselConstants {
         
         distance = endOffset - startOffset
         
-        _startTime = CACurrentMediaTime()
-        _scrollDuration = TimeInterval(abs(distance) / abs(0.5 * _startVelocity))
+        startTime = CACurrentMediaTime()
+        scrollDuration = TimeInterval(abs(distance) / abs(0.5 * _startVelocity))
         
         if distance != 0.0 {
             _decelerating = true
@@ -956,7 +956,7 @@ struct RACarouselConstants {
         _lastTime = currentTime
         
         if scrolling && !dragging {
-            let time: TimeInterval = min(1.0, (currentTime - _startTime) / _scrollDuration)
+            let time: TimeInterval = min(1.0, (currentTime - startTime) / scrollDuration)
             delta = easeInOut(inTime: CGFloat(time))
             
             _scrollOffset = startOffset + (endOffset - startOffset) * delta
@@ -972,14 +972,14 @@ struct RACarouselConstants {
             }
         } else if _decelerating {
             
-            let time: CGFloat = CGFloat(min(_scrollDuration, currentTime - _startTime))
-            let acceleration: CGFloat = -_startVelocity / CGFloat(_scrollDuration)
+            let time: CGFloat = CGFloat(min(scrollDuration, currentTime - startTime))
+            let acceleration: CGFloat = -_startVelocity / CGFloat(scrollDuration)
             let distance: CGFloat = _startVelocity * time + 0.5 * acceleration * pow(time, 2.0)
             
             _scrollOffset = startOffset + distance
             didScroll()
             
-            if abs(time - CGFloat(_scrollDuration)) < RACarouselConstants.FloatErrorMargin {
+            if abs(time - CGFloat(scrollDuration)) < RACarouselConstants.FloatErrorMargin {
                 
                 _decelerating = false
                 pushAnimationState(enabled: true)
