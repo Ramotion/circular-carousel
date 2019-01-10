@@ -216,7 +216,7 @@ struct RACarouselConstants {
     var itemViews: Dictionary<Int, UIView> = Dictionary<Int, UIView>()
     var previousItemIndex: Int = 0
     var itemViewPool: Set<UIView> = Set<UIView>()
-    var _prevScrollOffset: CGFloat = 0.0
+    var prevScrollOffset: CGFloat = 0.0
     var _startOffset: CGFloat = 0.0
     var _endOffset: CGFloat = 0.0
     var _scrollDuration: TimeInterval = 0.0
@@ -553,7 +553,7 @@ struct RACarouselConstants {
         updateItemWidth()
         updateNumberOfVisibleItems()
         
-        _prevScrollOffset = scrollOffset
+        prevScrollOffset = scrollOffset
         offsetMultiplier = value(forOption: RACarouselOption.offsetMultiplier, withDefaultValue: 1.0)
         
         if scrolling == false && _decelerating == false {
@@ -1058,7 +1058,7 @@ struct RACarouselConstants {
         loadUnloadViews()
         transformItemViews()
         
-        if abs(_scrollOffset - _prevScrollOffset) > RACarouselConstants.FloatErrorMargin {
+        if abs(_scrollOffset - prevScrollOffset) > RACarouselConstants.FloatErrorMargin {
             pushAnimationState(enabled: true)
             //delegate?.carouselDidScroll(self)
             popAnimationState()
@@ -1071,7 +1071,7 @@ struct RACarouselConstants {
             popAnimationState()
         }
         
-        _prevScrollOffset = _scrollOffset
+        prevScrollOffset = _scrollOffset
         previousItemIndex = currentItemIdx
     }
     
