@@ -166,8 +166,8 @@ struct RACarouselConstants {
         } set {
             scrolling = false
             _decelerating = false
-            _startOffset = scrollOffset
-            _endOffset = scrollOffset
+            startOffset = scrollOffset
+            endOffset = scrollOffset
             
             if (abs(_scrollOffset - newValue) > 0.0) {
                 _scrollOffset = newValue
@@ -217,8 +217,8 @@ struct RACarouselConstants {
     var previousItemIndex: Int = 0
     var itemViewPool: Set<UIView> = Set<UIView>()
     var prevScrollOffset: CGFloat = 0.0
-    var _startOffset: CGFloat = 0.0
-    var _endOffset: CGFloat = 0.0
+    var startOffset: CGFloat = 0.0
+    var endOffset: CGFloat = 0.0
     var _scrollDuration: TimeInterval = 0.0
     var _startTime: TimeInterval = 0.0
     var _endTime: TimeInterval = 0.0
@@ -751,12 +751,12 @@ struct RACarouselConstants {
             
             _startTime = CACurrentMediaTime()
             
-            _startOffset = _scrollOffset
-            _endOffset = _startOffset + offset
+            startOffset = _scrollOffset
+            endOffset = startOffset + offset
             
             _scrollDuration = duration
             if !wrapEnabled {
-                _endOffset = clampedOffset(_endOffset)
+                endOffset = clampedOffset(endOffset)
             }
             
             delegate?.carouselWillBeginScrolling(self)
@@ -789,7 +789,7 @@ struct RACarouselConstants {
     }
     
     public func scroll(toItemAtIndex index: Int, withDuration duration: TimeInterval) {
-        _delegate?.carousel(self, willBeginScrollingToIndex: index)
+        delegate?.carousel(self, willBeginScrollingToIndex: index)
         scroll(toOffset: CGFloat(index), withDuration: duration)
     }
     
@@ -921,18 +921,18 @@ struct RACarouselConstants {
     
     private func startDecelerating() {
         var distance: CGFloat = decelerationDistance()
-        _startOffset = _scrollOffset
-        _endOffset = _startOffset + distance
+        startOffset = _scrollOffset
+        endOffset = startOffset + distance
         
         if !wrapEnabled {
             if bounceEnabled {
-                _endOffset = max(-bounceDist, min(CGFloat(numberOfItems) - 1.0 + bounceDist, _endOffset))
+                endOffset = max(-bounceDist, min(CGFloat(numberOfItems) - 1.0 + bounceDist, endOffset))
             } else {
-                _endOffset = clampedOffset(_endOffset)
+                endOffset = clampedOffset(endOffset)
             }
         }
         
-        distance = _endOffset - _startOffset
+        distance = endOffset - startOffset
         
         _startTime = CACurrentMediaTime()
         _scrollDuration = TimeInterval(abs(distance) / abs(0.5 * _startVelocity))
@@ -959,7 +959,7 @@ struct RACarouselConstants {
             let time: TimeInterval = min(1.0, (currentTime - _startTime) / _scrollDuration)
             delta = easeInOut(inTime: CGFloat(time))
             
-            _scrollOffset = _startOffset + (_endOffset - _startOffset) * delta
+            _scrollOffset = startOffset + (endOffset - startOffset) * delta
             didScroll()
             
             if time >= 1.0 {
@@ -976,7 +976,7 @@ struct RACarouselConstants {
             let acceleration: CGFloat = -_startVelocity / CGFloat(_scrollDuration)
             let distance: CGFloat = _startVelocity * time + 0.5 * acceleration * pow(time, 2.0)
             
-            _scrollOffset = _startOffset + distance
+            _scrollOffset = startOffset + distance
             didScroll()
             
             if abs(time - CGFloat(_scrollDuration)) < RACarouselConstants.FloatErrorMargin {
