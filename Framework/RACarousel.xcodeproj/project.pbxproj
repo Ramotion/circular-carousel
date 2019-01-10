@@ -12,6 +12,11 @@
 		1D0AA4CC21E4B06B00D5332F /* RACarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA4C821E4B06B00D5332F /* RACarouselDataSource.swift */; };
 		1D0AA4CD21E4B06B00D5332F /* RACarouselDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA4C921E4B06B00D5332F /* RACarouselDelegate.swift */; };
 		1D0AA4CE21E4B06B00D5332F /* RACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA4CA21E4B06B00D5332F /* RACarousel.swift */; };
+		1D24A57821E77F9200C61617 /* RACarousel_ScrollExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24A57721E77F9200C61617 /* RACarousel_ScrollExtension.swift */; };
+		1D24A57A21E7865900C61617 /* RACarousel_GestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24A57921E7865900C61617 /* RACarousel_GestureExtension.swift */; };
+		1D24A57C21E7880C00C61617 /* RACarousel_LoaderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24A57B21E7880C00C61617 /* RACarousel_LoaderExtensions.swift */; };
+		1D24A57E21E78F4F00C61617 /* RACarousel_AnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24A57D21E78F4F00C61617 /* RACarousel_AnimationExtension.swift */; };
+		1D24A58021E78FDB00C61617 /* RACarousel_LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24A57F21E78FDB00C61617 /* RACarousel_LayoutExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		1D0AA4C821E4B06B00D5332F /* RACarouselDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACarouselDataSource.swift; sourceTree = "<group>"; };
 		1D0AA4C921E4B06B00D5332F /* RACarouselDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACarouselDelegate.swift; sourceTree = "<group>"; };
 		1D0AA4CA21E4B06B00D5332F /* RACarousel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACarousel.swift; sourceTree = "<group>"; };
+		1D24A57721E77F9200C61617 /* RACarousel_ScrollExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarousel_ScrollExtension.swift; sourceTree = "<group>"; };
+		1D24A57921E7865900C61617 /* RACarousel_GestureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarousel_GestureExtension.swift; sourceTree = "<group>"; };
+		1D24A57B21E7880C00C61617 /* RACarousel_LoaderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarousel_LoaderExtensions.swift; sourceTree = "<group>"; };
+		1D24A57D21E78F4F00C61617 /* RACarousel_AnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarousel_AnimationExtension.swift; sourceTree = "<group>"; };
+		1D24A57F21E78FDB00C61617 /* RACarousel_LayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RACarousel_LayoutExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,11 @@
 				1D0AA4C921E4B06B00D5332F /* RACarouselDelegate.swift */,
 				1D0AA4BF21E4AFFF00D5332F /* RACarousel.h */,
 				1D0AA4C021E4AFFF00D5332F /* Info.plist */,
+				1D24A57721E77F9200C61617 /* RACarousel_ScrollExtension.swift */,
+				1D24A57921E7865900C61617 /* RACarousel_GestureExtension.swift */,
+				1D24A57B21E7880C00C61617 /* RACarousel_LoaderExtensions.swift */,
+				1D24A57D21E78F4F00C61617 /* RACarousel_AnimationExtension.swift */,
+				1D24A57F21E78FDB00C61617 /* RACarousel_LayoutExtension.swift */,
 			);
 			path = RACarousel;
 			sourceTree = "<group>";
@@ -143,10 +158,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D24A57A21E7865900C61617 /* RACarousel_GestureExtension.swift in Sources */,
+				1D24A57821E77F9200C61617 /* RACarousel_ScrollExtension.swift in Sources */,
 				1D0AA4CE21E4B06B00D5332F /* RACarousel.swift in Sources */,
+				1D24A57E21E78F4F00C61617 /* RACarousel_AnimationExtension.swift in Sources */,
 				1D0AA4CB21E4B06B00D5332F /* NSObjectExtension.swift in Sources */,
 				1D0AA4CD21E4B06B00D5332F /* RACarouselDelegate.swift in Sources */,
 				1D0AA4CC21E4B06B00D5332F /* RACarouselDataSource.swift in Sources */,
+				1D24A57C21E7880C00C61617 /* RACarousel_LoaderExtensions.swift in Sources */,
+				1D24A58021E78FDB00C61617 /* RACarousel_LayoutExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
