@@ -11,7 +11,7 @@ import RACarousel
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CarouselTableViewCellDelegate {
 
-    static let CarouselRows = [4]
+    static let CarouselRows = [4,9]
     static let NumberOfRows = 30
     static let CarouselTableViewCellIdentifier = "CarouselTableViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
