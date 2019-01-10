@@ -78,7 +78,7 @@ struct RACarouselConstants {
     
     var currentItemIdx: Int {
         get {
-            return clampedIndex(Int(round(Float(scrollOffset))))
+            return clampedIndex(Int(round(scrollOffset)))
         }
         set {
             assert(newValue < numberOfItems, "Attempting to set the current item outside the bounds of total items")
@@ -289,7 +289,7 @@ struct RACarouselConstants {
         
         addSubview(contentView)
         
-        if let _ = dataSource {
+        if dataSource != nil {
             reloadData()
         }
     }

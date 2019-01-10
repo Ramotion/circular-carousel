@@ -102,7 +102,7 @@ extension RACarousel {
             view.superview?.removeFromSuperview()
         }
         
-        guard let _ = dataSource else { return }
+        guard dataSource != nil else { return }
         
         numberOfVisibleItems = 0
         numberOfItems = dataSource!.numberOfItems(inCarousel: self)
