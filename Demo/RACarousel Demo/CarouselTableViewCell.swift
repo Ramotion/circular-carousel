@@ -21,7 +21,7 @@ class CarouselTableViewCell : UITableViewCell, RACarouselDataSource, RACarouselD
     
     var delegate: CarouselTableViewCellDelegate?
     
-    private weak var _carousel : RACarousel!
+        weak var _carousel : RACarousel!
     @IBOutlet var carousel : RACarousel! {
         set {
             _carousel = newValue

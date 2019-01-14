@@ -47,7 +47,7 @@ extension RACarousel {
         let spacing = value(forOption: .spacing, withDefaultValue: CGFloat(1.0))
         transform = CATransform3DTranslate(transform, offset * itemWidth * spacing, 0.0, 0.0)
         
-        let scale = max(RACarouselConstants.MinScale, RACarouselConstants.MaxScale - abs(offset * 0.25))
+        let scale = max(RACarouselConstants.minScale, RACarouselConstants.maxScale - abs(offset * 0.25))
         
         transform = CATransform3DScale(transform, scale, scale, 1.0)
         
@@ -154,7 +154,7 @@ extension RACarousel {
         let itemWidthWithSpacing = itemWidth * spacing
         
         numberOfVisibleItems = Int(ceil(width / itemWidthWithSpacing)) + 2
-        numberOfVisibleItems = min(RACarouselConstants.MaximumVisibleItems, numberOfVisibleItems)
+        numberOfVisibleItems = min(RACarouselConstants.maximumVisibleItems, numberOfVisibleItems)
         numberOfVisibleItems = value(forOption: .visibleItems, withDefaultValue: numberOfVisibleItems)
     }
     

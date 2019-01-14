@@ -44,7 +44,7 @@ extension RACarousel {
         if let containerView = itemView(atIndex: index)?.superview {
             if animated {
                 let transition = CATransition.init()
-                transition.duration = TimeInterval(RACarouselConstants.InsertDuration)
+                transition.duration = TimeInterval(RACarouselConstants.insertDuration)
                 transition.timingFunction = CAMediaTimingFunction(name:
                     CAMediaTimingFunctionName.easeInEaseOut)
                 transition.type = CATransitionType.push
@@ -105,7 +105,7 @@ extension RACarousel {
     }
     
     public func scroll(toItemAtIndex index: Int, animated: Bool) {
-        scroll(toItemAtIndex: index, withDuration: animated ? TimeInterval(RACarouselConstants.ScrollDuration) : 0.0)
+        scroll(toItemAtIndex: index, withDuration: animated ? TimeInterval(RACarouselConstants.scrollDuration) : 0.0)
     }
     
     public func removeItem(atIndex index: Int, animated: Bool) {
@@ -126,7 +126,7 @@ extension RACarousel {
             
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDelay(0.1)
-            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.InsertDuration))
+            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.insertDuration))
             UIView.setAnimationDelegate(self)
             UIView.setAnimationDidStop(#selector(depthSortViews))
             
@@ -162,13 +162,13 @@ extension RACarousel {
         insertView(nil, atIndex: insert)
         loadView(atIndex: insert)
         
-        if abs(itemWidth) < RACarouselConstants.FloatErrorMargin {
+        if abs(itemWidth) < RACarouselConstants.floatErrorMargin {
             updateItemWidth()
         }
         
         if animated {
             UIView.beginAnimations(nil, context: nil)
-            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.InsertDuration))
+            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.insertDuration))
             UIView.setAnimationDelegate(self)
             UIView.setAnimationDidStop(#selector(didScroll))
             transformItemViews()

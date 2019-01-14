@@ -90,8 +90,8 @@ extension RACarousel {
                 popAnimationState()
                 
                 if !decelerating {
-                    if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.FloatErrorMargin {
-                        if abs(scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.FloatErrorMargin {
+                    if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.floatErrorMargin {
+                        if abs(scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.floatErrorMargin {
                             scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                         }
                     } else if shouldScroll() {

@@ -23,19 +23,19 @@ extension RACarousel {
     }
     
     internal func decelerationDistance() -> CGFloat {
-        let acceleration: CGFloat = -startVelocity * RACarouselConstants.DecelerationMultiplier * (1.0 - decelerationRate)
+        let acceleration: CGFloat = -startVelocity * RACarouselConstants.decelerationMultiplier * (1.0 - decelerationRate)
         
         return -pow(startVelocity, 2.0) / (2.0 * acceleration)
     }
     
     internal func shouldDecelerate() -> Bool {
-        return (abs(startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
-            (abs(decelerationDistance()) > RACarouselConstants.DecelerateThreshold)
+        return (abs(startVelocity) > RACarouselConstants.scrollSpeedThreshold) &&
+            (abs(decelerationDistance()) > RACarouselConstants.decelerateThreshold)
     }
     
     internal func shouldScroll() -> Bool {
-        return (abs(startVelocity) > RACarouselConstants.ScrollSpeedThreshold) &&
-            (abs(_scrollOffset - CGFloat(currentItemIdx)) > RACarouselConstants.ScrollDistanceThreshold)
+        return (abs(startVelocity) > RACarouselConstants.scrollSpeedThreshold) &&
+            (abs(_scrollOffset - CGFloat(currentItemIdx)) > RACarouselConstants.scrollDistanceThreshold)
     }
     
     internal func startDecelerating() {
@@ -98,15 +98,15 @@ extension RACarousel {
             _scrollOffset = startOffset + distance
             didScroll()
             
-            if abs(time - CGFloat(scrollDuration)) < RACarouselConstants.FloatErrorMargin {
+            if abs(time - CGFloat(scrollDuration)) < RACarouselConstants.floatErrorMargin {
                 
                 decelerating = false
                 pushAnimationState(enabled: true)
                 //delegate?.didEndDecelerating(self)
                 popAnimationState()
                 
-                if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.FloatErrorMargin {
-                    if abs(_scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.FloatErrorMargin {
+                if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.floatErrorMargin {
+                    if abs(_scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.floatErrorMargin {
                         scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                     } else {
                         scroll(toItemAtIndex: currentItemIdx, animated: true)
@@ -120,15 +120,15 @@ extension RACarousel {
                         difference = 1.0 + difference
                     }
                     
-                    toggleTime = currentTime - Double(RACarouselConstants.MaxToggleDuration) * Double(abs(difference))
+                    toggleTime = currentTime - Double(RACarouselConstants.maxToggleDuration) * Double(abs(difference))
                     toggle = max(-1.0, min(1.0, -difference))
                     
                     scroll(toItemAtIndex: Int(round(CGFloat(currentItemIdx) + difference)), animated: true)
                 }
             }
-        } else if abs(toggle) > RACarouselConstants.FloatErrorMargin {
+        } else if abs(toggle) > RACarouselConstants.floatErrorMargin {
             var toggleDuration: TimeInterval = startVelocity != 0.0 ? TimeInterval(min(1.0, max(0.0, 1.0 / abs(startVelocity)))) : 1.0
-            toggleDuration = RACarouselConstants.MinToggleDuration + (RACarouselConstants.MaxToggleDuration - RACarouselConstants.MinToggleDuration) * toggleDuration
+            toggleDuration = RACarouselConstants.minToggleDuration + (RACarouselConstants.maxToggleDuration - RACarouselConstants.minToggleDuration) * toggleDuration
             
             let time: TimeInterval = min(1.0, (currentTime - toggleTime) / toggleDuration)
             delta = easeInOut(inTime: CGFloat(time))
@@ -177,7 +177,7 @@ extension RACarousel {
         loadUnloadViews()
         transformItemViews()
         
-        if abs(_scrollOffset - prevScrollOffset) > RACarouselConstants.FloatErrorMargin {
+        if abs(_scrollOffset - prevScrollOffset) > RACarouselConstants.floatErrorMargin {
             pushAnimationState(enabled: true)
             //delegate?.carouselDidScroll(self)
             popAnimationState()

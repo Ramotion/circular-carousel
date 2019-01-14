@@ -9,48 +9,44 @@
 import Foundation
 
 extension RACarousel {
-    @discardableResult internal func loadView(atIndex index: Int, withContainerView containerView: UIView?) -> UIView {
+    @discardableResult internal func loadView(atIndex index: Int, withContainerView containerView: UIView?) -> UIView? {
         pushAnimationState(enabled: false)
         
-        var view: UIView? = nil
+        guard let _dataSource = dataSource else { return nil }
         
-        view = dataSource?.carousel(self, viewForItemAt: IndexPath(item: index, section: 0), reuseView: dequeItemView())
+        let view = _dataSource.carousel(self, viewForItemAt: IndexPath(item: index, section: 0), reuseView: dequeItemView())
         
-        if view == nil {
-            view = UIView()
-        }
-        
-        setItemView(view!, forIndex: index)
+        setItemView(view, forIndex: index)
         if let aContainerView = containerView {
             if let oldItemView: UIView = aContainerView.subviews.last {
                 queue(itemView: oldItemView)
                 var frame = aContainerView.frame
                 
-                frame.size.width = min(itemWidth, view!.frame.size.width)
-                frame.size.height = view!.frame.size.height
+                frame.size.width = min(itemWidth, view.frame.size.width)
+                frame.size.height = view.frame.size.height
                 
                 aContainerView.bounds = frame
                 
-                frame = view!.frame
+                frame = view.frame
                 frame.origin.x = (aContainerView.bounds.size.width - frame.size.width) / 2.0
                 frame.origin.y = (aContainerView.bounds.size.height - frame.size.height) / 2.0
-                view!.frame = frame
+                view.frame = frame
                 
                 oldItemView.removeFromSuperview()
-                aContainerView.addSubview(view!)
+                aContainerView.addSubview(view)
             }
         } else {
-            contentView.addSubview(containView(inView: view!))
+            contentView.addSubview(containView(inView: view))
         }
         
-        view!.superview?.layer.opacity = 0.0
-        transform(itemView: view!, atIndex: index)
+        view.superview?.layer.opacity = 0.0
+        transform(itemView: view, atIndex: index)
         popAnimationState()
         
-        return view!
+        return view
     }
     
-    @discardableResult internal func loadView(atIndex index: Int) -> UIView {
+    @discardableResult internal func loadView(atIndex index: Int) -> UIView? {
         return loadView(atIndex: index, withContainerView: nil)
     }
     

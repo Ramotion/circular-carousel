@@ -28,20 +28,20 @@ import UIKit
 }
 
 struct RACarouselConstants {
-    static let MaximumVisibleItems: Int         = 50
-    static let DecelerationMultiplier: CGFloat  = 60.0
-    static let ScrollSpeedThreshold: CGFloat    = 2.0
-    static let DecelerateThreshold: CGFloat     = 0.1
-    static let ScrollDistanceThreshold: CGFloat = 0.1
-    static let ScrollDuration: CGFloat          = 0.4
-    static let InsertDuration: CGFloat          = 0.4
-    static let MinScale: CGFloat                = 0.75
-    static let MaxScale: CGFloat                = 1.1
+    static let maximumVisibleItems: Int         = 50
+    static let decelerationMultiplier: CGFloat  = 60.0
+    static let scrollSpeedThreshold: CGFloat    = 2.0
+    static let decelerateThreshold: CGFloat     = 0.1
+    static let scrollDistanceThreshold: CGFloat = 0.1
+    static let scrollDuration: CGFloat          = 0.4
+    static let insertDuration: CGFloat          = 0.4
+    static let minScale: CGFloat                = 0.75
+    static let maxScale: CGFloat                = 1.1
     
-    static let MinToggleDuration: TimeInterval  = 0.2
-    static let MaxToggleDuration: TimeInterval  = 0.4
+    static let minToggleDuration: TimeInterval  = 0.2
+    static let maxToggleDuration: TimeInterval  = 0.4
     
-    static let FloatErrorMargin: CGFloat        = 0.000001
+    static let floatErrorMargin: CGFloat        = 0.000001
 }
 
 @IBDesignable open class RACarousel: UIView {
