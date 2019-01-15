@@ -16,34 +16,32 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Add-Fu-wRa">
-                    <rect key="frame" x="10" y="20" width="355" height="28"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0V-Ie-O1N">
+                    <rect key="frame" x="0.0" y="150" width="375" height="50"/>
+                    <color key="backgroundColor" red="0.87232836787564771" green="0.87232836787564771" blue="0.87232836787564771" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0M3-Pt-pCY" customClass="RACarousel" customModule="RACarousel">
-                    <rect key="frame" x="0.0" y="72" width="375" height="128"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="0.0" y="100" width="375" height="100"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="0M3-Pt-pCY" firstAttribute="top" secondItem="Add-Fu-wRa" secondAttribute="bottom" constant="24" id="1zm-1S-kvA"/>
+                <constraint firstItem="0M3-Pt-pCY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="258-Qh-I8E"/>
+                <constraint firstItem="F0V-Ie-O1N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4L7-id-wsa"/>
                 <constraint firstItem="0M3-Pt-pCY" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="8X4-vA-Btw"/>
                 <constraint firstItem="0M3-Pt-pCY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Zw-8t-TFq"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0M3-Pt-pCY" secondAttribute="trailing" id="Aj6-pR-fSJ"/>
-                <constraint firstItem="Add-Fu-wRa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="999" constant="10" id="CGl-Nq-LW2"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Add-Fu-wRa" secondAttribute="trailing" priority="999" constant="10" id="jVp-a1-QZn"/>
-                <constraint firstItem="Add-Fu-wRa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="zMq-UQ-80t"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="F0V-Ie-O1N" secondAttribute="trailing" id="hbx-Jc-bIu"/>
+                <constraint firstItem="F0V-Ie-O1N" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="nUB-Wa-6bp"/>
+                <constraint firstItem="F0V-Ie-O1N" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="150" id="ufj-bP-P7x"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="carousel" destination="0M3-Pt-pCY" id="7rc-3O-OgH"/>
-                <outlet property="title" destination="Add-Fu-wRa" id="WLO-44-77L"/>
             </connections>
-            <point key="canvasLocation" x="-519" y="76"/>
+            <point key="canvasLocation" x="-519.20000000000005" y="75.562218890554732"/>
         </view>
     </objects>
 </document>

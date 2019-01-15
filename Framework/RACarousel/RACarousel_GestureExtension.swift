@@ -131,12 +131,10 @@ extension RACarousel {
         
         switch gesture.direction {
         case UISwipeGestureRecognizer.Direction.right:
-            guard currentItemIdx > 0 else { return }
-            scroll(toItemAtIndex: currentItemIdx - 1, animated: true)
+            scroll(toItemAtIndex: clampedIndex(currentItemIdx - 1), animated: true)
             
         case UISwipeGestureRecognizer.Direction.left:
-            guard currentItemIdx < numberOfItems - 1 else { return }
-            scroll(toItemAtIndex: currentItemIdx + 1, animated: true)
+            scroll(toItemAtIndex: clampedIndex(currentItemIdx + 1), animated: true)
             
         default:
             // Do nothing

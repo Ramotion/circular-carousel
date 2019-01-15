@@ -98,10 +98,10 @@ extension RACarousel {
             view.superview?.removeFromSuperview()
         }
         
-        guard dataSource != nil else { return }
+        guard let _dataSource = dataSource else { return }
         
         numberOfVisibleItems = 0
-        numberOfItems = dataSource!.numberOfItems(inCarousel: self)
+        numberOfItems = _dataSource.numberOfItems(inCarousel: self)
         
         itemViews = Dictionary<Int, UIView>()
         itemViewPool = Set<UIView>()
@@ -109,7 +109,7 @@ extension RACarousel {
         setNeedsLayout()
         
         if numberOfItems > 0 {
-            scroll(toItemAtIndex: dataSource!.startingItemIndex(inCarousel: self), animated: false)
+            scroll(toItemAtIndex: _dataSource.startingItemIndex(inCarousel: self), animated: false)
         }
     }
 }
