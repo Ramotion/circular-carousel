@@ -18,8 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="lZy-oG-CSx">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heX-It-F7u">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="lZy-oG-CSx">
+                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lnv-RU-c84">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
@@ -33,17 +37,29 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lZy-oG-CSx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="A8i-TF-Q4o"/>
+                            <constraint firstItem="heX-It-F7u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BFi-8s-2kB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="heX-It-F7u" secondAttribute="bottom" id="Gb1-e7-oAz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lZy-oG-CSx" secondAttribute="bottom" id="HKJ-ns-CsL"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LGT-eu-tHJ"/>
+                            <constraint firstItem="lZy-oG-CSx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="98" id="PVc-Bs-uyR"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="b8A-B9-YQg"/>
+                            <constraint firstItem="heX-It-F7u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cc0-JV-cCa"/>
                             <constraint firstItem="lZy-oG-CSx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hKL-j3-f9g"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kzD-Nx-gMj"/>
-                            <constraint firstItem="lZy-oG-CSx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rQr-od-kfb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="heX-It-F7u" secondAttribute="trailing" id="qTW-2h-vuP"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="uqP-hn-9yN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="lZy-oG-CSx"/>
+                                <exclude reference="Lnv-RU-c84"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="gradientView" destination="heX-It-F7u" id="sbE-ZT-l0h"/>
+                        <outlet property="imageView" destination="lZy-oG-CSx" id="8Ku-N6-1Gp"/>
                         <outlet property="tableView" destination="Lnv-RU-c84" id="eQA-By-xi2"/>
                     </connections>
                 </viewController>

@@ -47,7 +47,10 @@ extension RACarousel {
         let spacing = value(forOption: .spacing, withDefaultValue: CGFloat(1.0))
         transform = CATransform3DTranslate(transform, offset * itemWidth * spacing, 0.0, 0.0)
         
-        let scale = max(RACarouselConstants.minScale, RACarouselConstants.maxScale - abs(offset * 0.25))
+        let scaleMultiplier = value(forOption: .scaleMultiplier, withDefaultValue: RACarouselConstants.defaultScaleMultiplier)
+        let minScale = value(forOption: .minScale, withDefaultValue: RACarouselConstants.minScale)
+        let maxScale = value(forOption: .maxScale, withDefaultValue: RACarouselConstants.maxScale)
+        let scale = max(minScale, maxScale  - abs(offset * scaleMultiplier))
         
         transform = CATransform3DScale(transform, scale, scale, 1.0)
         

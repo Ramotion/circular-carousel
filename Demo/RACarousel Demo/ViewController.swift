@@ -10,31 +10,50 @@ import UIKit
 import RACarousel
 
 class ViewControllerConstants {
-    static let CarouselRows = [1]
+    static let ButtonCarouselRow = 1
+    static let ImageCarouselRow = 2
+    static let StartingItemIndex = 2
     static let ContainerRows = [2]
-    static let NumberOfRows = 30
-    static let CarouselTableViewCellIdentifier = "CarouselTableViewCellIdentifier"
+    static let NumberOfRows = 3
+    static let ButtonsViewCellIdentifier = "ButtonsViewCellIdentifier"
+    static let ImageViewCellIdentifier = "ImageViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
-    static let CarouselCellRowHeight: CGFloat = 200.0
+    static let ButtonsCarouselCellRowHeight: CGFloat = 200.0
+    static let ImageCarouselCellRowHeight: CGFloat = 300.0
     static let NormalCellRowHeight: CGFloat = 50.0
     static let TopRowHeight:CGFloat = 400.0
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CarouselTableViewCellDelegate {
-    
-    //var tableViewHeaderSize: CGSize = CGSize.zero
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var gradientView: UIView!
     
-    private var swipePanToggle: Bool = false
+    var buttonsCarouselViewCell: ButtonsCarouselViewCell?
+    var imageCarouselViewCell: ImageCarouselViewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        styleViews()
+        configureViews()
+    }
+    
+    private func styleViews() {
+        // Setup gradient view (cyan -> dark blue)
+        gradientView.applyGradient(colorArray: [UIColor.blue, UIColor.cyan])
+    }
+    
+    private func configureViews() {
+        configureTableView()
+    }
+    
+    private func configureTableView() {
         // Register custom cell for carousel
         tableView.separatorColor = UIColor.clear
-        tableView.register(UINib(nibName: "CarouselTableViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.CarouselTableViewCellIdentifier)
+        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.ButtonsViewCellIdentifier)
+        tableView.register(UINib(nibName: "ImageCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.ImageViewCellIdentifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.UITableViewCellIdentifier)
         
         // Setup table view controls
@@ -53,15 +72,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.backgroundColor = UIColor.clear
             return cell
         
-        case let x where ViewControllerConstants.CarouselRows.contains(x):
-            let cell: CarouselTableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.CarouselTableViewCellIdentifier) as! CarouselTableViewCell
+        case ViewControllerConstants.ButtonCarouselRow:
+            let cell: ButtonsCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.ButtonsViewCellIdentifier) as! ButtonsCarouselViewCell
             cell.backgroundColor = UIColor.clear
-            let swipeRow = (row % 2) == 1
             
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = true
+            cell.delegate = self
             
-            swipePanToggle = !swipeRow
+            buttonsCarouselViewCell = cell
+            
+            return cell
+            
+        case ViewControllerConstants.ImageCarouselRow:
+            let cell: ImageCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.ImageViewCellIdentifier) as! ImageCarouselViewCell
+            
+            //cell.backgroundColor = UIColor.clear
+            cell.carousel.panEnabled = false
+            cell.carousel.swipeEnabled = false
+            
+            imageCarouselViewCell = cell
             
             return cell
             
@@ -85,26 +115,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         switch indexPath.row {
         case 0:
             return ViewControllerConstants.TopRowHeight
-        case let x where ViewControllerConstants.CarouselRows.contains(x):
-            return ViewControllerConstants.CarouselCellRowHeight
+        case ViewControllerConstants.ButtonCarouselRow:
+            return ViewControllerConstants.ButtonsCarouselCellRowHeight
+        case ViewControllerConstants.ImageCarouselRow:
+            return ViewControllerConstants.ImageCarouselCellRowHeight
         default:
             return ViewControllerConstants.NormalCellRowHeight
         }
     }
     
     // MARK: -
-    // MARK: CarouselTableViewCellDelegate
+    // MARK: ButtonsCarouselViewCell
     
-    func carousel(_ carousel: RACarousel, buttonPressed button: UIButton) {
-        let defaultAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            // Do nothing
-        }
-        
-        let index = carousel.indexOfItem(forView: button)
-        let alert = UIAlertController(title: "Button Tapped", message: "Button tapped at index \(index)", preferredStyle: .alert)
-        alert.addAction(defaultAction)
-        
-        self.present(alert, animated: true)
+    func buttonCarousel(_ carousel: ButtonsCarouselViewCell, buttonPressed button: UIButton) {
+        // TODO
+    }
+    
+    func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int) {
+        // Pass the message to the image carousel
+        imageCarouselViewCell?.carousel.scroll(toItemAtIndex: index, animated: true)
     }
 }
 

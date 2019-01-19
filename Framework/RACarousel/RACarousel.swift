@@ -25,6 +25,9 @@ import UIKit
     case fadeMinAlpha
     case offsetMultiplier
     case itemWidth
+    case scaleMultiplier
+    case minScale
+    case maxScale
 }
 
 struct RACarouselConstants {
@@ -35,8 +38,9 @@ struct RACarouselConstants {
     static let scrollDistanceThreshold: CGFloat = 0.1
     static let scrollDuration: CGFloat          = 0.4
     static let insertDuration: CGFloat          = 0.4
-    static let minScale: CGFloat                = 0.75
-    static let maxScale: CGFloat                = 1.1
+    static let minScale: CGFloat                = 1.0
+    static let maxScale: CGFloat                = 1.0
+    static let defaultScaleMultiplier: CGFloat  = 1.0
     
     static let minToggleDuration: TimeInterval  = 0.2
     static let maxToggleDuration: TimeInterval  = 0.4

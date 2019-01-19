@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="300" id="KGk-i7-Jjw" customClass="ImageCarouselViewCell" customModule="RACarousel_Demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="299.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaS-BR-pOZ" customClass="RACarousel" customModule="RACarousel">
+                        <rect key="frame" x="0.0" y="60" width="320" height="179.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Is5-Fj-fUy"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X08-bf-NG6">
+                        <rect key="frame" x="16" y="39" width="288" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PO9-uc-a7I">
+                        <rect key="frame" x="16" y="9" width="288" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="NG2-Ve-IyY"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aaS-BR-pOZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="G41-Vy-HN8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PO9-uc-a7I" secondAttribute="trailing" id="GHe-Qy-Xs8"/>
+                    <constraint firstAttribute="trailing" secondItem="aaS-BR-pOZ" secondAttribute="trailing" id="GZh-Gl-LGJ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="X08-bf-NG6" secondAttribute="trailing" id="IuM-Eq-dk8"/>
+                    <constraint firstItem="aaS-BR-pOZ" firstAttribute="top" secondItem="X08-bf-NG6" secondAttribute="bottom" id="OK3-4J-SBv"/>
+                    <constraint firstItem="PO9-uc-a7I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="P2Q-9b-BKR"/>
+                    <constraint firstItem="aaS-BR-pOZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="60" id="Z7r-3w-ZTF"/>
+                    <constraint firstItem="X08-bf-NG6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="f2y-Cq-bCd"/>
+                    <constraint firstAttribute="bottom" secondItem="aaS-BR-pOZ" secondAttribute="bottom" constant="60" id="nBT-9a-rdY"/>
+                    <constraint firstItem="X08-bf-NG6" firstAttribute="top" secondItem="PO9-uc-a7I" secondAttribute="bottom" id="xFA-23-ehQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="carousel" destination="aaS-BR-pOZ" id="1Um-Pa-nOF"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="153.82308845577214"/>
+        </tableViewCell>
+    </objects>
+</document>

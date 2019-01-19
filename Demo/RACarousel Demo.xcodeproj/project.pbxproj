@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D1EB3FD21F2D9DF0008394E /* UIView_GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EB3FC21F2D9DF0008394E /* UIView_GradientExtension.swift */; };
+		1D371BDF21F29D35005F0F5C /* ImageCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */; };
+		1D371BE021F29D35005F0F5C /* ImageCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */; };
 		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
 		1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; };
-		1D6ACEF021DCE4C5007FFA63 /* CarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */; };
-		1D6ACEF221DCE51C007FFA63 /* CarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */; };
+		1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */; };
+		1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */; };
 		1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */; };
 		1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8E21D0ED90002F244E /* ViewController.swift */; };
 		1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9021D0ED90002F244E /* Main.storyboard */; };
@@ -19,10 +22,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D1EB3FC21F2D9DF0008394E /* UIView_GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_GradientExtension.swift; sourceTree = "<group>"; };
+		1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselViewCell.swift; sourceTree = "<group>"; };
+		1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCarouselViewCell.xib; sourceTree = "<group>"; };
 		1D5AE77121E4B6460088B3D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RACarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselTableViewCell.swift; sourceTree = "<group>"; };
-		1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselTableViewCell.xib; sourceTree = "<group>"; };
+		1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCarouselViewCell.swift; sourceTree = "<group>"; };
+		1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsCarouselViewCell.xib; sourceTree = "<group>"; };
 		1DC1EA8921D0ED90002F244E /* RACarousel Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACarousel Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DC1EA8E21D0ED90002F244E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,8 +86,11 @@
 				1DC1EA9321D0ED94002F244E /* Assets.xcassets */,
 				1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */,
 				1DC1EA9821D0ED94002F244E /* Info.plist */,
-				1D6ACEEF21DCE4C5007FFA63 /* CarouselTableViewCell.swift */,
-				1D6ACEF121DCE51C007FFA63 /* CarouselTableViewCell.xib */,
+				1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */,
+				1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */,
+				1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */,
+				1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */,
+				1D1EB3FC21F2D9DF0008394E /* UIView_GradientExtension.swift */,
 			);
 			path = "RACarousel Demo";
 			sourceTree = "<group>";
@@ -147,7 +156,8 @@
 				1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */,
 				1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */,
 				1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */,
-				1D6ACEF221DCE51C007FFA63 /* CarouselTableViewCell.xib in Resources */,
+				1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */,
+				1D371BE021F29D35005F0F5C /* ImageCarouselViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,8 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D6ACEF021DCE4C5007FFA63 /* CarouselTableViewCell.swift in Sources */,
+				1D1EB3FD21F2D9DF0008394E /* UIView_GradientExtension.swift in Sources */,
+				1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */,
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,
+				1D371BDF21F29D35005F0F5C /* ImageCarouselViewCell.swift in Sources */,
 				1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
