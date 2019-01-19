@@ -125,7 +125,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //print ("Scroll view did scroll to Y : \(tableView.contentOffset.y)")
         let minScale:CGFloat = 1.1
-        let maxScale:CGFloat = 1.5
+        let maxScale:CGFloat = 2.0
         
         let offset = tableView.contentOffset.y
         let height = tableView.contentSize.height
