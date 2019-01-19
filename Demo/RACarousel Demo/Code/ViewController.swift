@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func styleViews() {
         // Setup gradient view (cyan -> dark blue)
-        gradientView.applyGradient(colorArray: [UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 0.5), UIColor.cyan])
+        gradientView.applyGradient(withColors: [UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 0.5), UIColor.cyan])
     }
     
     private func configureViews() {
@@ -125,9 +125,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print ("Scroll view did scroll to Y : \(tableView.contentOffset.y)")
-        let scale = tableView.contentOffset.y / 100
-        imageView.transform.scaledBy(x: scale, y: scale)
+        //print ("Scroll view did scroll to Y : \(tableView.contentOffset.y)")
+        let minScale:CGFloat = 1.05
+        let maxScale:CGFloat = 1.3
+        let offset = tableView.contentOffset.y
+        let height = tableView.contentSize.height
+        
+        var scale = (1.0 / height) * offset
+        
+        scale = scale * (maxScale - minScale)
+        scale += minScale
+        //let scale = minScale + ((offset - height) / (maxScale - minScale))
+        
+        imageView.applyScale(scale)
     }
     
     // MARK: -
