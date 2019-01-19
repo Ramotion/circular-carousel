@@ -18,7 +18,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0V-Ie-O1N">
                     <rect key="frame" x="0.0" y="150" width="375" height="50"/>
-                    <color key="backgroundColor" red="0.87232836787564771" green="0.87232836787564771" blue="0.87232836787564771" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" red="0.92448591321243523" green="0.92448591321243523" blue="0.92448591321243523" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0M3-Pt-pCY" customClass="RACarousel" customModule="RACarousel">
                     <rect key="frame" x="0.0" y="100" width="375" height="100"/>

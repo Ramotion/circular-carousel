@@ -13,6 +13,8 @@
 		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
 		1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; };
 		1D605F9621F2F2A200094140 /* souveni1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9521F2EE8300094140 /* souveni1.ttf */; };
+		1D605F9821F311C100094140 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D605F9721F311C100094140 /* RoundedButtonView.swift */; };
+		1D605F9A21F313FE00094140 /* RoundedButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9921F313FE00094140 /* RoundedButtonView.xib */; };
 		1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */; };
 		1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */; };
 		1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */; };
@@ -29,6 +31,8 @@
 		1D5AE77121E4B6460088B3D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RACarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D605F9521F2EE8300094140 /* souveni1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = souveni1.ttf; sourceTree = "<group>"; };
+		1D605F9721F311C100094140 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
+		1D605F9921F313FE00094140 /* RoundedButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundedButtonView.xib; sourceTree = "<group>"; };
 		1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCarouselViewCell.swift; sourceTree = "<group>"; };
 		1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsCarouselViewCell.xib; sourceTree = "<group>"; };
 		1DC1EA8921D0ED90002F244E /* RACarousel Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACarousel Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +64,7 @@
 				1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */,
 				1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */,
 				1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */,
+				1D605F9921F313FE00094140 /* RoundedButtonView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -81,6 +86,7 @@
 				1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */,
 				1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */,
 				1D1EB3FC21F2D9DF0008394E /* UIView_Extension.swift */,
+				1D605F9721F311C100094140 /* RoundedButtonView.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -184,6 +190,7 @@
 				1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */,
 				1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */,
 				1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */,
+				1D605F9A21F313FE00094140 /* RoundedButtonView.xib in Resources */,
 				1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */,
 				1D371BE021F29D35005F0F5C /* ImageCarouselViewCell.xib in Resources */,
 			);
@@ -196,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D605F9821F311C100094140 /* RoundedButtonView.swift in Sources */,
 				1D1EB3FD21F2D9DF0008394E /* UIView_Extension.swift in Sources */,
 				1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */,
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,
