@@ -14,7 +14,7 @@ class ViewControllerConstants {
     static let ImageCarouselRow = 2
     static let StartingItemIndex = 2
     static let ContainerRows = [2]
-    static let NumberOfRows = 3
+    static let NumberOfRows = 4
     static let ButtonsViewCellIdentifier = "ButtonsViewCellIdentifier"
     static let ImageViewCellIdentifier = "ImageViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
@@ -96,9 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return cell
             
         default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.UITableViewCellIdentifier)!
-            cell.textLabel?.text = "CELL : \(row)"
-            
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.UITableViewCellIdentifier)!            
             return cell
         }
     }
@@ -126,8 +124,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //print ("Scroll view did scroll to Y : \(tableView.contentOffset.y)")
-        let minScale:CGFloat = 1.05
-        let maxScale:CGFloat = 1.3
+        let minScale:CGFloat = 1.1
+        let maxScale:CGFloat = 1.5
         let offset = tableView.contentOffset.y
         let height = tableView.contentSize.height
         
@@ -135,7 +133,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         scale = scale * (maxScale - minScale)
         scale += minScale
-        //let scale = minScale + ((offset - height) / (maxScale - minScale))
+        
         
         imageView.applyScale(scale)
     }

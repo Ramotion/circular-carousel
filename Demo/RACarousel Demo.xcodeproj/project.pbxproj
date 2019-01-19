@@ -12,6 +12,7 @@
 		1D371BE021F29D35005F0F5C /* ImageCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */; };
 		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
 		1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; };
+		1D605F9621F2F2A200094140 /* souveni1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9521F2EE8300094140 /* souveni1.ttf */; };
 		1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */; };
 		1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */; };
 		1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */; };
@@ -27,6 +28,7 @@
 		1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCarouselViewCell.xib; sourceTree = "<group>"; };
 		1D5AE77121E4B6460088B3D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RACarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D605F9521F2EE8300094140 /* souveni1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = souveni1.ttf; sourceTree = "<group>"; };
 		1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCarouselViewCell.swift; sourceTree = "<group>"; };
 		1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsCarouselViewCell.xib; sourceTree = "<group>"; };
 		1DC1EA8921D0ED90002F244E /* RACarousel Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACarousel Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 		1DC1EA8B21D0ED90002F244E /* RACarousel Demo */ = {
 			isa = PBXGroup;
 			children = (
+				1D605F9521F2EE8300094140 /* souveni1.ttf */,
 				1D1EB40021F2E89B0008394E /* Code */,
 				1D1EB3FF21F2E8860008394E /* Resources */,
 				1D1EB3FE21F2E8630008394E /* Views */,
@@ -177,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D605F9621F2F2A200094140 /* souveni1.ttf in Resources */,
 				1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */,
 				1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */,
 				1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */,
@@ -344,7 +348,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9E7JWZWR9;
-				INFOPLIST_FILE = "RACarousel Demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/RACarousel Demo/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,7 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9E7JWZWR9;
-				INFOPLIST_FILE = "RACarousel Demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/RACarousel Demo/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
