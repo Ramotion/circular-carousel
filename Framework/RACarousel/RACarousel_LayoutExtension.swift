@@ -18,9 +18,9 @@ extension RACarousel {
         var fadeMinAlpha: CGFloat = 0.0
         
         fadeMin = value(forOption: RACarouselOption.fadeMin, withDefaultValue: fadeMin)
-        fadeMax = value(forOption: RACarouselOption.fadeMin, withDefaultValue: fadeMax)
-        fadeRange = value(forOption: RACarouselOption.fadeMin, withDefaultValue: fadeRange)
-        fadeMinAlpha = value(forOption: RACarouselOption.fadeMin, withDefaultValue: fadeMinAlpha)
+        fadeMax = value(forOption: RACarouselOption.fadeMax, withDefaultValue: fadeMax)
+        fadeRange = value(forOption: RACarouselOption.fadeRange, withDefaultValue: fadeRange)
+        fadeMinAlpha = value(forOption: RACarouselOption.fadeMinAlpha, withDefaultValue: fadeMinAlpha)
         
         var factor: CGFloat = 0.0
         if offset > fadeMax {

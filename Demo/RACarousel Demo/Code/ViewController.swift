@@ -96,7 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return cell
             
         default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.UITableViewCellIdentifier)!            
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.UITableViewCellIdentifier)!
             return cell
         }
     }
@@ -126,6 +126,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //print ("Scroll view did scroll to Y : \(tableView.contentOffset.y)")
         let minScale:CGFloat = 1.1
         let maxScale:CGFloat = 1.5
+        
         let offset = tableView.contentOffset.y
         let height = tableView.contentSize.height
         
@@ -134,7 +135,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         scale = scale * (maxScale - minScale)
         scale += minScale
         
-        
         imageView.applyScale(scale)
     }
     
@@ -142,7 +142,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: ButtonsCarouselViewCell
     
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, buttonPressed button: UIButton) {
-        tableView.scrollToRow(at: IndexPath(row: ViewControllerConstants.NumberOfRows - 1, section: 0), at: .bottom, animated: true)
+        //tableView.scrollToRow(at: IndexPath(row: ViewControllerConstants.NumberOfRows - 1, section: 0), at: .bottom, animated: true)
     }
     
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int) {

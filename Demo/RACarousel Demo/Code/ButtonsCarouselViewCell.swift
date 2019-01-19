@@ -20,6 +20,8 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
     static let ScaleMultiplier:CGFloat = 0.25
     static let MinScale:CGFloat = 0.75
     static let MaxScale:CGFloat = 1.10
+    static let MinFade:CGFloat = -1.8
+    static let MaxFade:CGFloat = 1.8
     static let NumberOfButtons = 5
     static let ButtonImageNames = ["IconImage1", "IconImage2", "IconImage3", "IconImage4", "IconImage2"]
     
@@ -84,12 +86,22 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
     
     func carousel<CGFloat>(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
         switch option {
+        
         case .scaleMultiplier:
             return ButtonsCarouselViewCell.ScaleMultiplier as! CGFloat
+        
         case .minScale:
             return ButtonsCarouselViewCell.MinScale as! CGFloat
+        
         case .maxScale:
             return ButtonsCarouselViewCell.MaxScale as! CGFloat
+        
+        case .fadeMin:
+            return ButtonsCarouselViewCell.MinFade as! CGFloat
+        
+        case .fadeMax:
+            return ButtonsCarouselViewCell.MaxFade as! CGFloat
+        
         default:
             return defaultValue
         }
