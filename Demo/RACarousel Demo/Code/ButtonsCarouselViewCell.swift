@@ -15,17 +15,30 @@ protocol ButtonsCarouselViewCellDelegate {
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int)
 }
 
+struct ButtonsCarouselViewModel {
+    public var image: UIImage?
+    public var text: String
+}
+
 class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouselDelegate {
     
     static let ScaleMultiplier:CGFloat = 0.25
-    static let MinScale:CGFloat = 0.75
-    static let MaxScale:CGFloat = 1.10
+    static let MinScale:CGFloat = 0.6
+    static let MaxScale:CGFloat = 1.05
     static let MinFade:CGFloat = -1.8
     static let MaxFade:CGFloat = 1.8
     static let NumberOfButtons = 5
-    static let ButtonImageNames = ["IconImage1", "IconImage2", "IconImage3", "IconImage4", "IconImage2"]
+    static let StartingItemIdx = 0
+    static let ButtonViewModels: [ButtonsCarouselViewModel] = [
+        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageCar") ?? nil, text: "Parking"),
+        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageCloth") ?? nil, text: "Clothing"),
+        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageFood") ?? nil, text: "Food"),
+        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageLodge") ?? nil, text: "Lodging"),
+        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageMap") ?? nil, text: "Map")
+    ]
     
     var delegate: ButtonsCarouselViewCellDelegate?
+    var selectedRoundedButtonIndex: Int = -1
     
     weak var _carousel : RACarousel!
     @IBOutlet var carousel : RACarousel! {
@@ -49,28 +62,39 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
         var button = view as? UIButton
+        var contentView: RoundedButtonView?
+        
         if button == nil {
             button = UIButton(type: .custom)
             button?.frame = CGRect(x: 0, y: 0, width: 75, height: 75)
+            
+            contentView = .fromNib()
+            
+            contentView?.frame = button?.frame ?? CGRect.zero
+            if indexPath.row == 0 {
+                selectedRoundedButtonIndex = indexPath.row
+            }
+            
+            button?.insertSubview(contentView!, at: 0)
             button?.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
         
         button?.tag = indexPath.row + 1
         
-        let arraySize = ButtonsCarouselViewCell.ButtonImageNames.count
-        let image: UIImage = UIImage(named: ButtonsCarouselViewCell.ButtonImageNames[indexPath.row % arraySize])!
+        contentView = button?.subviews[0] as? RoundedButtonView
+        let arraySize = ButtonsCarouselViewCell.ButtonViewModels.count
+        let viewModel = ButtonsCarouselViewCell.ButtonViewModels[indexPath.row % arraySize]
+        contentView!.imageView.image = viewModel.image!
+        contentView!.lowerText.text = viewModel.text
         
-        button?.setBackgroundImage(image, for: .normal)
-        button?.layer.shadowColor = UIColor.lightGray.cgColor;
-        button?.layer.shadowOpacity = 0.8;
-        button?.layer.shadowRadius = 12;
-        button?.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
+        button?.setBackgroundImage(nil, for: .normal)
+        button?.setImage(nil, for: .normal)
         
         return button!
     }
     
     func startingItemIndex(inCarousel carousel: RACarousel) -> Int {
-        return 2
+        return ButtonsCarouselViewCell.StartingItemIdx
     }
     
     // MARK: -
@@ -78,7 +102,7 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
     func carousel(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {
         switch option {
         case .itemWidth:
-            return 100
+            return 80
         default:
             return defaultValue
         }
@@ -110,11 +134,26 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
     
     func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {
         print ("Selected Item at Index : \(index)")
-        delegate?.buttonCarousel(self, buttonPressed: carousel.viewWithTag(index + 1) as! UIButton)
+        
+        let uiButton = carousel.viewWithTag(index + 1) as! UIButton
+        delegate?.buttonCarousel(self, buttonPressed: uiButton)
     }
     
     func carousel(_ carousel: RACarousel, willBeginScrollingToIndex index: Int) {
+        
         delegate?.buttonCarousel(self, willScrollToIndex: index)
+        
+        var uiButton = carousel.viewWithTag(index + 1) as? UIButton
+        var selectedRoundedButton = uiButton?.subviews[0] as? RoundedButtonView
+        selectedRoundedButton?.triggerSelected()
+        
+        if selectedRoundedButtonIndex != index {
+            uiButton = carousel.viewWithTag(selectedRoundedButtonIndex + 1) as? UIButton
+            selectedRoundedButton = uiButton?.subviews[0] as? RoundedButtonView
+            selectedRoundedButton?.didDeselect()
+        }
+        
+        selectedRoundedButtonIndex = index
     }
 
     // MARK: -

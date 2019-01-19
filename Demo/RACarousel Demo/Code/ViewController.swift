@@ -12,11 +12,11 @@ import RACarousel
 class ViewControllerConstants {
     static let ButtonCarouselRow = 1
     static let ImageCarouselRow = 2
-    static let StartingItemIndex = 2
+    //static let StartingItemIndex = 2
     static let ContainerRows = [2]
     static let NumberOfRows = 4
     static let ButtonsViewCellIdentifier = "ButtonsViewCellIdentifier"
-    static let ImageViewCellIdentifier = "ImageViewCellIdentifier"
+    static let ImageViewCellIdentifier  = "ImageViewCellIdentifier"
     static let UITableViewCellIdentifier = "UITableViewCell"
     static let ButtonsCarouselCellRowHeight: CGFloat = 200.0
     static let ImageCarouselCellRowHeight: CGFloat = 300.0

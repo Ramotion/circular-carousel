@@ -70,10 +70,6 @@ class ImageCarouselViewCell: UITableViewCell, RACarouselDelegate, RACarouselData
         return view
     }
     
-    func startingItemIndex(inCarousel carousel: RACarousel) -> Int {
-        return ViewControllerConstants.StartingItemIndex
-    }
-    
     // MARK: -
     // MARK: RACarouselDelegate
     func carousel(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {

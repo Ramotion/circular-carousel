@@ -25,4 +25,8 @@ extension UIView {
     func applyScale(_ scale: CGFloat) {
         self.layer.transform = CATransform3DScale(CATransform3DIdentity, scale, scale, 1.0)
     }
+    
+    class func fromNib<T: UIView>() -> T {
+        return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)?.first as! T
+    }
 }
