@@ -53,6 +53,8 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
             button?.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
         
+        button?.tag = indexPath.row + 1
+        
         let arraySize = ButtonsCarouselViewCell.ButtonImageNames.count
         let image: UIImage = UIImage(named: ButtonsCarouselViewCell.ButtonImageNames[indexPath.row % arraySize])!
         
@@ -96,6 +98,7 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
     
     func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {
         print ("Selected Item at Index : \(index)")
+        delegate?.buttonCarousel(self, buttonPressed: carousel.viewWithTag(index + 1) as! UIButton)
     }
     
     func carousel(_ carousel: RACarousel, willBeginScrollingToIndex index: Int) {

@@ -50,12 +50,6 @@
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="uqP-hn-9yN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="lZy-oG-CSx"/>
-                                <exclude reference="Lnv-RU-c84"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="gradientView" destination="heX-It-F7u" id="sbE-ZT-l0h"/>

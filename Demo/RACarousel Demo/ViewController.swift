@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func styleViews() {
         // Setup gradient view (cyan -> dark blue)
-        gradientView.applyGradient(colorArray: [UIColor.blue, UIColor.cyan])
+        gradientView.applyGradient(colorArray: [UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 0.5), UIColor.cyan])
     }
     
     private func configureViews() {
@@ -124,11 +124,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print ("Scroll view did scroll to Y : \(tableView.contentOffset.y)")
+        let scale = tableView.contentOffset.y / 100
+        imageView.transform.scaledBy(x: scale, y: scale)
+    }
+    
     // MARK: -
     // MARK: ButtonsCarouselViewCell
     
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, buttonPressed button: UIButton) {
-        // TODO
+        tableView.scrollToRow(at: IndexPath(row: ViewControllerConstants.NumberOfRows - 1, section: 0), at: .bottom, animated: true)
     }
     
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int) {
