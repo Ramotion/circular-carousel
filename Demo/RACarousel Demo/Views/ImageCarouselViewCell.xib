@@ -24,6 +24,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Is5-Fj-fUy"/>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SideRightTop" translatesAutoresizingMaskIntoConstraints="NO" id="Wg7-Qz-Dze">
+                        <rect key="frame" x="207" y="11" width="97" height="41"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="97" id="obZ-Ir-QF5"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X08-bf-NG6">
                         <rect key="frame" x="16" y="39" width="288" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -39,14 +45,26 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BottomLeft" translatesAutoresizingMaskIntoConstraints="NO" id="M8b-FE-Pid">
+                        <rect key="frame" x="16" y="249" width="132" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="a9l-v7-i4r"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="M8b-FE-Pid" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="0tz-ta-75K"/>
+                    <constraint firstItem="Wg7-Qz-Dze" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="BaS-NY-nkX"/>
                     <constraint firstItem="aaS-BR-pOZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="G41-Vy-HN8"/>
                     <constraint firstAttribute="trailingMargin" secondItem="PO9-uc-a7I" secondAttribute="trailing" id="GHe-Qy-Xs8"/>
                     <constraint firstAttribute="trailing" secondItem="aaS-BR-pOZ" secondAttribute="trailing" id="GZh-Gl-LGJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="X08-bf-NG6" secondAttribute="trailing" id="IuM-Eq-dk8"/>
+                    <constraint firstItem="aaS-BR-pOZ" firstAttribute="top" secondItem="Wg7-Qz-Dze" secondAttribute="bottom" constant="8" id="JeS-HW-K1b"/>
                     <constraint firstItem="aaS-BR-pOZ" firstAttribute="top" secondItem="X08-bf-NG6" secondAttribute="bottom" id="OK3-4J-SBv"/>
                     <constraint firstItem="PO9-uc-a7I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="P2Q-9b-BKR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Wg7-Qz-Dze" secondAttribute="trailing" id="Pef-Ta-sFV"/>
+                    <constraint firstItem="M8b-FE-Pid" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Td0-Qg-O3f"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="M8b-FE-Pid" secondAttribute="trailing" constant="156" id="Wyh-iX-cCY"/>
                     <constraint firstItem="aaS-BR-pOZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="60" id="Z7r-3w-ZTF"/>
                     <constraint firstItem="X08-bf-NG6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="f2y-Cq-bCd"/>
                     <constraint firstAttribute="bottom" secondItem="aaS-BR-pOZ" secondAttribute="bottom" constant="60" id="nBT-9a-rdY"/>
@@ -60,4 +78,8 @@
             <point key="canvasLocation" x="137.59999999999999" y="153.82308845577214"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="BottomLeft" width="145" height="40"/>
+        <image name="SideRightTop" width="60" height="33"/>
+    </resources>
 </document>
