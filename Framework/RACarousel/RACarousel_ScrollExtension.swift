@@ -86,11 +86,11 @@ extension RACarousel {
         if duration > 0.0 {
             var offset: CGFloat = 0.0
             if itemCount > 0 {
-                offset = (floor(_scrollOffset)) + CGFloat(itemCount) - _scrollOffset
+                offset = (floor(scrollOffset)) + CGFloat(itemCount) - _scrollOffset
             } else if itemCount < 0 {
-                offset = (ceil(_scrollOffset) + CGFloat(itemCount)) - scrollOffset
+                offset = (ceil(scrollOffset) + CGFloat(itemCount)) - scrollOffset
             } else {
-                offset = round(_scrollOffset) - scrollOffset
+                offset = round(scrollOffset) - scrollOffset
             }
             
             scroll(byOffset: offset, withDuration: duration)

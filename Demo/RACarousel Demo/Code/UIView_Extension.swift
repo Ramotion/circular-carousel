@@ -23,7 +23,7 @@ extension UIView {
     }
     
     func applyScale(_ scale: CGFloat) {
-        self.layer.transform = CATransform3DScale(CATransform3DIdentity, scale, scale, 1.0)
+        layer.transform = CATransform3DScale(CATransform3DIdentity, scale, scale, 1.0)
     }
     
     class func fromNib<T: UIView>() -> T {

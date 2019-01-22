@@ -21,7 +21,7 @@ class RoundedButtonView: UIView {
     }
     
     private func styleView() {
-        shadowView = UIView(frame: self.frame)
+        shadowView = UIView(frame: frame)
         
         shadowView.layer.shadowColor = UIColor.black.cgColor
         shadowView.layer.shadowOffset = CGSize.zero
@@ -36,15 +36,14 @@ class RoundedButtonView: UIView {
         roundedView.clipsToBounds = true
         
         shadowView.addSubview(roundedView)
-        self.backgroundColor = .clear
-        self.insertSubview(shadowView, at: 0)
+        backgroundColor = .clear
+        insertSubview(shadowView, at: 0)
     }
     
     func triggerSelected() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.roundedView.backgroundColor = .blue
         }) { (success) -> Void in
-            print("anim finished")
         }
     }
     
@@ -52,7 +51,6 @@ class RoundedButtonView: UIView {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.roundedView.backgroundColor = .white
         }) { (success) -> Void in
-            print("anim finished")
         }
     }
 }

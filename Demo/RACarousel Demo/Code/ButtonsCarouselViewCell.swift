@@ -132,9 +132,7 @@ class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouse
         
     }
     
-    func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {
-        print ("Selected Item at Index : \(index)")
-        
+    func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {        
         let uiButton = carousel.viewWithTag(index + 1) as! UIButton
         delegate?.buttonCarousel(self, buttonPressed: uiButton)
     }

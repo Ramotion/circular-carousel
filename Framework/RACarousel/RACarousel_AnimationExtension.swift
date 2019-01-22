@@ -45,7 +45,7 @@ extension RACarousel {
         
         if !wrapEnabled {
             if bounceEnabled {
-                endOffset = max(-bounceDist, min(CGFloat(numberOfItems) - 1.0 + bounceDist, endOffset))
+                endOffset = max(-RACarouselConstants.bounceDist, min(CGFloat(numberOfItems) - 1.0 + RACarouselConstants.bounceDist, endOffset))
             } else {
                 endOffset = clampedOffset(endOffset)
             }
@@ -154,8 +154,8 @@ extension RACarousel {
         if wrapEnabled || !bounceEnabled {
             _scrollOffset = clampedOffset(_scrollOffset)
         } else {
-            let minVal: CGFloat = -bounceDist
-            let maxVal: CGFloat = max(CGFloat(numberOfItems) - 1.0, 0.0) + bounceDist
+            let minVal: CGFloat = -RACarouselConstants.bounceDist
+            let maxVal: CGFloat = max(CGFloat(numberOfItems) - 1.0, 0.0) + RACarouselConstants.bounceDist
             
             if _scrollOffset < minVal {
                 _scrollOffset = minVal

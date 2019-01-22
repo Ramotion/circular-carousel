@@ -46,6 +46,9 @@ struct RACarouselConstants {
     static let maxToggleDuration: TimeInterval  = 0.4
     
     static let floatErrorMargin: CGFloat        = 0.000001
+    static let decelSpeed: CGFloat              = 0.9
+    static let scrollSpeed: CGFloat             = 1.0
+    static let bounceDist: CGFloat              = 1.0
 }
 
 @IBDesignable open class RACarousel: UIView {
@@ -215,33 +218,29 @@ struct RACarouselConstants {
     internal (set) public var dragging: Bool = false
     internal (set) public var scrolling: Bool = false
     
-    // internal variables
-    var itemViews: Dictionary<Int, UIView> = Dictionary<Int, UIView>()
-    var previousItemIndex: Int = 0
-    var itemViewPool: Set<UIView> = Set<UIView>()
-    var prevScrollOffset: CGFloat = 0.0
-    var startOffset: CGFloat = 0.0
-    var endOffset: CGFloat = 0.0
-    var scrollDuration: TimeInterval = 0.0
-    var startTime: TimeInterval = 0.0
-    var endTime: TimeInterval = 0.0
-    var lastTime: TimeInterval = 0.0
-    var decelerating: Bool = false
-    var decelerationRate: CGFloat = 0.95
-    var startVelocity: CGFloat = 0.0
-    var timer: Timer?
-    var didDrag: Bool = false
-    var toggleTime: TimeInterval = 0.0
-    var previousTranslation: CGFloat = 0.0
+    // private variables
+    internal var itemViews: Dictionary<Int, UIView> = Dictionary<Int, UIView>()
+    internal var previousItemIndex: Int = 0
+    internal var itemViewPool: Set<UIView> = Set<UIView>()
+    internal var prevScrollOffset: CGFloat = 0.0
+    internal var startOffset: CGFloat = 0.0
+    internal var endOffset: CGFloat = 0.0
+    internal var scrollDuration: TimeInterval = 0.0
+    internal var startTime: TimeInterval = 0.0
+    internal var endTime: TimeInterval = 0.0
+    internal var lastTime: TimeInterval = 0.0
+    internal var decelerating: Bool = false
+    internal var decelerationRate: CGFloat = 0.95
+    internal var startVelocity: CGFloat = 0.0
+    internal var timer: Timer?
+    internal var didDrag: Bool = false
+    internal var toggleTime: TimeInterval = 0.0
+    internal var previousTranslation: CGFloat = 0.0
     
-    let decelSpeed: CGFloat = 0.9
-    let scrollSpeed: CGFloat = 1.0
-    let bounceDist: CGFloat = 1.0
-    
-    var panGesture: UIPanGestureRecognizer?
-    var swipeLeftGesture: UISwipeGestureRecognizer?
-    var swipeRightGesture: UISwipeGestureRecognizer?
-    var tapGesture: UITapGestureRecognizer?
+    private var panGesture: UIPanGestureRecognizer?
+    private var swipeLeftGesture: UISwipeGestureRecognizer?
+    private var swipeRightGesture: UISwipeGestureRecognizer?
+    private var tapGesture: UITapGestureRecognizer?
     
     // Public functions
     public override init(frame: CGRect) {
@@ -257,7 +256,7 @@ struct RACarouselConstants {
         super.init(coder: aDecoder)
         
         setupView()
-        if let _ = self.superview {
+        if superview != nil {
             startAnimation()
         }
     }
@@ -267,7 +266,7 @@ struct RACarouselConstants {
     }
     
     func setupView() {
-        contentView = UIView(frame: self.bounds)
+        contentView = UIView(frame: bounds)
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
@@ -322,8 +321,8 @@ struct RACarouselConstants {
     
     func indexOfItem(forViewOrSubView viewOrSubView: UIView) -> Int {
         let index = indexOfItem(forView: viewOrSubView)
-        if index == NSNotFound && self.superview != nil && viewOrSubView != contentView {
-            return indexOfItem(forViewOrSubView: self.superview!)
+        if index == NSNotFound && superview != nil && viewOrSubView != contentView {
+            return indexOfItem(forViewOrSubView: superview!)
         }
         return index
     }

@@ -153,7 +153,7 @@ extension RACarousel {
     
     internal func updateNumberOfVisibleItems() {
         let spacing: CGFloat = value(forOption: .spacing, withDefaultValue: 1.0)
-        let width: CGFloat = self.bounds.size.width
+        let width: CGFloat = bounds.size.width
         let itemWidthWithSpacing = itemWidth * spacing
         
         numberOfVisibleItems = Int(ceil(width / itemWidthWithSpacing)) + 2

@@ -12,7 +12,6 @@ import RACarousel
 class ViewControllerConstants {
     static let ButtonCarouselRow = 1
     static let ImageCarouselRow = 2
-    //static let StartingItemIndex = 2
     static let ContainerRows = [2]
     static let NumberOfRows = 4
     static let ButtonsViewCellIdentifier = "ButtonsViewCellIdentifier"
@@ -87,7 +86,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case ViewControllerConstants.ImageCarouselRow:
             let cell: ImageCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.ImageViewCellIdentifier) as! ImageCarouselViewCell
             
-            //cell.backgroundColor = UIColor.clear
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = false
             
@@ -123,7 +121,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //print ("Scroll view did scroll to Y : \(tableView.contentOffset.y)")
         let minScale:CGFloat = 1.1
         let maxScale:CGFloat = 2.0
         
@@ -142,7 +139,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: ButtonsCarouselViewCell
     
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, buttonPressed button: UIButton) {
-        //tableView.scrollToRow(at: IndexPath(row: ViewControllerConstants.NumberOfRows - 1, section: 0), at: .bottom, animated: true)
     }
     
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int) {

@@ -12,9 +12,9 @@ extension RACarousel {
     @discardableResult internal func loadView(atIndex index: Int, withContainerView containerView: UIView?) -> UIView? {
         pushAnimationState(enabled: false)
         
-        guard let _dataSource = dataSource else { return nil }
+        guard let dataSource = dataSource else { return nil }
         
-        let view = _dataSource.carousel(self, viewForItemAt: IndexPath(item: index, section: 0), reuseView: dequeItemView())
+        let view = dataSource.carousel(self, viewForItemAt: IndexPath(item: index, section: 0), reuseView: dequeItemView())
         
         setItemView(view, forIndex: index)
         if let aContainerView = containerView {
@@ -98,10 +98,10 @@ extension RACarousel {
             view.superview?.removeFromSuperview()
         }
         
-        guard let _dataSource = dataSource else { return }
+        guard let dataSource = dataSource else { return }
         
         numberOfVisibleItems = 0
-        numberOfItems = _dataSource.numberOfItems(inCarousel: self)
+        numberOfItems = dataSource.numberOfItems(inCarousel: self)
         
         itemViews = Dictionary<Int, UIView>()
         itemViewPool = Set<UIView>()
@@ -109,7 +109,7 @@ extension RACarousel {
         setNeedsLayout()
         
         if numberOfItems > 0 {
-            scroll(toItemAtIndex: _dataSource.startingItemIndex(inCarousel: self), animated: false)
+            scroll(toItemAtIndex: dataSource.startingItemIndex(inCarousel: self), animated: false)
         }
     }
 }

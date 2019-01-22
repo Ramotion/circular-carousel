@@ -110,10 +110,10 @@ extension RACarousel {
                 var factor: CGFloat = 1.0
                 
                 if !wrapEnabled && bounceEnabled {
-                    factor = 1.0 - min (abs(_scrollOffset - clampedOffset(_scrollOffset)), bounceDist) / bounceDist
+                    factor = 1.0 - min (abs(_scrollOffset - clampedOffset(_scrollOffset)), RACarouselConstants.bounceDist) / RACarouselConstants.bounceDist
                 }
                 
-                startVelocity = -velocity * factor * scrollSpeed / (CGFloat(itemWidth))
+                startVelocity = -velocity * factor * RACarouselConstants.scrollSpeed / (CGFloat(itemWidth))
                 _scrollOffset = _scrollOffset - ((translation - previousTranslation) * factor * offsetMultiplier / itemWidth)
                 previousTranslation = translation
                 didScroll()
