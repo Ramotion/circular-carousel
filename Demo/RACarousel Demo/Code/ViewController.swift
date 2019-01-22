@@ -9,18 +9,18 @@
 import UIKit
 import RACarousel
 
-class ViewControllerConstants {
-    static let ButtonCarouselRow = 1
-    static let ImageCarouselRow = 2
-    static let ContainerRows = [2]
-    static let NumberOfRows = 4
-    static let ButtonsViewCellIdentifier = "ButtonsViewCellIdentifier"
-    static let ImageViewCellIdentifier  = "ImageViewCellIdentifier"
-    static let UITableViewCellIdentifier = "UITableViewCell"
-    static let ButtonsCarouselCellRowHeight: CGFloat = 200.0
-    static let ImageCarouselCellRowHeight: CGFloat = 300.0
-    static let NormalCellRowHeight: CGFloat = 50.0
-    static let TopRowHeight:CGFloat = 400.0
+struct ViewControllerConstants {
+    public static let buttonCarouselRow = 1
+    public static let imageCarouselRow = 2
+    public static let containerRows = [2]
+    public static let numberOfRows = 4
+    public static let buttonsViewCellIdentifier = "ButtonsViewCellIdentifier"
+    public static let imageViewCellIdentifier  = "ImageViewCellIdentifier"
+    public static let tableViewCellIdentifier = "UITableViewCell"
+    public static let buttonsCarouselCellRowHeight: CGFloat = 200.0
+    public static let imageCarouselCellRowHeight: CGFloat = 300.0
+    public static let normalCellRowHeight: CGFloat = 50.0
+    public static let topRowHeight:CGFloat = 400.0
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate {
@@ -51,9 +51,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func configureTableView() {
         // Register custom cell for carousel
         tableView.separatorColor = UIColor.clear
-        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.ButtonsViewCellIdentifier)
-        tableView.register(UINib(nibName: "ImageCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.ImageViewCellIdentifier)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.UITableViewCellIdentifier)
+        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.buttonsViewCellIdentifier)
+        tableView.register(UINib(nibName: "ImageCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.imageViewCellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.tableViewCellIdentifier)
         
         // Setup table view controls
         tableView.allowsSelection = false
@@ -71,8 +71,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.backgroundColor = UIColor.clear
             return cell
         
-        case ViewControllerConstants.ButtonCarouselRow:
-            let cell: ButtonsCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.ButtonsViewCellIdentifier) as! ButtonsCarouselViewCell
+        case ViewControllerConstants.buttonCarouselRow:
+            let cell: ButtonsCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.buttonsViewCellIdentifier) as! ButtonsCarouselViewCell
             cell.backgroundColor = UIColor.clear
             
             cell.carousel.panEnabled = false
@@ -83,8 +83,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             return cell
             
-        case ViewControllerConstants.ImageCarouselRow:
-            let cell: ImageCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.ImageViewCellIdentifier) as! ImageCarouselViewCell
+        case ViewControllerConstants.imageCarouselRow:
+            let cell: ImageCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.imageViewCellIdentifier) as! ImageCarouselViewCell
             
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = false
@@ -94,13 +94,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return cell
             
         default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.UITableViewCellIdentifier)!
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.tableViewCellIdentifier)!
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ViewControllerConstants.NumberOfRows
+        return ViewControllerConstants.numberOfRows
     }
     
     // MARK: -
@@ -110,13 +110,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         switch indexPath.row {
         case 0:
-            return ViewControllerConstants.TopRowHeight
-        case ViewControllerConstants.ButtonCarouselRow:
-            return ViewControllerConstants.ButtonsCarouselCellRowHeight
-        case ViewControllerConstants.ImageCarouselRow:
-            return ViewControllerConstants.ImageCarouselCellRowHeight
+            return ViewControllerConstants.topRowHeight
+        case ViewControllerConstants.buttonCarouselRow:
+            return ViewControllerConstants.buttonsCarouselCellRowHeight
+        case ViewControllerConstants.imageCarouselRow:
+            return ViewControllerConstants.imageCarouselCellRowHeight
         default:
-            return ViewControllerConstants.NormalCellRowHeight
+            return ViewControllerConstants.normalCellRowHeight
         }
     }
     
