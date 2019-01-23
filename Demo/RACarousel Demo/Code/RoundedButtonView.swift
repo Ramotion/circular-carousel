@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoundedButtonView: UIView {
+final class RoundedButtonView: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lowerText: UILabel!
     var shadowView: UIView!

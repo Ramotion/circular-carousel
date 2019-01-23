@@ -23,7 +23,7 @@ struct ViewControllerConstants {
     public static let topRowHeight:CGFloat = 400.0
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate {
+final class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
@@ -107,7 +107,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         switch indexPath.row {
         case 0:
             return ViewControllerConstants.topRowHeight

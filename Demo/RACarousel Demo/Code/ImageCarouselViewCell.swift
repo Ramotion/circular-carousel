@@ -9,7 +9,7 @@
 import UIKit
 import RACarousel
 
-class ImageCarouselViewCell: UITableViewCell, RACarouselDelegate, RACarouselDataSource {
+final class ImageCarouselViewCell: UITableViewCell, RACarouselDelegate, RACarouselDataSource {
 
     var imagesForCells: [UIImage] = [
         UIImage(named: "PageImage1")!,

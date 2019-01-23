@@ -20,7 +20,7 @@ struct ButtonsCarouselViewModel {
     public var text: String
 }
 
-class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouselDelegate {
+final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouselDelegate {
     
     static let ScaleMultiplier:CGFloat = 0.25
     static let MinScale:CGFloat = 0.6
