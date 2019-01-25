@@ -19,8 +19,8 @@ struct ButtonCarouselViewConstants {
     public static let ScaleMultiplier:CGFloat = 0.25
     public static let MinScale:CGFloat = 0.6
     public static let MaxScale:CGFloat = 1.05
-    public static let MinFade:CGFloat = -1.8
-    public static let MaxFade:CGFloat = 1.8
+    public static let MinFade:CGFloat = -2.0
+    public static let MaxFade:CGFloat = 2.0
     public static let NumberOfButtons = 5
     public static let StartingItemIdx = 0
     public static let ButtonViewModels: [ButtonsCarouselViewModel] = [

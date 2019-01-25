@@ -19,7 +19,7 @@ extension UIView {
         
         backgroundColor = .clear
         gradientLayer.frame = bounds
-        layer.addSublayer(gradientLayer)
+        layer.insertSublayer(gradientLayer, at: 0)
     }
     
     func applyScale(_ scale: CGFloat) {

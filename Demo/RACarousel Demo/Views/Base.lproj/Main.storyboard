@@ -24,14 +24,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heX-It-F7u">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="lZy-oG-CSx">
-                                <rect key="frame" x="0.0" y="270" width="375" height="397"/>
+                                <rect key="frame" x="0.0" y="314" width="375" height="353"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOSEMITE PARK" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgl-xm-751">
-                                <rect key="frame" x="51" y="92" width="273" height="117"/>
+                                <rect key="frame" x="51" y="136" width="273" height="117"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="117" id="uri-Ws-9c8"/>
                                 </constraints>
@@ -40,7 +40,7 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUIDES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DND-Eg-I74">
-                                <rect key="frame" x="51" y="217" width="273" height="36"/>
+                                <rect key="frame" x="51" y="261" width="273" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="aIJ-x0-Eg6"/>
                                 </constraints>
@@ -49,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NATIONAL PARK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8I-Iw-kGS">
-                                <rect key="frame" x="51" y="46" width="273" height="36"/>
+                                <rect key="frame" x="51" y="90" width="273" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="l4G-qJ-l3l"/>
                                 </constraints>
@@ -58,7 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lnv-RU-c84">
-                                <rect key="frame" x="0.0" y="20" width="375" height="694"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="650"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="KHM-Qa-WBh"/>
@@ -71,27 +71,28 @@
                             <constraint firstAttribute="bottom" secondItem="Lnv-RU-c84" secondAttribute="bottom" constant="-47" id="2Bh-rz-Snu"/>
                             <constraint firstItem="xgl-xm-751" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="6ic-Ih-ELW"/>
                             <constraint firstItem="lZy-oG-CSx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="A8i-TF-Q4o"/>
-                            <constraint firstItem="heX-It-F7u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BFi-8s-2kB"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="heX-It-F7u" secondAttribute="bottom" id="Gb1-e7-oAz"/>
+                            <constraint firstItem="heX-It-F7u" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="H6L-2P-1zo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lZy-oG-CSx" secondAttribute="bottom" id="HKJ-ns-CsL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Q8I-Iw-kGS" secondAttribute="trailing" constant="51" id="IDa-yc-0Gr"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LGT-eu-tHJ"/>
                             <constraint firstItem="lZy-oG-CSx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="PVc-Bs-uyR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DND-Eg-I74" secondAttribute="trailing" constant="51" id="QWH-Hz-Ctd"/>
                             <constraint firstItem="Q8I-Iw-kGS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="USv-Rv-pg4"/>
+                            <constraint firstItem="heX-It-F7u" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Wch-kH-tyA"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="b8A-B9-YQg"/>
-                            <constraint firstItem="heX-It-F7u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cc0-JV-cCa"/>
                             <constraint firstItem="DND-Eg-I74" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="d1M-e7-Gpl"/>
                             <constraint firstItem="xgl-xm-751" firstAttribute="top" secondItem="Q8I-Iw-kGS" secondAttribute="bottom" constant="10" id="dbw-kF-oPT"/>
                             <constraint firstItem="DND-Eg-I74" firstAttribute="top" secondItem="xgl-xm-751" secondAttribute="bottom" constant="8" id="f26-en-n0m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xgl-xm-751" secondAttribute="trailing" constant="51" id="fPR-zn-fO6"/>
+                            <constraint firstItem="heX-It-F7u" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gX9-un-egW"/>
                             <constraint firstItem="lZy-oG-CSx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hKL-j3-f9g"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kzD-Nx-gMj"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="heX-It-F7u" secondAttribute="trailing" id="qTW-2h-vuP"/>
                             <constraint firstItem="Q8I-Iw-kGS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="xXv-Um-D2w"/>
+                            <constraint firstItem="heX-It-F7u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zdp-7t-YFy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="gradientView" destination="heX-It-F7u" id="sbE-ZT-l0h"/>
                         <outlet property="imageView" destination="lZy-oG-CSx" id="8Ku-N6-1Gp"/>

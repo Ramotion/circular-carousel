@@ -39,6 +39,12 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
         configureViews()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        gradientView.layer.sublayers?[0].frame = gradientView.layer.bounds
+    }
+    
     private func styleViews() {
         // Setup gradient view (cyan -> dark blue)
         gradientView.applyGradient(withColors: [UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 0.5), UIColor.cyan])

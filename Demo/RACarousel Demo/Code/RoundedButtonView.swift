@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct RoundedButtonViewConstants {
+    public static let selectedColour: UIColor = UIColor(red: 0.0, green: 154/255, blue: 229/255, alpha: 1.0)
+    public static let unselectedColour: UIColor = UIColor.white
+}
+
 final class RoundedButtonView: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lowerText: UILabel!
@@ -42,14 +47,14 @@ final class RoundedButtonView: UIView {
     
     func triggerSelected() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.roundedView.backgroundColor = .blue
+            self.roundedView.backgroundColor = RoundedButtonViewConstants.selectedColour
         }) { (success) -> Void in
         }
     }
     
     func didDeselect() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.roundedView.backgroundColor = .white
+            self.roundedView.backgroundColor = RoundedButtonViewConstants.unselectedColour
         }) { (success) -> Void in
         }
     }
