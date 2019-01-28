@@ -22,7 +22,8 @@ struct ViewControllerConstants {
     public static let normalCellRowHeight: CGFloat = 50.0
     public static let topRowHeight: CGFloat = 400.0
     public static let gradientColors: [UIColor] = [
-        UIColor(red: 88/255, green: 117/255, blue: 212/255, alpha: 1), UIColor.cyan]
+        UIColor(red: 53/255, green: 136/255, blue: 206/255, alpha: 1),
+        UIColor(red: 155/255, green: 211/255, blue: 230/255, alpha: 1)]
 }
 
 final class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate
