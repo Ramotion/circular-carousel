@@ -20,11 +20,13 @@ struct ViewControllerConstants {
     public static let buttonsCarouselCellRowHeight: CGFloat = 200.0
     public static let imageCarouselCellRowHeight: CGFloat = 300.0
     public static let normalCellRowHeight: CGFloat = 50.0
-    public static let topRowHeight:CGFloat = 400.0
+    public static let topRowHeight: CGFloat = 400.0
+    public static let gradientColors: [UIColor] = [
+        UIColor(red: 88/255, green: 117/255, blue: 212/255, alpha: 1), UIColor.cyan]
 }
 
-final class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate {
-    
+final class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate
+{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gradientView: UIView!
@@ -47,7 +49,7 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
     
     private func styleViews() {
         // Setup gradient view (cyan -> dark blue)
-        gradientView.applyGradient(withColors: [UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 0.5), UIColor.cyan])
+        gradientView.applyGradient(withColors: ViewControllerConstants.gradientColors)
     }
     
     private func configureViews() {
