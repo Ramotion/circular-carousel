@@ -62,10 +62,10 @@ final class ImageCarouselViewCell: UITableViewCell, RACarouselDelegate, RACarous
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         // Setup some bounding anchors
-        imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-        imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
+        imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         
         return view
     }
