@@ -16,37 +16,35 @@
             <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GP7-qq-aKI">
-                    <rect key="frame" x="0.0" y="52.5" width="75" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonImageCar" translatesAutoresizingMaskIntoConstraints="NO" id="1Fn-zl-og5">
-                    <rect key="frame" x="0.0" y="20" width="75" height="18"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonImageGray1" translatesAutoresizingMaskIntoConstraints="NO" id="Fb7-Wg-V52">
+                    <rect key="frame" x="10" y="10" width="55" height="55"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonImageGray1" translatesAutoresizingMaskIntoConstraints="NO" id="8ku-Al-iNc">
+                    <rect key="frame" x="10" y="10" width="55" height="55"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="1Fn-zl-og5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="W9e-jb-YM8"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1Fn-zl-og5" secondAttribute="trailing" id="eXJ-YH-fxV"/>
-                <constraint firstItem="1Fn-zl-og5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ktu-pf-75r"/>
-                <constraint firstItem="GP7-qq-aKI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lEe-Y5-T4C"/>
-                <constraint firstItem="GP7-qq-aKI" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="lXa-pQ-Jiz"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="GP7-qq-aKI" secondAttribute="bottom" constant="8" id="teq-pJ-hcw"/>
-                <constraint firstItem="GP7-qq-aKI" firstAttribute="top" secondItem="1Fn-zl-og5" secondAttribute="bottom" constant="14.5" id="uxq-4B-sDT"/>
+                <constraint firstItem="Fb7-Wg-V52" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="0PL-00-iVc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8ku-Al-iNc" secondAttribute="bottom" constant="10" id="14Q-za-QCt"/>
+                <constraint firstItem="8ku-Al-iNc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="1yl-qm-XAs"/>
+                <constraint firstItem="8ku-Al-iNc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="ZLJ-xd-jCm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8ku-Al-iNc" secondAttribute="trailing" constant="10" id="gEZ-Ep-Hpf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fb7-Wg-V52" secondAttribute="bottom" constant="10" id="j4z-co-yAv"/>
+                <constraint firstItem="Fb7-Wg-V52" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="p6L-RM-Qko"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fb7-Wg-V52" secondAttribute="trailing" constant="10" id="uHj-rH-Gzw"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="imageView" destination="1Fn-zl-og5" id="UVd-H4-mdj"/>
-                <outlet property="lowerText" destination="GP7-qq-aKI" id="J9m-u4-qpe"/>
+                <outlet property="selectedImageView" destination="8ku-Al-iNc" id="aea-CT-ijF"/>
+                <outlet property="unselectedImageView" destination="Fb7-Wg-V52" id="lx0-In-uBh"/>
             </connections>
             <point key="canvasLocation" x="-85.599999999999994" y="356.67166416791605"/>
         </view>
     </objects>
     <resources>
-        <image name="ButtonImageCar" width="36" height="18"/>
+        <image name="ButtonImageGray1" width="500" height="500"/>
     </resources>
 </document>

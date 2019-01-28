@@ -24,16 +24,27 @@ struct ButtonCarouselViewConstants {
     public static let NumberOfButtons = 5
     public static let StartingItemIdx = 0
     public static let ButtonViewModels: [ButtonsCarouselViewModel] = [
-        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageCar") ?? nil, text: "Parking"),
-        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageCloth") ?? nil, text: "Clothing"),
-        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageFood") ?? nil, text: "Food"),
-        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageLodge") ?? nil, text: "Lodging"),
-        ButtonsCarouselViewModel(image: UIImage(named: "ButtonImageMap") ?? nil, text: "Map")
+        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite1")!,
+                                 unselectedImage: UIImage(named: "ButtonImageGray1")!,
+                                 text: "Parking"),
+        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite2")!,
+                                 unselectedImage: UIImage(named: "ButtonImageGray2")!,
+                                 text: "Clothing"),
+        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite3")!,
+                                 unselectedImage: UIImage(named: "ButtonImageGray3")!,
+                                 text: "Food"),
+        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite4")!,
+                                 unselectedImage: UIImage(named: "ButtonImageGray4")!,
+                                 text: "Lodging"),
+        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite5")!,
+                                 unselectedImage: UIImage(named: "ButtonImageGray5")!,
+                                 text: "Map")
     ]
 }
 
 struct ButtonsCarouselViewModel {
-    public var image: UIImage?
+    public var selectedImage: UIImage
+    public var unselectedImage: UIImage
     public var text: String
 }
 
@@ -86,8 +97,11 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
         contentView = button?.subviews[0] as? RoundedButtonView
         let arraySize = ButtonCarouselViewConstants.ButtonViewModels.count
         let viewModel = ButtonCarouselViewConstants.ButtonViewModels[indexPath.row % arraySize]
-        contentView!.imageView.image = viewModel.image!
-        contentView!.lowerText.text = viewModel.text
+        contentView!.selectedImageView.image = viewModel.selectedImage
+        contentView!.unselectedImageView.image = viewModel.unselectedImage
+        //contentView!.lowerText.text = viewModel.text
+        
+        contentView?.set(isSelected: indexPath.row == 0)
         
         button?.setBackgroundImage(nil, for: .normal)
         button?.setImage(nil, for: .normal)

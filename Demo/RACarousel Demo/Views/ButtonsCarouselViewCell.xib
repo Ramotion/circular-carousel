@@ -17,24 +17,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0V-Ie-O1N">
-                    <rect key="frame" x="0.0" y="150" width="375" height="50"/>
-                    <color key="backgroundColor" red="0.92448591321243523" green="0.92448591321243523" blue="0.92448591321243523" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <rect key="frame" x="0.0" y="122" width="375" height="78"/>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0M3-Pt-pCY" customClass="RACarousel" customModule="RACarousel">
-                    <rect key="frame" x="0.0" y="100" width="375" height="100"/>
+                    <rect key="frame" x="0.0" y="80" width="375" height="100"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="0M3-Pt-pCY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="258-Qh-I8E"/>
+                <constraint firstItem="0M3-Pt-pCY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="80" id="258-Qh-I8E"/>
                 <constraint firstItem="F0V-Ie-O1N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4L7-id-wsa"/>
-                <constraint firstItem="0M3-Pt-pCY" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="8X4-vA-Btw"/>
+                <constraint firstItem="0M3-Pt-pCY" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-20" id="8X4-vA-Btw"/>
                 <constraint firstItem="0M3-Pt-pCY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Zw-8t-TFq"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0M3-Pt-pCY" secondAttribute="trailing" id="Aj6-pR-fSJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="F0V-Ie-O1N" secondAttribute="trailing" id="hbx-Jc-bIu"/>
                 <constraint firstItem="F0V-Ie-O1N" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="nUB-Wa-6bp"/>
-                <constraint firstItem="F0V-Ie-O1N" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="150" id="ufj-bP-P7x"/>
+                <constraint firstItem="F0V-Ie-O1N" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="122" id="ufj-bP-P7x"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

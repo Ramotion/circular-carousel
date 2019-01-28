@@ -14,7 +14,8 @@ struct RoundedButtonViewConstants {
 }
 
 final class RoundedButtonView: UIView {
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var selectedImageView: UIImageView!
+    @IBOutlet weak var unselectedImageView: UIImageView!
     @IBOutlet weak var lowerText: UILabel!
     var shadowView: UIView!
     var roundedView: UIView!
@@ -25,13 +26,25 @@ final class RoundedButtonView: UIView {
         styleView()
     }
     
+    func set(isSelected selected: Bool) {
+        if selected {
+            self.roundedView.backgroundColor = RoundedButtonViewConstants.selectedColour
+            self.selectedImageView.alpha = 1
+            self.unselectedImageView.alpha = 0
+        } else {
+            self.roundedView.backgroundColor = RoundedButtonViewConstants.unselectedColour
+            self.selectedImageView.alpha = 0
+            self.unselectedImageView.alpha = 1
+        }
+    }
+    
     private func styleView() {
         shadowView = UIView(frame: frame)
         
-        shadowView.layer.shadowColor = UIColor.black.cgColor
+        shadowView.layer.shadowColor = UIColor.gray.cgColor
         shadowView.layer.shadowOffset = CGSize.zero
-        shadowView.layer.shadowOpacity = 0.5
-        shadowView.layer.shadowRadius = 5
+        shadowView.layer.shadowOpacity = 1.0
+        shadowView.layer.shadowRadius = 10
         
         roundedView = UIView(frame: shadowView.bounds)
         roundedView.backgroundColor = UIColor.white
@@ -47,14 +60,14 @@ final class RoundedButtonView: UIView {
     
     func triggerSelected() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.roundedView.backgroundColor = RoundedButtonViewConstants.selectedColour
+            self.set(isSelected: true)
         }) { (success) -> Void in
         }
     }
     
     func didDeselect() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.roundedView.backgroundColor = RoundedButtonViewConstants.unselectedColour
+            self.set(isSelected: false)
         }) { (success) -> Void in
         }
     }
