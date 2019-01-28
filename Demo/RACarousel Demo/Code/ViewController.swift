@@ -67,6 +67,8 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Setup table view controls
         tableView.allowsSelection = false
+        tableView.alwaysBounceVertical = false
+        whiteBottomView.isHidden = true
     }
 
     // MARK: -
@@ -129,7 +131,18 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    // MARK: -
+    // MARK: UIScrollViewDelegate
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        // Clamp the bottom of the tableView
+        if scrollView == self.tableView {
+            if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
+                scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height
+            }
+        }
+        
         let minScale:CGFloat = 1.1
         let maxScale:CGFloat = 2.0
         
