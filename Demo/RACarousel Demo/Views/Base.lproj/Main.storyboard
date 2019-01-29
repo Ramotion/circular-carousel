@@ -52,15 +52,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dA-qi-Un6">
-                                <rect key="frame" x="0.0" y="712" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="812" width="375" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="vSW-bb-pRc"/>
+                                    <constraint firstAttribute="height" constant="300" id="vSW-bb-pRc"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lnv-RU-c84">
-                                <rect key="frame" x="0.0" y="88" width="375" height="771"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lnv-RU-c84">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="KHM-Qa-WBh"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="SA3-L0-HS5"/>
@@ -69,7 +70,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Lnv-RU-c84" secondAttribute="bottom" constant="-47" id="2Bh-rz-Snu"/>
+                            <constraint firstAttribute="bottom" secondItem="Lnv-RU-c84" secondAttribute="bottom" id="2Bh-rz-Snu"/>
                             <constraint firstItem="xgl-xm-751" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4XB-Eq-nqn"/>
                             <constraint firstItem="DND-Eg-I74" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="50b-d2-oaH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3dA-qi-Un6" secondAttribute="trailing" id="8oQ-h3-2cj"/>
@@ -91,7 +92,7 @@
                             <constraint firstItem="lZy-oG-CSx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hKL-j3-f9g"/>
                             <constraint firstItem="Q8I-Iw-kGS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kiX-yo-YSh"/>
                             <constraint firstItem="Lnv-RU-c84" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kzD-Nx-gMj"/>
-                            <constraint firstAttribute="bottom" secondItem="3dA-qi-Un6" secondAttribute="bottom" id="lKx-Ne-Ctc"/>
+                            <constraint firstAttribute="bottom" secondItem="3dA-qi-Un6" secondAttribute="top" id="lKx-Ne-Ctc"/>
                             <constraint firstItem="3dA-qi-Un6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s3e-QR-q3Q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DND-Eg-I74" secondAttribute="trailing" id="uQr-Pn-LBV"/>
                             <constraint firstItem="xgl-xm-751" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="138" id="xVI-SE-2Sk"/>

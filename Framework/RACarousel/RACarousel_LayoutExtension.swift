@@ -38,16 +38,13 @@ extension RACarousel {
     
     internal func transformForItemView(withOffset offset: CGFloat) -> CATransform3D {
         var transform: CATransform3D = CATransform3DIdentity
-        //transform.m34 = _perspective
         
         transform = CATransform3DTranslate(transform,
                                            -viewPointOffset.width,
                                            -viewPointOffset.height, 0)
         
         
-        let spacing = delegate?.carousel(self, spacingForOffset: offset) ?? 1.0//value(forOption: .spacing, withDefaultValue: CGFloat(1.0))
-        
-        print ("Spacing: \(spacing) for offset: \(offset)")
+        let spacing = delegate?.carousel(self, spacingForOffset: offset) ?? 1.0
         
         let scaleMultiplier = value(forOption: .scaleMultiplier, withDefaultValue: RACarouselConstants.defaultScaleMultiplier)
         let minScale = value(forOption: .minScale, withDefaultValue: RACarouselConstants.minScale)
