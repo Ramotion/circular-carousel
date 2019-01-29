@@ -44,13 +44,17 @@ extension RACarousel {
                                            -viewPointOffset.width,
                                            -viewPointOffset.height, 0)
         
-        let spacing = value(forOption: .spacing, withDefaultValue: CGFloat(1.0))
-        transform = CATransform3DTranslate(transform, offset * itemWidth * spacing, 0.0, 0.0)
+        
+        let spacing = delegate?.carousel(self, spacingForOffset: offset) ?? 1.0//value(forOption: .spacing, withDefaultValue: CGFloat(1.0))
+        
+        print ("Spacing: \(spacing) for offset: \(offset)")
         
         let scaleMultiplier = value(forOption: .scaleMultiplier, withDefaultValue: RACarouselConstants.defaultScaleMultiplier)
         let minScale = value(forOption: .minScale, withDefaultValue: RACarouselConstants.minScale)
         let maxScale = value(forOption: .maxScale, withDefaultValue: RACarouselConstants.maxScale)
         let scale = max(minScale, maxScale  - abs(offset * scaleMultiplier))
+        
+        transform = CATransform3DTranslate(transform, offset * itemWidth * spacing, 0.0, 0.0)
         
         transform = CATransform3DScale(transform, scale, scale, 1.0)
         

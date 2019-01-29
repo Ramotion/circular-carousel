@@ -19,6 +19,7 @@ public protocol RACarouselDelegate {
     func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int)
     func carousel<T>(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: T) -> T
     func carousel(_ carousel: RACarousel, shouldSelectItemAtIndex index: Int) -> Bool
+    func carousel(_ carousel: RACarousel, spacingForOffset offset: CGFloat) -> CGFloat
 }
 
 public extension RACarouselDelegate {
@@ -52,6 +53,10 @@ public extension RACarouselDelegate {
     
     func carousel(_ carousel: RACarousel, shouldSelectItemAtIndex index: Int) -> Bool {
         return true
+    }
+    
+    func carousel(_ carousel: RACarousel, spacingForOffset offset: CGFloat) -> CGFloat {
+        return 1.0
     }
 }
 

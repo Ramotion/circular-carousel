@@ -169,6 +169,11 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
         
         selectedRoundedButtonIndex = index
     }
+    
+    func carousel(_ carousel: RACarousel, spacingForOffset offset: CGFloat) -> CGFloat {
+        // Tweaked values to support even spacing on scaled items
+        return 1.20 - abs(offset * 0.1)
+    }
 
     // MARK: -
     // MARK: buttonTapped
