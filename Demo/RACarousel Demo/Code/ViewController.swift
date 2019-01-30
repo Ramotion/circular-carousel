@@ -9,17 +9,28 @@
 import UIKit
 import RACarousel
 
+enum MainTableRowTypes: Int {
+    case clearRow = 0
+    case buttonCarouselRow = 1
+    case carouselRow = 2
+}
+
 struct ViewControllerConstants {
     public static let buttonCarouselRow = 1
-    public static let imageCarouselRow = 2
+    public static let carouselRow = 2
+    public static let imageCarouselRow = -1
     public static let containerRows = [2]
     public static let numberOfRows = 3
+    public static let carouselViewCellIdentifier = "CarouselViewCellIdentifier"
     public static let buttonsViewCellIdentifier = "ButtonsViewCellIdentifier"
     public static let imageViewCellIdentifier  = "ImageViewCellIdentifier"
     public static let tableViewCellIdentifier = "UITableViewCell"
+    
     public static let buttonsCarouselCellRowHeight: CGFloat = 200.0
     public static let imageCarouselCellRowHeight: CGFloat = 300.0
     public static let normalCellRowHeight: CGFloat = 50.0
+    public static let carouselRowHeight: CGFloat = 500.0
+    
     public static let topRowMargin: CGFloat = 0.6
     public static let gradientColors: [UIColor] = [
         UIColor(red: 53/255, green: 136/255, blue: 206/255, alpha: 1),
@@ -33,6 +44,7 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var whiteBottomView: UIView!
     
+    var carouselViewCell: CarouselViewCell?
     var buttonsCarouselViewCell: ButtonsCarouselViewCell?
     var imageCarouselViewCell: ImageCarouselViewCell?
     
@@ -63,7 +75,8 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.separatorColor = UIColor.gray
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.cellLayoutMarginsFollowReadableWidth = false
-        
+
+        tableView.register(UINib(nibName: "CarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.carouselViewCellIdentifier)
         tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.buttonsViewCellIdentifier)
         tableView.register(UINib(nibName: "ImageCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.imageViewCellIdentifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.tableViewCellIdentifier)
@@ -86,6 +99,16 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
             let cell = UITableViewCell()
             cell.backgroundColor = UIColor.clear
             cell.separatorInset = UIEdgeInsets(top: 0.0, left: tableView.bounds.size.width, bottom: 0.0, right: 0.0)
+            return cell
+            
+        case ViewControllerConstants.carouselRow:
+            let cell: CarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.carouselViewCellIdentifier) as! CarouselViewCell
+            
+            cell.carousel.panEnabled = false
+            cell.carousel.swipeEnabled = false
+            
+            carouselViewCell = cell
+            
             return cell
         
         case ViewControllerConstants.buttonCarouselRow:
@@ -143,6 +166,8 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
             return ViewControllerConstants.buttonsCarouselCellRowHeight
         case ViewControllerConstants.imageCarouselRow:
             return ViewControllerConstants.imageCarouselCellRowHeight
+        case ViewControllerConstants.carouselRow:
+            return ViewControllerConstants.carouselRowHeight
         default:
             return ViewControllerConstants.normalCellRowHeight
         }

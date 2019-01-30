@@ -54,20 +54,22 @@ final class ImageCarouselViewCell: UITableViewCell, RACarouselDelegate, RACarous
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
-
-        let view = UIView(frame: carousel.bounds)
-        let imageView = UIImageView(image: imagesForCells[indexPath.row % imagesForCells.count])
-        view.addSubview(imageView)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Setup some bounding anchors
-        imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
-        imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        
-        return view
+        if let view = view {
+            return view
+        } else {
+            let view = UIView(frame: carousel.bounds)
+            let imageView = UIImageView(image: imagesForCells[indexPath.row % imagesForCells.count])
+            view.addSubview(imageView)
+            
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            // Setup some bounding anchors
+            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
+            imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+            imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+            return view
+        }
     }
     
     // MARK: -
