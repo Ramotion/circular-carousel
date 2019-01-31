@@ -19,9 +19,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="299.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OnA-5C-Hd8">
-                        <rect key="frame" x="0.0" y="60" width="320" height="179.5"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconImageStar" translatesAutoresizingMaskIntoConstraints="NO" id="Uqs-oB-FhK">
                         <rect key="frame" x="255" y="15" width="20" height="20"/>
                         <constraints>
@@ -48,6 +45,9 @@
                             <constraint firstAttribute="height" constant="25" id="0ri-EB-jbU"/>
                             <constraint firstAttribute="width" constant="25" id="sVP-Pg-Per"/>
                         </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OnA-5C-Hd8">
+                        <rect key="frame" x="0.0" y="60" width="320" height="179.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjF-lo-VLE">
                         <rect key="frame" x="50" y="259.5" width="20" height="20"/>
@@ -116,9 +116,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Wsx-79-9z8"/>
             <connections>
-                <outlet property="detailsLabel" destination="4Ny-uV-EU3" id="XlB-HY-zkC"/>
-                <outlet property="mainImageView" destination="OnA-5C-Hd8" id="yZQ-fL-Cuh"/>
-                <outlet property="titleLabel" destination="gXf-Ib-yrx" id="6Ys-DY-Tsr"/>
+                <outlet property="detailsLabel" destination="4Ny-uV-EU3" id="hlO-HE-Npj"/>
+                <outlet property="mainImageView" destination="OnA-5C-Hd8" id="zh7-Ys-UNE"/>
+                <outlet property="titleLabel" destination="gXf-Ib-yrx" id="IOu-Cy-NM4"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="153.82308845577214"/>
         </tableViewCell>

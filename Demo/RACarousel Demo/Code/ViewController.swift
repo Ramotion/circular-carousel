@@ -27,7 +27,7 @@ struct ViewControllerConstants {
     public static let tableViewCellIdentifier = "UITableViewCell"
     
     public static let buttonsCarouselCellRowHeight: CGFloat = 200.0
-    public static let imageCarouselCellRowHeight: CGFloat = 300.0
+    public static let imageCellRowHeight: CGFloat = 300.0
     public static let normalCellRowHeight: CGFloat = 50.0
     public static let carouselRowHeight: CGFloat = 500.0
     
@@ -77,8 +77,7 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.cellLayoutMarginsFollowReadableWidth = false
 
         tableView.register(UINib(nibName: "CarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.carouselViewCellIdentifier)
-        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.buttonsViewCellIdentifier)
-        tableView.register(UINib(nibName: "ImageCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.imageViewCellIdentifier)
+        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.buttonsViewCellIdentifier)        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.tableViewCellIdentifier)
         
         // Setup table view controls
@@ -123,16 +122,6 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
             
             return cell
             
-        case ViewControllerConstants.imageCarouselRow:
-            let cell: ImageCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.imageViewCellIdentifier) as! ImageCarouselViewCell
-            
-            cell.carousel.panEnabled = false
-            cell.carousel.swipeEnabled = false
-            
-            imageCarouselViewCell = cell
-            
-            return cell
-            
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.tableViewCellIdentifier)!
             return cell
@@ -164,8 +153,6 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
             return margin
         case ViewControllerConstants.buttonCarouselRow:
             return ViewControllerConstants.buttonsCarouselCellRowHeight
-        case ViewControllerConstants.imageCarouselRow:
-            return ViewControllerConstants.imageCarouselCellRowHeight
         case ViewControllerConstants.carouselRow:
             return ViewControllerConstants.carouselRowHeight
         default:
@@ -199,7 +186,7 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
     
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int) {
         // Pass the message to the image carousel
-        imageCarouselViewCell?.carousel.scroll(toItemAtIndex: index, animated: true)
+        carouselViewCell?.carousel.scroll(toItemAtIndex: index, animated: true)
     }
 }
 
