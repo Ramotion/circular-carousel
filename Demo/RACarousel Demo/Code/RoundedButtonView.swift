@@ -8,17 +8,15 @@
 
 import UIKit
 
-struct RoundedButtonViewConstants {
-    public static let selectedColour: UIColor = UIColor(red: 0.0, green: 154/255, blue: 229/255, alpha: 1.0)
-    public static let unselectedColour: UIColor = UIColor.white
-}
-
 final class RoundedButtonView: UIView {
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var unselectedImageView: UIImageView!
     @IBOutlet weak var lowerText: UILabel!
     var shadowView: UIView!
     var roundedView: UIView!
+    
+    var selectedColor: UIColor = UIColor.blue
+    var unselectedColor: UIColor = UIColor.white
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,11 +26,11 @@ final class RoundedButtonView: UIView {
     
     func set(isSelected selected: Bool) {
         if selected {
-            self.roundedView.backgroundColor = RoundedButtonViewConstants.selectedColour
+            self.roundedView.backgroundColor = selectedColor
             self.selectedImageView.alpha = 1
             self.unselectedImageView.alpha = 0
         } else {
-            self.roundedView.backgroundColor = RoundedButtonViewConstants.unselectedColour
+            self.roundedView.backgroundColor = unselectedColor
             self.selectedImageView.alpha = 0
             self.unselectedImageView.alpha = 1
         }
@@ -49,8 +47,6 @@ final class RoundedButtonView: UIView {
         roundedView = UIView(frame: shadowView.bounds)
         roundedView.backgroundColor = UIColor.white
         roundedView.layer.cornerRadius = 20.0
-        //roundedView.layer.borderColor = UIColor.gray.cgColor
-        //roundedView.layer.borderWidth = 0.5
         roundedView.clipsToBounds = true
         
         shadowView.addSubview(roundedView)

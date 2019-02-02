@@ -9,35 +9,6 @@
 import UIKit
 import RACarousel
 
-enum MainTableRowTypes: Int {
-    case clearRow = 0
-    case buttonCarouselRow = 1
-    case carouselRow = 2
-}
-
-struct ViewControllerConstants {
-    public static let buttonCarouselRow = 1
-    public static let carouselRow = 2
-    public static let imageCarouselRow = -1
-    public static let containerRows = [2]
-    public static let numberOfRows = 3
-    public static let carouselViewCellIdentifier = "CarouselViewCellIdentifier"
-    public static let buttonsViewCellIdentifier = "ButtonsViewCellIdentifier"
-    public static let imageViewCellIdentifier  = "ImageViewCellIdentifier"
-    public static let tableViewCellIdentifier = "UITableViewCell"
-    public static let tableViewSeperatorColor = UIColor(white: 0.85, alpha: 1.0)
-    
-    public static let buttonsCarouselCellRowHeight: CGFloat = 200.0
-    public static let imageCellRowHeight: CGFloat = 400.0
-    public static let normalCellRowHeight: CGFloat = 50.0
-    public static let carouselRowHeight: CGFloat = 500.0
-    
-    public static let topRowMargin: CGFloat = 0.6
-    public static let gradientColors: [UIColor] = [
-        UIColor(red: 53/255, green: 136/255, blue: 206/255, alpha: 1),
-        UIColor(red: 155/255, green: 211/255, blue: 230/255, alpha: 1)]
-}
-
 final class ViewController: UIViewController,
     UITableViewDataSource,
     UITableViewDelegate,
@@ -71,8 +42,8 @@ final class ViewController: UIViewController,
     
     private func styleViews() {
         // Setup gradient view (cyan -> dark blue)
-        tableView.style(with: .primary)
-        gradientView.applyGradient(withColors: ViewControllerConstants.gradientColors)
+        tableView.style(withDetail: .primary)
+        gradientView.applyGradient(withColors: ViewConstants.Colors.gradient)
     }
     
     private func configureViews() {
@@ -81,9 +52,9 @@ final class ViewController: UIViewController,
     
     private func configureTableView() {
         // Setup table view controls
-        tableView.register(UINib(nibName: "CarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.carouselViewCellIdentifier)
-        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.buttonsViewCellIdentifier)        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.tableViewCellIdentifier)
+        tableView.register(UINib(nibName: "CarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.carousel)
+        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.buttons)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewConstants.CellIdentifiers.table)
     }
 
     // MARK: -
@@ -99,8 +70,8 @@ final class ViewController: UIViewController,
             cell.separatorInset = UIEdgeInsets(top: 0.0, left: tableView.bounds.size.width, bottom: 0.0, right: 0.0)
             return cell
             
-        case ViewControllerConstants.carouselRow:
-            let cell: CarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.carouselViewCellIdentifier) as! CarouselViewCell
+        case ViewConstants.RowIndex.tableCarousel:
+            let cell: CarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.carousel) as! CarouselViewCell
             
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = false
@@ -109,8 +80,8 @@ final class ViewController: UIViewController,
             
             return cell
         
-        case ViewControllerConstants.buttonCarouselRow:
-            let cell: ButtonsCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.buttonsViewCellIdentifier) as! ButtonsCarouselViewCell
+        case ViewConstants.RowIndex.buttonCarousel:
+            let cell: ButtonsCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.buttons) as! ButtonsCarouselViewCell
             cell.backgroundColor = UIColor.clear
             
             cell.carousel.panEnabled = false
@@ -122,13 +93,13 @@ final class ViewController: UIViewController,
             return cell
             
         default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.tableViewCellIdentifier)!
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.table)!
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ViewControllerConstants.numberOfRows
+        return ViewConstants.numberOfPrimaryViewRows
     }
     
     // MARK: -
@@ -148,21 +119,21 @@ final class ViewController: UIViewController,
         switch indexPath.row {
         case 0:
             let height = view.bounds.height
-            let margin = ViewControllerConstants.topRowMargin * height
+            let margin = ViewConstants.topRowScreenRatio * height
             return margin
-        case ViewControllerConstants.buttonCarouselRow:
-            return ViewControllerConstants.buttonsCarouselCellRowHeight
-        case ViewControllerConstants.carouselRow:
-            return CarouselViewCellConstants.heightForCell
+        case ViewConstants.RowIndex.buttonCarousel:
+            return ViewConstants.CellHeights.buttonsCarousel
+        case ViewConstants.RowIndex.tableCarousel:
+            return ViewConstants.CellHeights.tableCarousel
         default:
-            return ViewControllerConstants.normalCellRowHeight
+            return ViewConstants.CellHeights.normal
         }
     }
     
     // MARK: -
     // MARK: UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        whiteBottomView.frame = CGRect(origin: CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.contentOffset.y + /*scrollView.frame.height*/0), size: whiteBottomView.frame.size)
+        whiteBottomView.frame = CGRect(origin: CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.contentOffset.y + 0), size: whiteBottomView.frame.size)
         
         let minScale:CGFloat = 1.1
         let maxScale:CGFloat = 2.0

@@ -14,23 +14,17 @@ extension UITableView {
         case primary
     }
     
-    func style(with style: UITableView.DetailStyle) {
+    func style(withDetail style: UITableView.DetailStyle) {
         switch style {
         case .carousel:
-            separatorColor = ViewControllerConstants.tableViewSeperatorColor
+            separatorColor = ViewConstants.Colors.tableViewSeperator
             separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cellLayoutMarginsFollowReadableWidth = false
             isScrollEnabled = false
             allowsSelection = false
             
-            //layer.shadowColor     = UIColor.gray.cgColor
-            //layer.shadowOffset    = CGSize.zero
-            //layer.shadowOpacity   = 0.75
-            //layer.shadowRadius    = 10
-            
         case .primary:
-            // Register custom cell for carousel
-            separatorColor = ViewControllerConstants.tableViewSeperatorColor
+            separatorColor = ViewConstants.Colors.tableViewSeperator
             separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cellLayoutMarginsFollowReadableWidth = false
             backgroundColor = .clear

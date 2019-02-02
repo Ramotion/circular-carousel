@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D1EB3FD21F2D9DF0008394E /* UIView_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EB3FC21F2D9DF0008394E /* UIView_Extension.swift */; };
+		1D1EB3FD21F2D9DF0008394E /* UIView+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */; };
 		1D371BDF21F29D35005F0F5C /* ImageCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */; };
 		1D371BE021F29D35005F0F5C /* ImageCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */; };
 		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
@@ -16,6 +16,7 @@
 		1D605F9821F311C100094140 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D605F9721F311C100094140 /* RoundedButtonView.swift */; };
 		1D605F9A21F313FE00094140 /* RoundedButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9921F313FE00094140 /* RoundedButtonView.xib */; };
 		1D68A38322054767004B5B12 /* UITableView+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68A38222054767004B5B12 /* UITableView+Style.swift */; };
+		1D68A38522059C33004B5B12 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68A38422059C33004B5B12 /* ViewConstants.swift */; };
 		1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */; };
 		1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */; };
 		1DA05FD52201984C004A7C04 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA05FD32201984C004A7C04 /* ImageViewCell.swift */; };
@@ -31,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D1EB3FC21F2D9DF0008394E /* UIView_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_Extension.swift; sourceTree = "<group>"; };
+		1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Tools.swift"; sourceTree = "<group>"; };
 		1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselViewCell.swift; sourceTree = "<group>"; };
 		1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCarouselViewCell.xib; sourceTree = "<group>"; };
 		1D5AE77121E4B6460088B3D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -40,6 +41,7 @@
 		1D605F9721F311C100094140 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 		1D605F9921F313FE00094140 /* RoundedButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundedButtonView.xib; sourceTree = "<group>"; };
 		1D68A38222054767004B5B12 /* UITableView+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Style.swift"; sourceTree = "<group>"; };
+		1D68A38422059C33004B5B12 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCarouselViewCell.swift; sourceTree = "<group>"; };
 		1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsCarouselViewCell.xib; sourceTree = "<group>"; };
 		1DA05FD32201984C004A7C04 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewCell.swift; path = "RACarousel Demo/Code/ImageViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -100,11 +102,12 @@
 				1DA05FD722019A28004A7C04 /* CarouselViewCell.swift */,
 				1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */,
 				1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */,
-				1D1EB3FC21F2D9DF0008394E /* UIView_Extension.swift */,
+				1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */,
 				1D605F9721F311C100094140 /* RoundedButtonView.swift */,
 				1DA05FD32201984C004A7C04 /* ImageViewCell.swift */,
 				1DA05FDB2202E68A004A7C04 /* ImageCellViewModel.swift */,
 				1D68A38222054767004B5B12 /* UITableView+Style.swift */,
+				1D68A38422059C33004B5B12 /* ViewConstants.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -227,7 +230,8 @@
 				1DA05FD52201984C004A7C04 /* ImageViewCell.swift in Sources */,
 				1DA05FD822019A28004A7C04 /* CarouselViewCell.swift in Sources */,
 				1D68A38322054767004B5B12 /* UITableView+Style.swift in Sources */,
-				1D1EB3FD21F2D9DF0008394E /* UIView_Extension.swift in Sources */,
+				1D1EB3FD21F2D9DF0008394E /* UIView+Tools.swift in Sources */,
+				1D68A38522059C33004B5B12 /* ViewConstants.swift in Sources */,
 				1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */,
 				1DA05FDC2202E68A004A7C04 /* ImageCellViewModel.swift in Sources */,
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,

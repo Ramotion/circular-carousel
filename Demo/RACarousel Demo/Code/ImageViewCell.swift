@@ -21,7 +21,7 @@ class ImageViewCell: UITableViewCell {
         super.awakeFromNib()
         
         // Initialization code
-        seperatorLine.backgroundColor = ViewControllerConstants.tableViewSeperatorColor
+        seperatorLine.backgroundColor = ViewConstants.Colors.tableViewSeperator
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

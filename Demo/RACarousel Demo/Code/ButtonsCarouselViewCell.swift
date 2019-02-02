@@ -75,33 +75,39 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
         var button = view as? UIButton
-        var contentView: RoundedButtonView?
+        var roundedButtonView: RoundedButtonView?
         
         if button == nil {
             button = UIButton(type: .custom)
-            button?.frame = CGRect(x: 0, y: 0, width: 77, height: 77)
+            button?.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: ViewConstants.Size.roundedButton)
             
-            contentView = .fromNib()
-            
-            contentView?.frame = button?.frame ?? CGRect.zero
-            if indexPath.row == 0 {
-                selectedRoundedButtonIndex = indexPath.row
+            roundedButtonView = .fromNib()
+            if let roundedButtonView = roundedButtonView {
+                roundedButtonView.frame = button?.frame ?? CGRect.zero
+                if indexPath.row == 0 {
+                    selectedRoundedButtonIndex = indexPath.row
+                }
+                
+                roundedButtonView.selectedColor = ViewConstants.Colors.carouselButtonSelected
+                roundedButtonView.unselectedColor = ViewConstants.Colors.carouselButtonUnselected
+
+                button?.insertSubview(roundedButtonView, at: 0)
             }
             
-            button?.insertSubview(contentView!, at: 0)
             button?.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
         
         button?.tag = indexPath.row + 1
         
-        contentView = button?.subviews[0] as? RoundedButtonView
-        let arraySize = ButtonCarouselViewConstants.ButtonViewModels.count
-        let viewModel = ButtonCarouselViewConstants.ButtonViewModels[indexPath.row % arraySize]
-        contentView!.selectedImageView.image = viewModel.selectedImage
-        contentView!.unselectedImageView.image = viewModel.unselectedImage
-        //contentView!.lowerText.text = viewModel.text
-        
-        contentView?.set(isSelected: indexPath.row == 0)
+        if let roundedButtonView = button?.subviews[0] as? RoundedButtonView {
+            let arraySize = ButtonCarouselViewConstants.ButtonViewModels.count
+            let viewModel = ButtonCarouselViewConstants.ButtonViewModels[indexPath.row % arraySize]
+            
+            roundedButtonView.selectedImageView.image = viewModel.selectedImage
+            roundedButtonView.unselectedImageView.image = viewModel.unselectedImage
+            
+            roundedButtonView.set(isSelected: indexPath.row == 0)
+        }
         
         button?.setBackgroundImage(nil, for: .normal)
         button?.setImage(nil, for: .normal)

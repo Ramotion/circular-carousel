@@ -9,13 +9,6 @@
 import UIKit
 import RACarousel
 
-struct CarouselViewCellConstants {
-    static let numItemsInTable: Int = 10
-    static var heightForCell: CGFloat {
-        return ViewControllerConstants.imageCellRowHeight * CGFloat(numItemsInTable)
-    }
-}
-
 final class CarouselViewCell: UITableViewCell,
     UITableViewDataSource,
     UITableViewDelegate,
@@ -47,21 +40,25 @@ final class CarouselViewCell: UITableViewCell,
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        style()
-        configure()
     }
     
-    func style() {
-    }
-    
-    func configure() {
+    func carouselItemTableView(atIndexPath indexPath: IndexPath) -> UITableView {
+        let tableView = UITableView(frame: self.frame, style: .plain)
         
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(imageCellNib, forCellReuseIdentifier: ViewConstants.CellIdentifiers.image)
+        
+        tableView.tag = indexPath.row
+        tableView.style(withDetail: .carousel)
+        tableView.clipsToBounds = false
+        
+        tableView.reloadData()
+        
+        return tableView
     }
     
     // MARK: -
@@ -76,20 +73,7 @@ final class CarouselViewCell: UITableViewCell,
         if let tableView = view as? UITableView {
             return tableView
         } else {
-            let tableView = UITableView(frame: self.frame, style: .plain)
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-            
-            tableView.delegate = self
-            tableView.dataSource = self
-            
-            tableView.register(imageCellNib, forCellReuseIdentifier: ViewControllerConstants.imageViewCellIdentifier)
-            
-            tableView.tag = indexPath.row
-            tableView.style(with: .carousel)
-            tableView.clipsToBounds = false
-            
-            tableView.reloadData()
-            
+            let tableView = carouselItemTableView(atIndexPath: indexPath)
             return tableView
         }
     }
@@ -107,7 +91,7 @@ final class CarouselViewCell: UITableViewCell,
     // MARK: -
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ImageViewCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.imageViewCellIdentifier) as! ImageViewCell
+        let cell: ImageViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.image) as! ImageViewCell
         
         let cellSelectionIdx = (indexPath.row + tableView.tag) % imageCellSelection.count
         let cellSelection = imageCellSelection[cellSelectionIdx]
@@ -127,6 +111,6 @@ final class CarouselViewCell: UITableViewCell,
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ViewControllerConstants.imageCellRowHeight
+        return ViewConstants.CellHeights.image
     }
 }
