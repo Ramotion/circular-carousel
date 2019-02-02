@@ -50,7 +50,7 @@ final class ImageCarouselViewCell: UITableViewCell, RACarouselDelegate, RACarous
     // MARK: RACarouselDataSource
     
     func numberOfItems(inCarousel carousel: RACarousel) -> Int {
-        return ButtonCarouselViewConstants.NumberOfButtons
+        return 3
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {

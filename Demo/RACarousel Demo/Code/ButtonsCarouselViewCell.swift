@@ -15,15 +15,15 @@ protocol ButtonsCarouselViewCellDelegate {
     func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int)
 }
 
-struct ButtonCarouselViewConstants {
-    public static let ScaleMultiplier:CGFloat = 0.25
-    public static let MinScale:CGFloat = 0.55
-    public static let MaxScale:CGFloat = 1.08
-    public static let MinFade:CGFloat = -2.0
-    public static let MaxFade:CGFloat = 2.0
-    public static let NumberOfButtons = 5
-    public static let StartingItemIdx = 0
-    public static let ButtonViewModels: [ButtonsCarouselViewModel] = [
+struct ButtonCarouselConstants {
+    static let scaleMultiplier:CGFloat = 0.25
+    static let minScale:CGFloat = 0.55
+    static let maxScale:CGFloat = 1.08
+    static let minFade:CGFloat = -2.0
+    static let maxFade:CGFloat = 2.0
+    static let startingItemIdx = 0
+    static let buttonWidth = 80
+    static let buttonViewModels: [ButtonsCarouselViewModel] = [
         ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite1")!,
                                  unselectedImage: UIImage(named: "ButtonImageGray1")!,
                                  text: "Parking"),
@@ -52,6 +52,7 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     
     var delegate: ButtonsCarouselViewCellDelegate?
     var selectedRoundedButtonIndex: Int = -1
+    var numberOfButtons: Int = 3
     
     weak var _carousel : RACarousel!
     @IBOutlet var carousel : RACarousel! {
@@ -70,7 +71,7 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     // MARK: RACarouselDataSource
     
     func numberOfItems(inCarousel carousel: RACarousel) -> Int {
-        return ButtonCarouselViewConstants.NumberOfButtons
+        return numberOfButtons
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
@@ -100,8 +101,8 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
         button?.tag = indexPath.row + 1
         
         if let roundedButtonView = button?.subviews[0] as? RoundedButtonView {
-            let arraySize = ButtonCarouselViewConstants.ButtonViewModels.count
-            let viewModel = ButtonCarouselViewConstants.ButtonViewModels[indexPath.row % arraySize]
+            let arraySize = ButtonCarouselConstants.buttonViewModels.count
+            let viewModel = ButtonCarouselConstants.buttonViewModels[indexPath.row % arraySize]
             
             roundedButtonView.selectedImageView.image = viewModel.selectedImage
             roundedButtonView.unselectedImageView.image = viewModel.unselectedImage
@@ -116,7 +117,7 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     }
     
     func startingItemIndex(inCarousel carousel: RACarousel) -> Int {
-        return ButtonCarouselViewConstants.StartingItemIdx
+        return ButtonCarouselConstants.startingItemIdx
     }
     
     // MARK: -
@@ -124,7 +125,7 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     func carousel(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {
         switch option {
         case .itemWidth:
-            return 80
+            return ButtonCarouselConstants.buttonWidth
         default:
             return defaultValue
         }
@@ -134,19 +135,19 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
         switch option {
         
         case .scaleMultiplier:
-            return ButtonCarouselViewConstants.ScaleMultiplier as! CGFloat
+            return ButtonCarouselConstants.scaleMultiplier as! CGFloat
         
         case .minScale:
-            return ButtonCarouselViewConstants.MinScale as! CGFloat
+            return ButtonCarouselConstants.minScale as! CGFloat
         
         case .maxScale:
-            return ButtonCarouselViewConstants.MaxScale as! CGFloat
+            return ButtonCarouselConstants.maxScale as! CGFloat
         
         case .fadeMin:
-            return ButtonCarouselViewConstants.MinFade as! CGFloat
+            return ButtonCarouselConstants.minFade as! CGFloat
         
         case .fadeMax:
-            return ButtonCarouselViewConstants.MaxFade as! CGFloat
+            return ButtonCarouselConstants.maxFade as! CGFloat
         
         default:
             return defaultValue

@@ -17,6 +17,7 @@ struct ViewConstants {
     static let numberOfTableViewRows = 10
     static let numberOfPrimaryViewRows = 3
     static let topRowScreenRatio: CGFloat = 0.6
+    static let numberOfCarouselItems = 5
     
     struct CellIdentifiers {
         static let carousel = "CarouselViewCellIdentifier"

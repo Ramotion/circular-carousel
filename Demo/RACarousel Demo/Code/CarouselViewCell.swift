@@ -24,6 +24,8 @@ final class CarouselViewCell: UITableViewCell,
     
     let imageCellNib: UINib = UINib(nibName: "ImageViewCell", bundle: nil)
     
+    var numberOfCarouselItems = 3
+    
     weak var _carousel : RACarousel!
     @IBOutlet var carousel : RACarousel! {
         set {
@@ -65,7 +67,7 @@ final class CarouselViewCell: UITableViewCell,
     // MARK: RACarouselDataSource
     
     func numberOfItems(inCarousel carousel: RACarousel) -> Int {
-        return ButtonCarouselViewConstants.NumberOfButtons
+        return numberOfCarouselItems
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {

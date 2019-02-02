@@ -72,9 +72,10 @@ final class ViewController: UIViewController,
             
         case ViewConstants.RowIndex.tableCarousel:
             let cell: CarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.carousel) as! CarouselViewCell
-            
+            cell.numberOfCarouselItems = ViewConstants.numberOfCarouselItems
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = false
+            cell.carousel.reloadData()
             
             carouselViewCell = cell
             
@@ -84,9 +85,12 @@ final class ViewController: UIViewController,
             let cell: ButtonsCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.buttons) as! ButtonsCarouselViewCell
             cell.backgroundColor = UIColor.clear
             
+            cell.numberOfButtons = ViewConstants.numberOfCarouselItems
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = true
             cell.delegate = self
+            
+            cell.carousel.reloadData()
             
             buttonsCarouselViewCell = cell
             
