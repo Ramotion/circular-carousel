@@ -17,8 +17,8 @@ protocol ButtonsCarouselViewCellDelegate {
 
 struct ButtonCarouselViewConstants {
     public static let ScaleMultiplier:CGFloat = 0.25
-    public static let MinScale:CGFloat = 0.6
-    public static let MaxScale:CGFloat = 1.05
+    public static let MinScale:CGFloat = 0.55
+    public static let MaxScale:CGFloat = 1.08
     public static let MinFade:CGFloat = -2.0
     public static let MaxFade:CGFloat = 2.0
     public static let NumberOfButtons = 5
@@ -79,7 +79,7 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
         
         if button == nil {
             button = UIButton(type: .custom)
-            button?.frame = CGRect(x: 0, y: 0, width: 75, height: 75)
+            button?.frame = CGRect(x: 0, y: 0, width: 77, height: 77)
             
             contentView = .fromNib()
             
@@ -145,7 +145,6 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
         default:
             return defaultValue
         }
-        
     }
     
     func carousel(_ carousel: RACarousel, didSelectItemAtIndex index: Int) {        
@@ -172,7 +171,7 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     
     func carousel(_ carousel: RACarousel, spacingForOffset offset: CGFloat) -> CGFloat {
         // Tweaked values to support even spacing on scaled items
-        return 1.20 - abs(offset * 0.1)
+        return 1.20 - abs(offset * 0.12)
     }
 
     // MARK: -

@@ -25,6 +25,7 @@ struct ViewControllerConstants {
     public static let buttonsViewCellIdentifier = "ButtonsViewCellIdentifier"
     public static let imageViewCellIdentifier  = "ImageViewCellIdentifier"
     public static let tableViewCellIdentifier = "UITableViewCell"
+    public static let tableViewSeperatorColor = UIColor(white: 0.85, alpha: 1.0)
     
     public static let buttonsCarouselCellRowHeight: CGFloat = 200.0
     public static let imageCellRowHeight: CGFloat = 300.0
@@ -37,7 +38,10 @@ struct ViewControllerConstants {
         UIColor(red: 155/255, green: 211/255, blue: 230/255, alpha: 1)]
 }
 
-final class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ButtonsCarouselViewCellDelegate
+final class ViewController: UIViewController,
+    UITableViewDataSource,
+    UITableViewDelegate,
+    ButtonsCarouselViewCellDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
@@ -55,6 +59,10 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
         configureViews()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -63,6 +71,7 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
     
     private func styleViews() {
         // Setup gradient view (cyan -> dark blue)
+        tableView.style(with: .primary)
         gradientView.applyGradient(withColors: ViewControllerConstants.gradientColors)
     }
     
@@ -71,20 +80,12 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     private func configureTableView() {
-        // Register custom cell for carousel
-        tableView.separatorColor = UIColor.gray
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.cellLayoutMarginsFollowReadableWidth = false
+        // Setup table view controls
+        tableView.allowsSelection = false
 
         tableView.register(UINib(nibName: "CarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.carouselViewCellIdentifier)
         tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.buttonsViewCellIdentifier)        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.tableViewCellIdentifier)
-        
-        // Setup table view controls
-        tableView.allowsSelection = false
-        tableView.tableFooterView = UIView()
-        tableView.backgroundColor = .clear
-        //whiteBottomView.isHidden = true
     }
 
     // MARK: -
@@ -154,7 +155,7 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
         case ViewControllerConstants.buttonCarouselRow:
             return ViewControllerConstants.buttonsCarouselCellRowHeight
         case ViewControllerConstants.carouselRow:
-            return ViewControllerConstants.carouselRowHeight
+            return CarouselViewCellConstants.heightForCell
         default:
             return ViewControllerConstants.normalCellRowHeight
         }
@@ -164,6 +165,7 @@ final class ViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         whiteBottomView.frame = CGRect(origin: CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.contentOffset.y + /*scrollView.frame.height*/0), size: whiteBottomView.frame.size)
+        
         let minScale:CGFloat = 1.1
         let maxScale:CGFloat = 2.0
         

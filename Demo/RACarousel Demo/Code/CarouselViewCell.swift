@@ -9,6 +9,13 @@
 import UIKit
 import RACarousel
 
+struct CarouselViewCellConstants {
+    static let numItemsInTable: Int = 10
+    static var heightForCell: CGFloat {
+        return ViewControllerConstants.imageCellRowHeight * CGFloat(numItemsInTable)
+    }
+}
+
 final class CarouselViewCell: UITableViewCell,
     UITableViewDataSource,
     UITableViewDelegate,
@@ -69,12 +76,19 @@ final class CarouselViewCell: UITableViewCell,
         if let tableView = view as? UITableView {
             return tableView
         } else {
+            
             let tableView = UITableView(frame: carousel.frame, style: .plain)
+            
             tableView.delegate = self
             tableView.dataSource = self
+            
             tableView.register(imageCellNib, forCellReuseIdentifier: ViewControllerConstants.imageViewCellIdentifier)
+            
             tableView.tag = indexPath.row
+            tableView.style(with: .carousel)
+            
             tableView.reloadData()
+            
             return tableView
         }
     }

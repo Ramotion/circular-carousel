@@ -43,14 +43,14 @@ final class RoundedButtonView: UIView {
         
         shadowView.layer.shadowColor = UIColor.gray.cgColor
         shadowView.layer.shadowOffset = CGSize.zero
-        shadowView.layer.shadowOpacity = 1.0
+        shadowView.layer.shadowOpacity = 0.25
         shadowView.layer.shadowRadius = 10
         
         roundedView = UIView(frame: shadowView.bounds)
         roundedView.backgroundColor = UIColor.white
         roundedView.layer.cornerRadius = 20.0
-        roundedView.layer.borderColor = UIColor.gray.cgColor
-        roundedView.layer.borderWidth = 0.5
+        //roundedView.layer.borderColor = UIColor.gray.cgColor
+        //roundedView.layer.borderWidth = 0.5
         roundedView.clipsToBounds = true
         
         shadowView.addSubview(roundedView)
