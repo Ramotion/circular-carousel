@@ -28,7 +28,7 @@ struct ViewControllerConstants {
     public static let tableViewSeperatorColor = UIColor(white: 0.85, alpha: 1.0)
     
     public static let buttonsCarouselCellRowHeight: CGFloat = 200.0
-    public static let imageCellRowHeight: CGFloat = 300.0
+    public static let imageCellRowHeight: CGFloat = 400.0
     public static let normalCellRowHeight: CGFloat = 50.0
     public static let carouselRowHeight: CGFloat = 500.0
     
@@ -81,8 +81,6 @@ final class ViewController: UIViewController,
     
     private func configureTableView() {
         // Setup table view controls
-        tableView.allowsSelection = false
-
         tableView.register(UINib(nibName: "CarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.carouselViewCellIdentifier)
         tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewControllerConstants.buttonsViewCellIdentifier)        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewControllerConstants.tableViewCellIdentifier)

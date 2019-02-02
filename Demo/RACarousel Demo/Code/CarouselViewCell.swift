@@ -31,10 +31,6 @@ final class CarouselViewCell: UITableViewCell,
     
     let imageCellNib: UINib = UINib(nibName: "ImageViewCell", bundle: nil)
     
-    // TODO - Setup table views seperately (Do we actually need this?)
-    var tableViews: [UITableView]?
-    
-    
     weak var _carousel : RACarousel!
     @IBOutlet var carousel : RACarousel! {
         set {
@@ -51,10 +47,14 @@ final class CarouselViewCell: UITableViewCell,
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        configureView()
+        style()
+        configure()
     }
     
-    func configureView() {
+    func style() {
+    }
+    
+    func configure() {
         
     }
 
@@ -76,8 +76,8 @@ final class CarouselViewCell: UITableViewCell,
         if let tableView = view as? UITableView {
             return tableView
         } else {
-            
-            let tableView = UITableView(frame: carousel.frame, style: .plain)
+            let tableView = UITableView(frame: self.frame, style: .plain)
+            tableView.translatesAutoresizingMaskIntoConstraints = false
             
             tableView.delegate = self
             tableView.dataSource = self
@@ -86,6 +86,7 @@ final class CarouselViewCell: UITableViewCell,
             
             tableView.tag = indexPath.row
             tableView.style(with: .carousel)
+            tableView.clipsToBounds = false
             
             tableView.reloadData()
             

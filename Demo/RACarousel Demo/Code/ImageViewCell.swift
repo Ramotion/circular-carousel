@@ -14,9 +14,14 @@ class ImageViewCell: UITableViewCell {
     @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var mainImageView: UIImageView!
     
+    @IBOutlet private var internalBackgroundView: UIView!
+    @IBOutlet private var seperatorLine: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
+        seperatorLine.backgroundColor = ViewControllerConstants.tableViewSeperatorColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

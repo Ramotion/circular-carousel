@@ -21,6 +21,12 @@ extension UITableView {
             separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cellLayoutMarginsFollowReadableWidth = false
             isScrollEnabled = false
+            allowsSelection = false
+            
+            //layer.shadowColor     = UIColor.gray.cgColor
+            //layer.shadowOffset    = CGSize.zero
+            //layer.shadowOpacity   = 0.75
+            //layer.shadowRadius    = 10
             
         case .primary:
             // Register custom cell for carousel
@@ -28,6 +34,7 @@ extension UITableView {
             separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cellLayoutMarginsFollowReadableWidth = false
             backgroundColor = .clear
+            allowsSelection = false
         }
     }
 }
