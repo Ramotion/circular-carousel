@@ -10,47 +10,38 @@ import Foundation
 import UIKit
 import RACarousel
 
-protocol ButtonsCarouselViewCellDelegate {
-    func buttonCarousel(_ carousel: ButtonsCarouselViewCell, buttonPressed button: UIButton)
-    func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int)
+protocol ButtonCarouselViewDataSource {
+    func buttonCarousel(_ buttonCarousel: ButtonCarouselView, modelForIndex: IndexPath) -> ButtonCarouselModel
+    func numberOfButtonsForCarousel(_ buttonCarousel: ButtonCarouselView) -> Int
 }
 
-struct ButtonCarouselConstants {
+protocol ButtonCarouselViewDelegate {
+    func buttonCarousel(_ carousel: ButtonCarouselView, buttonPressed button: UIButton)
+    func buttonCarousel(_ carousel: ButtonCarouselView, willScrollToIndex index: IndexPath)
+    func startingIndexForButtonCarousel(_ carousel: ButtonCarouselView) -> Int
+    func itemWidthForButtonCarousel(_ carousel: ButtonCarouselView) -> CGFloat
+}
+
+fileprivate struct Constants {
     static let scaleMultiplier:CGFloat = 0.25
     static let minScale:CGFloat = 0.55
     static let maxScale:CGFloat = 1.08
     static let minFade:CGFloat = -2.0
     static let maxFade:CGFloat = 2.0
-    static let startingItemIdx = 0
-    static let buttonWidth = 80
-    static let buttonViewModels: [ButtonsCarouselViewModel] = [
-        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite1")!,
-                                 unselectedImage: UIImage(named: "ButtonImageGray1")!,
-                                 text: "Parking"),
-        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite2")!,
-                                 unselectedImage: UIImage(named: "ButtonImageGray2")!,
-                                 text: "Clothing"),
-        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite3")!,
-                                 unselectedImage: UIImage(named: "ButtonImageGray3")!,
-                                 text: "Food"),
-        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite4")!,
-                                 unselectedImage: UIImage(named: "ButtonImageGray4")!,
-                                 text: "Lodging"),
-        ButtonsCarouselViewModel(selectedImage: UIImage(named: "ButtonImageWhite5")!,
-                                 unselectedImage: UIImage(named: "ButtonImageGray5")!,
-                                 text: "Map")
-    ]
+    static let defaultButtonWidth: CGFloat = 100.0
 }
 
-struct ButtonsCarouselViewModel {
+struct ButtonCarouselModel {
     public var selectedImage: UIImage
     public var unselectedImage: UIImage
     public var text: String
 }
 
-final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RACarouselDelegate {
+final class ButtonCarouselView : UITableViewCell, RACarouselDataSource, RACarouselDelegate {
     
-    var delegate: ButtonsCarouselViewCellDelegate?
+    var delegate: ButtonCarouselViewDelegate?
+    var dataSource: ButtonCarouselViewDataSource?
+    
     var selectedRoundedButtonIndex: Int = -1
     var numberOfButtons: Int = 3
     
@@ -71,10 +62,14 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     // MARK: RACarouselDataSource
     
     func numberOfItems(inCarousel carousel: RACarousel) -> Int {
-        return numberOfButtons
+        return dataSource?.numberOfButtonsForCarousel(self) ?? 0
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
+        assert(indexPath.row < numberOfItems(inCarousel: carousel), "Row index greater than number of items!")
+        
+        guard let dataSource = dataSource else { return view ?? UIView() }
+        
         var button = view as? UIButton
         var roundedButtonView: RoundedButtonView?
         
@@ -101,13 +96,13 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
         button?.tag = indexPath.row + 1
         
         if let roundedButtonView = button?.subviews[0] as? RoundedButtonView {
-            let arraySize = ButtonCarouselConstants.buttonViewModels.count
-            let viewModel = ButtonCarouselConstants.buttonViewModels[indexPath.row % arraySize]
+            
+            let viewModel = dataSource.buttonCarousel(self, modelForIndex: indexPath)
             
             roundedButtonView.selectedImageView.image = viewModel.selectedImage
             roundedButtonView.unselectedImageView.image = viewModel.unselectedImage
             
-            roundedButtonView.set(isSelected: indexPath.row == 0)
+            roundedButtonView.set(isSelected: indexPath.row == startingItemIndex(inCarousel: carousel))
         }
         
         button?.setBackgroundImage(nil, for: .normal)
@@ -117,37 +112,32 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     }
     
     func startingItemIndex(inCarousel carousel: RACarousel) -> Int {
-        return ButtonCarouselConstants.startingItemIdx
+        return delegate?.startingIndexForButtonCarousel(self) ?? 0
     }
     
     // MARK: -
     // MARK: RACarouselDelegate
-    func carousel(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: Int) -> Int {
-        switch option {
-        case .itemWidth:
-            return ButtonCarouselConstants.buttonWidth
-        default:
-            return defaultValue
-        }
-    }
     
     func carousel<CGFloat>(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
         switch option {
-        
+        case .itemWidth:
+            
+        return (delegate?.itemWidthForButtonCarousel(self) ?? Constants.defaultButtonWidth) as! CGFloat
+            
         case .scaleMultiplier:
-            return ButtonCarouselConstants.scaleMultiplier as! CGFloat
+            return Constants.scaleMultiplier as! CGFloat
         
         case .minScale:
-            return ButtonCarouselConstants.minScale as! CGFloat
+            return Constants.minScale as! CGFloat
         
         case .maxScale:
-            return ButtonCarouselConstants.maxScale as! CGFloat
+            return Constants.maxScale as! CGFloat
         
         case .fadeMin:
-            return ButtonCarouselConstants.minFade as! CGFloat
+            return Constants.minFade as! CGFloat
         
         case .fadeMax:
-            return ButtonCarouselConstants.maxFade as! CGFloat
+            return Constants.maxFade as! CGFloat
         
         default:
             return defaultValue
@@ -161,7 +151,7 @@ final class ButtonsCarouselViewCell : UITableViewCell, RACarouselDataSource, RAC
     
     func carousel(_ carousel: RACarousel, willBeginScrollingToIndex index: Int) {
         
-        delegate?.buttonCarousel(self, willScrollToIndex: index)
+        delegate?.buttonCarousel(self, willScrollToIndex: IndexPath(row: index, section: 0))
         
         var uiButton = carousel.viewWithTag(index + 1) as? UIButton
         var selectedRoundedButton = uiButton?.subviews[0] as? RoundedButtonView

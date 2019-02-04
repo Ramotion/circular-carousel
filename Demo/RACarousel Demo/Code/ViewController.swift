@@ -12,16 +12,17 @@ import RACarousel
 final class ViewController: UIViewController,
     UITableViewDataSource,
     UITableViewDelegate,
-    ButtonsCarouselViewCellDelegate
+    ButtonCarouselViewDelegate,
+    ButtonCarouselViewDataSource,
+    TableCarouselViewDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var whiteBottomView: UIView!
     
-    var carouselViewCell: CarouselViewCell?
-    var buttonsCarouselViewCell: ButtonsCarouselViewCell?
-    var imageCarouselViewCell: ImageCarouselViewCell?
+    var tableCarouselView: TableCarouselView?
+    var buttonCarouselView: ButtonCarouselView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +53,8 @@ final class ViewController: UIViewController,
     
     private func configureTableView() {
         // Setup table view controls
-        tableView.register(UINib(nibName: "CarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.carousel)
-        tableView.register(UINib(nibName: "ButtonsCarouselViewCell", bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.buttons)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewConstants.CellIdentifiers.table)
+        tableView.register(UINib(nibName: ViewConstants.NibNames.tableCarousel, bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.tableCarousel)
+        tableView.register(UINib(nibName: ViewConstants.NibNames.buttons, bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.buttons)
     }
 
     // MARK: -
@@ -71,34 +71,36 @@ final class ViewController: UIViewController,
             return cell
             
         case ViewConstants.RowIndex.tableCarousel:
-            let cell: CarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.carousel) as! CarouselViewCell
-            cell.numberOfCarouselItems = ViewConstants.numberOfCarouselItems
+            let cell: TableCarouselView = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.tableCarousel) as! TableCarouselView
+            
+            cell.delegate = self
+            
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = false
             cell.carousel.reloadData()
             
-            carouselViewCell = cell
+            tableCarouselView = cell
             
             return cell
         
         case ViewConstants.RowIndex.buttonCarousel:
-            let cell: ButtonsCarouselViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.buttons) as! ButtonsCarouselViewCell
+            let cell: ButtonCarouselView = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.buttons) as! ButtonCarouselView
             cell.backgroundColor = UIColor.clear
             
-            cell.numberOfButtons = ViewConstants.numberOfCarouselItems
+            cell.delegate = self
+            cell.dataSource = self
+
             cell.carousel.panEnabled = false
             cell.carousel.swipeEnabled = true
-            cell.delegate = self
             
             cell.carousel.reloadData()
             
-            buttonsCarouselViewCell = cell
+            buttonCarouselView = cell
             
             return cell
             
         default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.table)!
-            return cell
+            return UITableViewCell()
         }
     }
     
@@ -154,14 +156,39 @@ final class ViewController: UIViewController,
     }
     
     // MARK: -
-    // MARK: ButtonsCarouselViewCell
-    
-    func buttonCarousel(_ carousel: ButtonsCarouselViewCell, buttonPressed button: UIButton) {
+    // MARK: ButtonCarouselViewDataSource
+    func buttonCarousel(_ buttonCarousel: ButtonCarouselView, modelForIndex index: IndexPath) -> ButtonCarouselModel {
+        return Data.buttonViewModels[index.row]
     }
     
-    func buttonCarousel(_ carousel: ButtonsCarouselViewCell, willScrollToIndex index: Int) {
+    func numberOfButtonsForCarousel(_ buttonCarousel: ButtonCarouselView) -> Int {
+        return Data.buttonViewModels.count
+    }
+    
+    
+    // MARK: -
+    // MARK: ButtonCarouselViewDelegate
+    
+    func buttonCarousel(_ carousel: ButtonCarouselView, buttonPressed button: UIButton) {
+    }
+    
+    func buttonCarousel(_ carousel: ButtonCarouselView, willScrollToIndex index: IndexPath) {
         // Pass the message to the image carousel
-        carouselViewCell?.carousel.scroll(toItemAtIndex: index, animated: true)
+        tableCarouselView?.carousel.scroll(toItemAtIndex: index.row, animated: true)
+    }
+    
+    func startingIndexForButtonCarousel(_ carousel: ButtonCarouselView) -> Int {
+        return ViewConstants.startingCarouselItem
+    }
+    
+    func itemWidthForButtonCarousel(_ carousel: ButtonCarouselView) -> CGFloat {
+        return ViewConstants.Size.carouselButtonItemWidith
+    }
+    
+    // MARK: -
+    // MARK: TableCarouselViewDelegate
+    func numberOfItemInTableCarousel(_ tableCarouselView: TableCarouselView) -> Int {
+        return ViewConstants.numberOfCarouselItems
     }
 }
 

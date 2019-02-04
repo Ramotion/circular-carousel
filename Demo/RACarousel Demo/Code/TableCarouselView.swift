@@ -9,22 +9,20 @@
 import UIKit
 import RACarousel
 
-final class CarouselViewCell: UITableViewCell,
+protocol TableCarouselViewDelegate {
+    func numberOfItemInTableCarousel(_ tableCarouselView: TableCarouselView) -> Int
+}
+
+final class TableCarouselView: UITableViewCell,
     UITableViewDataSource,
     UITableViewDelegate,
     RACarouselDelegate,
     RACarouselDataSource {
     
-    let imageCellSelection: [ImageCellViewModel] = [
-        ImageCellViewModel(imageName: "PageImage1", title: "First", description: "This is a short description"),
-        ImageCellViewModel(imageName: "PageImage2", title: "Second", description: "This is a short description"),
-        ImageCellViewModel(imageName: "PageImage3", title: "Third", description: "This is a short description"),
-        ImageCellViewModel(imageName: "PageImage4", title: "Fourth", description: "This is a short description")
-    ]
-    
     let imageCellNib: UINib = UINib(nibName: "ImageViewCell", bundle: nil)
+    let numberOfRowsInTableView = 10
     
-    var numberOfCarouselItems = 3
+    var delegate: TableCarouselViewDelegate?
     
     weak var _carousel : RACarousel!
     @IBOutlet var carousel : RACarousel! {
@@ -67,7 +65,7 @@ final class CarouselViewCell: UITableViewCell,
     // MARK: RACarouselDataSource
     
     func numberOfItems(inCarousel carousel: RACarousel) -> Int {
-        return numberOfCarouselItems
+        return delegate?.numberOfItemInTableCarousel(self) ?? 0
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
@@ -95,8 +93,8 @@ final class CarouselViewCell: UITableViewCell,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ImageViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.image) as! ImageViewCell
         
-        let cellSelectionIdx = (indexPath.row + tableView.tag) % imageCellSelection.count
-        let cellSelection = imageCellSelection[cellSelectionIdx]
+        let cellSelectionIdx = (indexPath.row + tableView.tag) % Data.imageCellSelection.count
+        let cellSelection = Data.imageCellSelection[cellSelectionIdx]
         
         cell.mainImageView.image = UIImage(named: cellSelection.imageName)
         cell.titleLabel.text = cellSelection.title
@@ -106,7 +104,7 @@ final class CarouselViewCell: UITableViewCell,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return numberOfRowsInTableView
     }
     
     // MARK: -

@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0870F12208222D0095330D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0870F02208222D0095330D /* Data.swift */; };
 		1D1EB3FD21F2D9DF0008394E /* UIView+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */; };
-		1D371BDF21F29D35005F0F5C /* ImageCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */; };
-		1D371BE021F29D35005F0F5C /* ImageCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */; };
 		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
 		1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; };
 		1D605F9621F2F2A200094140 /* souveni1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9521F2EE8300094140 /* souveni1.ttf */; };
@@ -17,12 +16,12 @@
 		1D605F9A21F313FE00094140 /* RoundedButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9921F313FE00094140 /* RoundedButtonView.xib */; };
 		1D68A38322054767004B5B12 /* UITableView+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68A38222054767004B5B12 /* UITableView+Style.swift */; };
 		1D68A38522059C33004B5B12 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68A38422059C33004B5B12 /* ViewConstants.swift */; };
-		1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */; };
-		1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */; };
+		1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselView.swift */; };
+		1D6ACEF221DCE51C007FFA63 /* ButtonCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6ACEF121DCE51C007FFA63 /* ButtonCarouselView.xib */; };
 		1DA05FD52201984C004A7C04 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA05FD32201984C004A7C04 /* ImageViewCell.swift */; };
 		1DA05FD62201984C004A7C04 /* ImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA05FD42201984C004A7C04 /* ImageViewCell.xib */; };
-		1DA05FD822019A28004A7C04 /* CarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA05FD722019A28004A7C04 /* CarouselViewCell.swift */; };
-		1DA05FDA22019A56004A7C04 /* CarouselViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA05FD922019A56004A7C04 /* CarouselViewCell.xib */; };
+		1DA05FD822019A28004A7C04 /* TableCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA05FD722019A28004A7C04 /* TableCarouselView.swift */; };
+		1DA05FDA22019A56004A7C04 /* TableCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA05FD922019A56004A7C04 /* TableCarouselView.xib */; };
 		1DA05FDC2202E68A004A7C04 /* ImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA05FDB2202E68A004A7C04 /* ImageCellViewModel.swift */; };
 		1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */; };
 		1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1EA8E21D0ED90002F244E /* ViewController.swift */; };
@@ -32,9 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0870F02208222D0095330D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Tools.swift"; sourceTree = "<group>"; };
-		1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselViewCell.swift; sourceTree = "<group>"; };
-		1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCarouselViewCell.xib; sourceTree = "<group>"; };
 		1D5AE77121E4B6460088B3D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RACarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D605F9521F2EE8300094140 /* souveni1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = souveni1.ttf; sourceTree = "<group>"; };
@@ -42,12 +40,12 @@
 		1D605F9921F313FE00094140 /* RoundedButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundedButtonView.xib; sourceTree = "<group>"; };
 		1D68A38222054767004B5B12 /* UITableView+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Style.swift"; sourceTree = "<group>"; };
 		1D68A38422059C33004B5B12 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
-		1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCarouselViewCell.swift; sourceTree = "<group>"; };
-		1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsCarouselViewCell.xib; sourceTree = "<group>"; };
+		1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCarouselView.swift; sourceTree = "<group>"; };
+		1D6ACEF121DCE51C007FFA63 /* ButtonCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCarouselView.xib; sourceTree = "<group>"; };
 		1DA05FD32201984C004A7C04 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewCell.swift; path = "RACarousel Demo/Code/ImageViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		1DA05FD42201984C004A7C04 /* ImageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageViewCell.xib; path = "RACarousel Demo/Views/ImageViewCell.xib"; sourceTree = SOURCE_ROOT; };
-		1DA05FD722019A28004A7C04 /* CarouselViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselViewCell.swift; sourceTree = "<group>"; };
-		1DA05FD922019A56004A7C04 /* CarouselViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselViewCell.xib; sourceTree = "<group>"; };
+		1DA05FD722019A28004A7C04 /* TableCarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCarouselView.swift; sourceTree = "<group>"; };
+		1DA05FD922019A56004A7C04 /* TableCarouselView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCarouselView.xib; sourceTree = "<group>"; };
 		1DA05FDB2202E68A004A7C04 /* ImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModel.swift; sourceTree = "<group>"; };
 		1DC1EA8921D0ED90002F244E /* RACarousel Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACarousel Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,15 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D0870F22208396E0095330D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1D0870F02208222D0095330D /* Data.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		1D1EB3FE21F2E8630008394E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1DA05FD922019A56004A7C04 /* CarouselViewCell.xib */,
+				1DA05FD922019A56004A7C04 /* TableCarouselView.xib */,
 				1DA05FD42201984C004A7C04 /* ImageViewCell.xib */,
 				1DC1EA9021D0ED90002F244E /* Main.storyboard */,
 				1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */,
-				1D6ACEF121DCE51C007FFA63 /* ButtonsCarouselViewCell.xib */,
-				1D371BDE21F29D35005F0F5C /* ImageCarouselViewCell.xib */,
+				1D6ACEF121DCE51C007FFA63 /* ButtonCarouselView.xib */,
 				1D605F9921F313FE00094140 /* RoundedButtonView.xib */,
 			);
 			path = Views;
@@ -99,9 +104,8 @@
 			children = (
 				1DC1EA8C21D0ED90002F244E /* AppDelegate.swift */,
 				1DC1EA8E21D0ED90002F244E /* ViewController.swift */,
-				1DA05FD722019A28004A7C04 /* CarouselViewCell.swift */,
-				1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift */,
-				1D371BDD21F29D34005F0F5C /* ImageCarouselViewCell.swift */,
+				1DA05FD722019A28004A7C04 /* TableCarouselView.swift */,
+				1D6ACEEF21DCE4C5007FFA63 /* ButtonsCarouselView.swift */,
 				1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */,
 				1D605F9721F311C100094140 /* RoundedButtonView.swift */,
 				1DA05FD32201984C004A7C04 /* ImageViewCell.swift */,
@@ -143,6 +147,7 @@
 			children = (
 				1D605F9521F2EE8300094140 /* souveni1.ttf */,
 				1D1EB40021F2E89B0008394E /* Code */,
+				1D0870F22208396E0095330D /* Data */,
 				1D1EB3FF21F2E8860008394E /* Resources */,
 				1D1EB3FE21F2E8630008394E /* Views */,
 			);
@@ -213,9 +218,8 @@
 				1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */,
 				1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */,
 				1D605F9A21F313FE00094140 /* RoundedButtonView.xib in Resources */,
-				1D6ACEF221DCE51C007FFA63 /* ButtonsCarouselViewCell.xib in Resources */,
-				1DA05FDA22019A56004A7C04 /* CarouselViewCell.xib in Resources */,
-				1D371BE021F29D35005F0F5C /* ImageCarouselViewCell.xib in Resources */,
+				1D6ACEF221DCE51C007FFA63 /* ButtonCarouselView.xib in Resources */,
+				1DA05FDA22019A56004A7C04 /* TableCarouselView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,14 +232,14 @@
 			files = (
 				1D605F9821F311C100094140 /* RoundedButtonView.swift in Sources */,
 				1DA05FD52201984C004A7C04 /* ImageViewCell.swift in Sources */,
-				1DA05FD822019A28004A7C04 /* CarouselViewCell.swift in Sources */,
+				1DA05FD822019A28004A7C04 /* TableCarouselView.swift in Sources */,
 				1D68A38322054767004B5B12 /* UITableView+Style.swift in Sources */,
 				1D1EB3FD21F2D9DF0008394E /* UIView+Tools.swift in Sources */,
+				1D0870F12208222D0095330D /* Data.swift in Sources */,
 				1D68A38522059C33004B5B12 /* ViewConstants.swift in Sources */,
-				1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselViewCell.swift in Sources */,
+				1D6ACEF021DCE4C5007FFA63 /* ButtonsCarouselView.swift in Sources */,
 				1DA05FDC2202E68A004A7C04 /* ImageCellViewModel.swift in Sources */,
 				1DC1EA8F21D0ED90002F244E /* ViewController.swift in Sources */,
-				1D371BDF21F29D35005F0F5C /* ImageCarouselViewCell.swift in Sources */,
 				1DC1EA8D21D0ED90002F244E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

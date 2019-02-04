@@ -18,12 +18,17 @@ struct ViewConstants {
     static let numberOfPrimaryViewRows = 3
     static let topRowScreenRatio: CGFloat = 0.6
     static let numberOfCarouselItems = 5
+    static let startingCarouselItem = 0
+    
+    struct NibNames {
+        static let tableCarousel = "TableCarouselView"
+        static let buttons = "ButtonCarouselView"
+    }
     
     struct CellIdentifiers {
-        static let carousel = "CarouselViewCellIdentifier"
-        static let buttons = "ButtonsViewCellIdentifier"
+        static let tableCarousel = "TableCarouselViewIdentifier"
+        static let buttons = "ButtonsViewIdentifier"
         static let image  = "ImageViewCellIdentifier"
-        static let table = "UITableViewCell"
     }
     
     struct CellHeights {
@@ -47,5 +52,6 @@ struct ViewConstants {
     
     struct Size {
         static let roundedButton:CGSize = CGSize(width: 77, height: 77)
+        static let carouselButtonItemWidith:CGFloat = 80.0
     }
 }

@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ButtonsCarouselViewCell" customModule="RACarousel_Demo" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ButtonCarouselView" customModule="RACarousel_Demo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -39,7 +39,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="carousel" destination="0M3-Pt-pCY" id="7rc-3O-OgH"/>
+                <outlet property="carousel" destination="0M3-Pt-pCY" id="QtO-se-VyR"/>
             </connections>
             <point key="canvasLocation" x="-519.20000000000005" y="75.562218890554732"/>
         </view>
