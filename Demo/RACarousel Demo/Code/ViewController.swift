@@ -23,6 +23,7 @@ final class ViewController: UIViewController,
     
     var tableCarouselView: TableCarouselView?
     var buttonCarouselView: ButtonCarouselView?
+    var selectedItemIndex = ViewConstants.startingCarouselItem
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -174,11 +175,13 @@ final class ViewController: UIViewController,
     
     func buttonCarousel(_ carousel: ButtonCarouselView, willScrollToIndex index: IndexPath) {
         // Pass the message to the image carousel
+        print ("Scroll to item : \(index.row)")
+        selectedItemIndex = index.row
         tableCarouselView?.carousel.scroll(toItemAtIndex: index.row, animated: true)
     }
     
     func startingIndexForButtonCarousel(_ carousel: ButtonCarouselView) -> Int {
-        return ViewConstants.startingCarouselItem
+        return selectedItemIndex
     }
     
     func itemWidthForButtonCarousel(_ carousel: ButtonCarouselView) -> CGFloat {

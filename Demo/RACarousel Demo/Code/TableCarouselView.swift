@@ -19,7 +19,6 @@ final class TableCarouselView: UITableViewCell,
     RACarouselDelegate,
     RACarouselDataSource {
     
-    let imageCellNib: UINib = UINib(nibName: "ImageViewCell", bundle: nil)
     let numberOfRowsInTableView = 10
     
     var delegate: TableCarouselViewDelegate?
@@ -50,7 +49,7 @@ final class TableCarouselView: UITableViewCell,
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(imageCellNib, forCellReuseIdentifier: ViewConstants.CellIdentifiers.image)
+        tableView.register(UINib(nibName: ViewConstants.NibNames.image, bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.image)
         
         tableView.tag = indexPath.row
         tableView.style(withDetail: .carousel)
@@ -71,6 +70,11 @@ final class TableCarouselView: UITableViewCell,
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
 
         if let tableView = view as? UITableView {
+            tableView.tag = indexPath.row
+            tableView.style(withDetail: .carousel)
+            tableView.clipsToBounds = false
+            
+            tableView.reloadData()
             return tableView
         } else {
             let tableView = carouselItemTableView(atIndexPath: indexPath)
@@ -92,7 +96,7 @@ final class TableCarouselView: UITableViewCell,
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ImageViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.image) as! ImageViewCell
-        
+        //print ("TABLE VIEW ROW: \(indexPath.row)")
         let cellSelectionIdx = (indexPath.row + tableView.tag) % Data.imageCellSelection.count
         let cellSelection = Data.imageCellSelection[cellSelectionIdx]
         

@@ -23,6 +23,7 @@ struct ViewConstants {
     struct NibNames {
         static let tableCarousel = "TableCarouselView"
         static let buttons = "ButtonCarouselView"
+        static let image = "ImageViewCell"
     }
     
     struct CellIdentifiers {
