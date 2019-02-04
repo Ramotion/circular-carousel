@@ -175,7 +175,6 @@ final class ViewController: UIViewController,
     
     func buttonCarousel(_ carousel: ButtonCarouselView, willScrollToIndex index: IndexPath) {
         // Pass the message to the image carousel
-        print ("Scroll to item : \(index.row)")
         selectedItemIndex = index.row
         tableCarouselView?.carousel.scroll(toItemAtIndex: index.row, animated: true)
     }

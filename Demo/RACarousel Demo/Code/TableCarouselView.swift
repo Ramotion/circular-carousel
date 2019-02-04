@@ -96,7 +96,6 @@ final class TableCarouselView: UITableViewCell,
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ImageViewCell = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.image) as! ImageViewCell
-        //print ("TABLE VIEW ROW: \(indexPath.row)")
         let cellSelectionIdx = (indexPath.row + tableView.tag) % Data.imageCellSelection.count
         let cellSelection = Data.imageCellSelection[cellSelectionIdx]
         
