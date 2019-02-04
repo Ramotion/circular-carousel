@@ -10,7 +10,7 @@ import UIKit
 import RACarousel
 
 protocol TableCarouselViewDelegate {
-    func numberOfItemInTableCarousel(_ tableCarouselView: TableCarouselView) -> Int
+    func numberOfItems(inTableCarousel tableCarouselView: TableCarouselView) -> Int
 }
 
 final class TableCarouselView: UITableViewCell,
@@ -64,7 +64,7 @@ final class TableCarouselView: UITableViewCell,
     // MARK: RACarouselDataSource
     
     func numberOfItems(inCarousel carousel: RACarousel) -> Int {
-        return delegate?.numberOfItemInTableCarousel(self) ?? 0
+        return delegate?.numberOfItems(inTableCarousel: self) ?? 0
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {

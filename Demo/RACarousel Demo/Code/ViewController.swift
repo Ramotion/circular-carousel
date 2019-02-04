@@ -162,7 +162,7 @@ final class ViewController: UIViewController,
         return Data.buttonViewModels[index.row]
     }
     
-    func numberOfButtonsForCarousel(_ buttonCarousel: ButtonCarouselView) -> Int {
+    func numberOfButtons(inButtonCarousel buttonCarousel: ButtonCarouselView) -> Int {
         return Data.buttonViewModels.count
     }
     
@@ -179,17 +179,17 @@ final class ViewController: UIViewController,
         tableCarouselView?.carousel.scroll(toItemAtIndex: index.row, animated: true)
     }
     
-    func startingIndexForButtonCarousel(_ carousel: ButtonCarouselView) -> Int {
+    func startingIndex(forButtonCarousel carousel: ButtonCarouselView) -> Int {
         return selectedItemIndex
     }
     
-    func itemWidthForButtonCarousel(_ carousel: ButtonCarouselView) -> CGFloat {
+    func itemWidth(forButtonCarousel carousel: ButtonCarouselView) -> CGFloat {
         return ViewConstants.Size.carouselButtonItemWidith
     }
     
     // MARK: -
     // MARK: TableCarouselViewDelegate
-    func numberOfItemInTableCarousel(_ tableCarouselView: TableCarouselView) -> Int {
+    func numberOfItems(inTableCarousel view: TableCarouselView) -> Int {
         return ViewConstants.numberOfCarouselItems
     }
 }

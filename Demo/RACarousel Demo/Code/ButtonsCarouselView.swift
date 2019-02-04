@@ -12,14 +12,14 @@ import RACarousel
 
 protocol ButtonCarouselViewDataSource {
     func buttonCarousel(_ buttonCarousel: ButtonCarouselView, modelForIndex: IndexPath) -> ButtonCarouselModel
-    func numberOfButtonsForCarousel(_ buttonCarousel: ButtonCarouselView) -> Int
+    func numberOfButtons(inButtonCarousel buttonCarousel: ButtonCarouselView) -> Int
 }
 
 protocol ButtonCarouselViewDelegate {
     func buttonCarousel(_ carousel: ButtonCarouselView, buttonPressed button: UIButton)
     func buttonCarousel(_ carousel: ButtonCarouselView, willScrollToIndex index: IndexPath)
-    func startingIndexForButtonCarousel(_ carousel: ButtonCarouselView) -> Int
-    func itemWidthForButtonCarousel(_ carousel: ButtonCarouselView) -> CGFloat
+    func startingIndex(forButtonCarousel carousel: ButtonCarouselView) -> Int
+    func itemWidth(forButtonCarousel carousel: ButtonCarouselView) -> CGFloat
 }
 
 fileprivate struct Constants {
@@ -62,7 +62,7 @@ final class ButtonCarouselView : UITableViewCell, RACarouselDataSource, RACarous
     // MARK: RACarouselDataSource
     
     func numberOfItems(inCarousel carousel: RACarousel) -> Int {
-        return dataSource?.numberOfButtonsForCarousel(self) ?? 0
+        return dataSource?.numberOfButtons(inButtonCarousel: self) ?? 0
     }
     
     func carousel(_: RACarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
@@ -112,7 +112,7 @@ final class ButtonCarouselView : UITableViewCell, RACarouselDataSource, RACarous
     }
     
     func startingItemIndex(inCarousel carousel: RACarousel) -> Int {
-        return delegate?.startingIndexForButtonCarousel(self) ?? 0
+        return delegate?.startingIndex(forButtonCarousel: self) ?? 0
     }
     
     // MARK: -
@@ -121,8 +121,7 @@ final class ButtonCarouselView : UITableViewCell, RACarouselDataSource, RACarous
     func carousel<CGFloat>(_ carousel: RACarousel, valueForOption option: RACarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
         switch option {
         case .itemWidth:
-            
-        return (delegate?.itemWidthForButtonCarousel(self) ?? Constants.defaultButtonWidth) as! CGFloat
+            return (delegate?.itemWidth(forButtonCarousel: self) ?? Constants.defaultButtonWidth) as! CGFloat
             
         case .scaleMultiplier:
             return Constants.scaleMultiplier as! CGFloat
