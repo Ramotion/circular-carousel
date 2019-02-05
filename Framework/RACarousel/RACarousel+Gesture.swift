@@ -54,8 +54,8 @@ extension RACarousel {
     
     @objc internal func didTap(withGesture gesture: UITapGestureRecognizer) {
         let itemViewAtPoint: UIView? = itemView(atPoint: gesture.location(in: contentView))
-        let index = indexOfItem(forView: itemViewAtPoint)
-        if index != NSNotFound {
+        
+        if let index = indexOfItem(forView: itemViewAtPoint) {
             let shouldSelect = delegate?.carousel(self, shouldSelectItemAtIndex: index) ?? true
             if shouldSelect {
                 if index != currentItemIdx {
@@ -90,7 +90,7 @@ extension RACarousel {
                 popAnimationState()
                 
                 if !decelerating {
-                    if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.floatErrorMargin {
+                    if abs(scrollOffset - clampedOffset(scrollOffset)) > RACarouselConstants.floatErrorMargin {
                         if abs(scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.floatErrorMargin {
                             scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                         }
@@ -110,11 +110,14 @@ extension RACarousel {
                 var factor: CGFloat = 1.0
                 
                 if !wrapEnabled && bounceEnabled {
-                    factor = 1.0 - min (abs(_scrollOffset - clampedOffset(_scrollOffset)), RACarouselConstants.bounceDist) / RACarouselConstants.bounceDist
+                    factor = 1.0 - min (abs(scrollOffset - clampedOffset(scrollOffset)), RACarouselConstants.bounceDist) / RACarouselConstants.bounceDist
                 }
                 
                 startVelocity = -velocity * factor * RACarouselConstants.scrollSpeed / (CGFloat(itemWidth))
-                _scrollOffset = _scrollOffset - ((translation - previousTranslation) * factor * offsetMultiplier / itemWidth)
+                
+                // This needs to set the scroll offset directly (this is why it is private)
+                _scrollOffset = scrollOffset - ((translation - previousTranslation) * factor * offsetMultiplier / itemWidth)
+                
                 previousTranslation = translation
                 didScroll()
             case .possible:

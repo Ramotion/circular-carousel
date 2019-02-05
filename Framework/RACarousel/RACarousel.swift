@@ -36,8 +36,8 @@ struct RACarouselConstants {
     static let scrollSpeedThreshold: CGFloat    = 2.0
     static let decelerateThreshold: CGFloat     = 0.1
     static let scrollDistanceThreshold: CGFloat = 0.1
-    static let scrollDuration: CGFloat          = 0.4
-    static let insertDuration: CGFloat          = 0.4
+    static let scrollDuration: TimeInterval     = 0.4
+    static let insertDuration: TimeInterval     = 0.4
     static let minScale: CGFloat                = 1.0
     static let maxScale: CGFloat                = 1.0
     static let defaultScaleMultiplier: CGFloat  = 1.0
@@ -309,22 +309,24 @@ struct RACarouselConstants {
     // MARK: -
     // MARK: View Management
     
-    public func indexOfItem(forView view: UIView?) -> Int {
+    public func indexOfItem(forView view: UIView?) -> Int? {
         
-        guard let aView = view else { return NSNotFound }
+        guard let aView = view else { return nil }
         
         if let index = itemViews.values.firstIndex(of: aView) {
             return itemViews.keys[index]
         }
-        return NSNotFound
+        
+        return nil
     }
     
-    func indexOfItem(forViewOrSubView viewOrSubView: UIView) -> Int {
-        let index = indexOfItem(forView: viewOrSubView)
-        if index == NSNotFound && superview != nil && viewOrSubView != contentView {
-            return indexOfItem(forViewOrSubView: superview!)
+    func indexOfItem(forViewOrSubView viewOrSubView: UIView) -> Int? {
+        if let superview = superview,
+            indexOfItem(forView: viewOrSubView) != nil &&
+            viewOrSubView != contentView {
+            return indexOfItem(forViewOrSubView: superview)
         }
-        return index
+        return nil
     }
     
     func itemView(atPoint point: CGPoint) -> UIView? {
@@ -411,16 +413,15 @@ struct RACarouselConstants {
     // MARK: -
     // MARK: View Indexing
     
-    internal func index(forViewOrSuperview view: UIView?) -> Int {
-        guard let aView = view else { return NSNotFound }
-        guard aView != contentView else { return NSNotFound }
+    internal func index(forViewOrSuperview view: UIView?) -> Int? {
+        guard let aView = view else { return nil }
+        guard aView != contentView else { return nil }
         
-        let indexVal: Int = indexOfItem(forView: aView)
-        if indexVal == NSNotFound {
-            return index(forViewOrSuperview: aView.superview)
+        if let indexVal = indexOfItem(forView: aView) {
+            return indexVal
         }
         
-        return indexVal
+        return index(forViewOrSuperview: aView.superview)
     }
     
     internal func viewOrSuperView(_ view: UIView?, asClass aClass: AnyClass) -> AnyObject? {

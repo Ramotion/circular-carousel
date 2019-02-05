@@ -35,12 +35,12 @@ extension RACarousel {
     
     internal func shouldScroll() -> Bool {
         return (abs(startVelocity) > RACarouselConstants.scrollSpeedThreshold) &&
-            (abs(_scrollOffset - CGFloat(currentItemIdx)) > RACarouselConstants.scrollDistanceThreshold)
+            (abs(scrollOffset - CGFloat(currentItemIdx)) > RACarouselConstants.scrollDistanceThreshold)
     }
     
     internal func startDecelerating() {
         var distance: CGFloat = decelerationDistance()
-        startOffset = _scrollOffset
+        startOffset = scrollOffset
         endOffset = startOffset + distance
         
         if !wrapEnabled {
@@ -78,6 +78,7 @@ extension RACarousel {
             let time: TimeInterval = min(1.0, (currentTime - startTime) / scrollDuration)
             delta = easeInOut(inTime: CGFloat(time))
             
+            // Set the scroll offset directly here (use internal variable)
             _scrollOffset = startOffset + (endOffset - startOffset) * delta
             didScroll()
             
@@ -105,15 +106,15 @@ extension RACarousel {
                 //delegate?.didEndDecelerating(self)
                 popAnimationState()
                 
-                if abs(_scrollOffset - clampedOffset(_scrollOffset)) > RACarouselConstants.floatErrorMargin {
-                    if abs(_scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.floatErrorMargin {
+                if abs(scrollOffset - clampedOffset(scrollOffset)) > RACarouselConstants.floatErrorMargin {
+                    if abs(scrollOffset - CGFloat(currentItemIdx)) < RACarouselConstants.floatErrorMargin {
                         scroll(toItemAtIndex: currentItemIdx, withDuration: 0.01)
                     } else {
                         scroll(toItemAtIndex: currentItemIdx, animated: true)
                     }
                     
                 } else {
-                    var difference:CGFloat = round(_scrollOffset) - _scrollOffset
+                    var difference:CGFloat = round(scrollOffset) - scrollOffset
                     if difference > 0.5 {
                         difference = difference - 1.0
                     } else if difference < -0.5 {
@@ -152,15 +153,16 @@ extension RACarousel {
     
     @objc internal func didScroll() {
         if wrapEnabled || !bounceEnabled {
+            // Set the scroll offset directly (Do not use the public method)
             _scrollOffset = clampedOffset(_scrollOffset)
         } else {
             let minVal: CGFloat = -RACarouselConstants.bounceDist
             let maxVal: CGFloat = max(CGFloat(numberOfItems) - 1.0, 0.0) + RACarouselConstants.bounceDist
             
-            if _scrollOffset < minVal {
+            if scrollOffset < minVal {
                 _scrollOffset = minVal
                 startVelocity = 0.0
-            } else if _scrollOffset > maxVal {
+            } else if scrollOffset > maxVal {
                 _scrollOffset = maxVal
                 startVelocity = 0.0
             }
@@ -177,7 +179,7 @@ extension RACarousel {
         loadUnloadViews()
         transformItemViews()
         
-        if abs(_scrollOffset - prevScrollOffset) > RACarouselConstants.floatErrorMargin {
+        if abs(scrollOffset - prevScrollOffset) > RACarouselConstants.floatErrorMargin {
             pushAnimationState(enabled: true)
             //delegate?.carouselDidScroll(self)
             popAnimationState()
@@ -190,7 +192,7 @@ extension RACarousel {
             popAnimationState()
         }
         
-        prevScrollOffset = _scrollOffset
+        prevScrollOffset = scrollOffset
         previousItemIndex = currentItemIdx
     }
 }

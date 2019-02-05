@@ -12,7 +12,10 @@ extension RACarousel {
     @discardableResult internal func loadView(atIndex index: Int, withContainerView containerView: UIView?) -> UIView? {
         pushAnimationState(enabled: false)
         
-        guard let dataSource = dataSource else { return nil }
+        guard let dataSource = dataSource else {
+            popAnimationState()
+            return nil
+        }
         
         let view = dataSource.carousel(self, viewForItemAt: IndexPath(item: index, section: 0), reuseView: dequeItemView())
         

@@ -69,7 +69,7 @@ extension RACarousel {
     }
     
     internal func offsetForItem(atIndex index: Int) -> CGFloat {
-        var offset: CGFloat = CGFloat(index) - _scrollOffset
+        var offset: CGFloat = CGFloat(index) - scrollOffset
         if wrapEnabled {
             if offset > (CGFloat(numberOfItems) / 2.0) {
                 offset = offset - CGFloat(numberOfItems)

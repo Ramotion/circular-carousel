@@ -93,6 +93,7 @@
 		1D1EB3FF21F2E8860008394E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1D605F9521F2EE8300094140 /* souveni1.ttf */,
 				1DC1EA9321D0ED94002F244E /* Assets.xcassets */,
 				1DC1EA9821D0ED94002F244E /* Info.plist */,
 			);
@@ -145,7 +146,6 @@
 		1DC1EA8B21D0ED90002F244E /* RACarousel Demo */ = {
 			isa = PBXGroup;
 			children = (
-				1D605F9521F2EE8300094140 /* souveni1.ttf */,
 				1D1EB40021F2E89B0008394E /* Code */,
 				1D0870F22208396E0095330D /* Data */,
 				1D1EB3FF21F2E8860008394E /* Resources */,

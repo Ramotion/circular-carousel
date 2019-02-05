@@ -44,7 +44,7 @@ extension RACarousel {
         if let containerView = itemView(atIndex: index)?.superview {
             if animated {
                 let transition = CATransition.init()
-                transition.duration = TimeInterval(RACarouselConstants.insertDuration)
+                transition.duration = RACarouselConstants.insertDuration
                 transition.timingFunction = CAMediaTimingFunction(name:
                     CAMediaTimingFunctionName.easeInEaseOut)
                 transition.type = CATransitionType.push
@@ -62,7 +62,7 @@ extension RACarousel {
             
             startTime = CACurrentMediaTime()
             
-            startOffset = _scrollOffset
+            startOffset = scrollOffset
             endOffset = startOffset + offset
             
             scrollDuration = duration
@@ -86,7 +86,7 @@ extension RACarousel {
         if duration > 0.0 {
             var offset: CGFloat = 0.0
             if itemCount > 0 {
-                offset = (floor(scrollOffset)) + CGFloat(itemCount) - _scrollOffset
+                offset = (floor(scrollOffset)) + CGFloat(itemCount) - scrollOffset
             } else if itemCount < 0 {
                 offset = (ceil(scrollOffset) + CGFloat(itemCount)) - scrollOffset
             } else {
@@ -105,7 +105,7 @@ extension RACarousel {
     }
     
     public func scroll(toItemAtIndex index: Int, animated: Bool) {
-        scroll(toItemAtIndex: index, withDuration: animated ? TimeInterval(RACarouselConstants.scrollDuration) : 0.0)
+        scroll(toItemAtIndex: index, withDuration: animated ? RACarouselConstants.scrollDuration : 0.0)
     }
     
     public func removeItem(atIndex index: Int, animated: Bool) {
@@ -126,7 +126,7 @@ extension RACarousel {
             
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDelay(0.1)
-            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.insertDuration))
+            UIView.setAnimationDuration(RACarouselConstants.insertDuration)
             UIView.setAnimationDelegate(self)
             UIView.setAnimationDidStop(#selector(depthSortViews))
             
@@ -168,7 +168,7 @@ extension RACarousel {
         
         if animated {
             UIView.beginAnimations(nil, context: nil)
-            UIView.setAnimationDuration(TimeInterval(RACarouselConstants.insertDuration))
+            UIView.setAnimationDuration(RACarouselConstants.insertDuration)
             UIView.setAnimationDelegate(self)
             UIView.setAnimationDidStop(#selector(didScroll))
             transformItemViews()

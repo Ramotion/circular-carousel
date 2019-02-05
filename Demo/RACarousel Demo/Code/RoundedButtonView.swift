@@ -8,12 +8,18 @@
 
 import UIKit
 
+fileprivate struct Constants {
+    static let defaultShadowOpacity: Float      = 0.25
+    static let defaultShadowRadius: CGFloat     = 10.0
+    static let defaultCornerRadius: CGFloat     = 20.0
+}
+
 final class RoundedButtonView: UIView {
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var unselectedImageView: UIImageView!
     @IBOutlet weak var lowerText: UILabel!
-    var shadowView: UIView!
-    var roundedView: UIView!
+    var shadowView: UIView = UIView()
+    var roundedView: UIView = UIView()
     
     var selectedColor: UIColor = UIColor.blue
     var unselectedColor: UIColor = UIColor.white
@@ -37,16 +43,16 @@ final class RoundedButtonView: UIView {
     }
     
     private func styleView() {
-        shadowView = UIView(frame: frame)
+        shadowView.frame = frame
         
         shadowView.layer.shadowColor = UIColor.gray.cgColor
         shadowView.layer.shadowOffset = CGSize.zero
-        shadowView.layer.shadowOpacity = 0.25
-        shadowView.layer.shadowRadius = 10
+        shadowView.layer.shadowOpacity = Constants.defaultShadowOpacity
+        shadowView.layer.shadowRadius = Constants.defaultShadowRadius
         
-        roundedView = UIView(frame: shadowView.bounds)
+        roundedView.frame = shadowView.bounds
         roundedView.backgroundColor = UIColor.white
-        roundedView.layer.cornerRadius = 20.0
+        roundedView.layer.cornerRadius = Constants.defaultCornerRadius
         roundedView.clipsToBounds = true
         
         shadowView.addSubview(roundedView)
