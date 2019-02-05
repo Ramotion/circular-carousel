@@ -106,9 +106,9 @@ struct RACarouselConstants {
         }
         
         set {
-            if tapGesture != nil, newValue == false {
-                contentView.removeGestureRecognizer(tapGesture!)
-                tapGesture = nil
+            if let tapGesture = tapGesture, newValue == false {
+                contentView.removeGestureRecognizer(tapGesture)
+                self.tapGesture = nil
             } else if tapGesture == nil && newValue == true {
                 tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
                 tapGesture?.delegate = self as? UIGestureRecognizerDelegate
@@ -124,14 +124,14 @@ struct RACarouselConstants {
         
         set {
             if newValue == false {
-                if swipeRightGesture != nil {
-                    contentView.removeGestureRecognizer(swipeRightGesture!)
-                    swipeRightGesture = nil
+                if let swipeRightGesture = swipeRightGesture {
+                    contentView.removeGestureRecognizer(swipeRightGesture)
+                    self.swipeRightGesture = nil
                 }
                 
-                if swipeLeftGesture != nil {
-                    contentView.removeGestureRecognizer(swipeLeftGesture!)
-                    swipeLeftGesture = nil
+                if let swipeLeftGesture = swipeLeftGesture {
+                    contentView.removeGestureRecognizer(swipeLeftGesture)
+                    self.swipeLeftGesture = nil
                 }
                 
             } else if swipeLeftGesture == nil && swipeRightGesture == nil && newValue == true {
@@ -154,9 +154,9 @@ struct RACarouselConstants {
         }
         
         set {
-            if panGesture != nil, newValue == false {
-                contentView.removeGestureRecognizer(panGesture!)
-                panGesture = nil
+            if let panGesture = panGesture, newValue == false {
+                contentView.removeGestureRecognizer(panGesture)
+                self.panGesture = nil
             } else if panGesture == nil && newValue == true {
                 panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
                 panGesture?.delegate = self as? UIGestureRecognizerDelegate
@@ -269,23 +269,9 @@ struct RACarouselConstants {
         contentView = UIView(frame: bounds)
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
-        panGesture?.delegate = self as? UIGestureRecognizerDelegate
-        contentView.addGestureRecognizer(panGesture!)
-        
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        tapGesture?.delegate = self as? UIGestureRecognizerDelegate
-        contentView.addGestureRecognizer(tapGesture!)
-        
-        swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
-        swipeLeftGesture?.delegate = self as? UIGestureRecognizerDelegate
-        swipeLeftGesture?.direction = .left
-        contentView.addGestureRecognizer(swipeLeftGesture!)
-        
-        swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
-        swipeRightGesture?.delegate = self as? UIGestureRecognizerDelegate
-        swipeRightGesture?.direction = .right
-        contentView.addGestureRecognizer(swipeRightGesture!)
+        panEnabled = false
+        tapEnabled = true
+        swipeEnabled = true
         
         accessibilityTraits = UIAccessibilityTraits.allowsDirectInteraction
         isAccessibilityElement = true

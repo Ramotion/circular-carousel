@@ -12,7 +12,6 @@ extension RACarousel {
     internal func startAnimation() {
         if timer == nil {
             timer = Timer(timeInterval: 1.0/60.0, target: self, selector: #selector(step), userInfo: nil, repeats: true)
-            
             RunLoop.main.add(timer!, forMode: RunLoop.Mode.default)
         }
     }

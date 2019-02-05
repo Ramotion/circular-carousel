@@ -32,13 +32,13 @@ final class RoundedButtonView: UIView {
     
     func set(isSelected selected: Bool) {
         if selected {
-            self.roundedView.backgroundColor = selectedColor
-            self.selectedImageView.alpha = 1
-            self.unselectedImageView.alpha = 0
+            roundedView.backgroundColor = selectedColor
+            selectedImageView.alpha = 1
+            unselectedImageView.alpha = 0
         } else {
-            self.roundedView.backgroundColor = unselectedColor
-            self.selectedImageView.alpha = 0
-            self.unselectedImageView.alpha = 1
+            roundedView.backgroundColor = unselectedColor
+            selectedImageView.alpha = 0
+            unselectedImageView.alpha = 1
         }
     }
     
@@ -63,14 +63,12 @@ final class RoundedButtonView: UIView {
     func triggerSelected() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.set(isSelected: true)
-        }) { (success) -> Void in
-        }
+        })
     }
     
     func didDeselect() {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.set(isSelected: false)
-        }) { (success) -> Void in
-        }
+        })
     }
 }
