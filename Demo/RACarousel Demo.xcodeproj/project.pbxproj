@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1D0870F12208222D0095330D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0870F02208222D0095330D /* Data.swift */; };
+		1D0E58C6220D890100E10728 /* RACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; };
+		1D0E58C7220D890100E10728 /* RACarousel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1D1EB3FD21F2D9DF0008394E /* UIView+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */; };
 		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
-		1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77A21E4B87C0088B3D8 /* RACarousel.framework */; };
 		1D605F9621F2F2A200094140 /* souveni1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9521F2EE8300094140 /* souveni1.ttf */; };
 		1D605F9821F311C100094140 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D605F9721F311C100094140 /* RoundedButtonView.swift */; };
 		1D605F9A21F313FE00094140 /* RoundedButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9921F313FE00094140 /* RoundedButtonView.xib */; };
@@ -29,6 +30,20 @@
 		1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9321D0ED94002F244E /* Assets.xcassets */; };
 		1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1D0E58C8220D890100E10728 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1D0E58C7220D890100E10728 /* RACarousel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D0870F02208222D0095330D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -61,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D5AE77B21E4B87C0088B3D8 /* RACarousel.framework in Frameworks */,
+				1D0E58C6220D890100E10728 /* RACarousel.framework in Frameworks */,
 				1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +179,7 @@
 				1DC1EA8521D0ED90002F244E /* Sources */,
 				1DC1EA8621D0ED90002F244E /* Frameworks */,
 				1DC1EA8721D0ED90002F244E /* Resources */,
+				1D0E58C8220D890100E10728 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
