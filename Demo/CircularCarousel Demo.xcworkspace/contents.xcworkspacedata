@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/piotrsuwara/Documents/Development/RACarousel-1/Framework/CircularCarousel.xcodeproj">
+      location = "group:../Framework/CircularCarousel.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:/Users/piotrsuwara/Documents/Development/RACarousel-1/Demo/CircularCarousel Demo.xcodeproj">
+      location = "container:CircularCarousel Demo.xcodeproj">
    </FileRef>
 </Workspace>
