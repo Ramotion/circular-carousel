@@ -11,8 +11,6 @@
 		1D1EB3FD21F2D9DF0008394E /* UIView+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */; };
 		1D498A53220E64A900E2BDD5 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D498A52220E64A900E2BDD5 /* ImageViewCell.swift */; };
 		1D498A55220E64B600E2BDD5 /* ImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D498A54220E64B600E2BDD5 /* ImageViewCell.xib */; };
-		1D498A61220E65F400E2BDD5 /* CircularCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D498A60220E65F400E2BDD5 /* CircularCarousel.framework */; };
-		1D498A62220E65F400E2BDD5 /* CircularCarousel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1D498A60220E65F400E2BDD5 /* CircularCarousel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5AE77121E4B6460088B3D8 /* UIKit.framework */; };
 		1D605F9621F2F2A200094140 /* souveni1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D605F9521F2EE8300094140 /* souveni1.ttf */; };
 		1D605F9821F311C100094140 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D605F9721F311C100094140 /* RoundedButtonView.swift */; };
@@ -29,6 +27,8 @@
 		1DC1EA9221D0ED90002F244E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9021D0ED90002F244E /* Main.storyboard */; };
 		1DC1EA9421D0ED94002F244E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9321D0ED94002F244E /* Assets.xcassets */; };
 		1DC1EA9721D0ED94002F244E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1EA9521D0ED94002F244E /* LaunchScreen.storyboard */; };
+		1DD253F6221184AB00A118F1 /* CircularCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD253F5221184AB00A118F1 /* CircularCarousel.framework */; };
+		1DD253F7221184AB00A118F1 /* CircularCarousel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD253F5221184AB00A118F1 /* CircularCarousel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,7 +38,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1D498A62220E65F400E2BDD5 /* CircularCarousel.framework in Embed Frameworks */,
+				1DD253F7221184AB00A118F1 /* CircularCarousel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,8 +50,6 @@
 		1D1EB3FC21F2D9DF0008394E /* UIView+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Tools.swift"; sourceTree = "<group>"; };
 		1D498A52220E64A900E2BDD5 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		1D498A54220E64B600E2BDD5 /* ImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewCell.xib; sourceTree = "<group>"; };
-		1D498A5D220E650300E2BDD5 /* CircularCarousel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CircularCarousel.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CircularCarousel_Demo-gddxtydxmpfvacgodlpcpcqqlhss/Build/Products/Debug-iphoneos/CircularCarousel.framework"; sourceTree = "<group>"; };
-		1D498A60220E65F400E2BDD5 /* CircularCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CircularCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5AE77121E4B6460088B3D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1D605F9521F2EE8300094140 /* souveni1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = souveni1.ttf; sourceTree = "<group>"; };
 		1D605F9721F311C100094140 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
@@ -70,6 +68,7 @@
 		1DC1EA9321D0ED94002F244E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DC1EA9621D0ED94002F244E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DC1EA9821D0ED94002F244E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DD253F5221184AB00A118F1 /* CircularCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CircularCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D5AE77221E4B6460088B3D8 /* UIKit.framework in Frameworks */,
-				1D498A61220E65F400E2BDD5 /* CircularCarousel.framework in Frameworks */,
+				1DD253F6221184AB00A118F1 /* CircularCarousel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +135,6 @@
 		1D5AE76E21E4B2C50088B3D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1D498A5D220E650300E2BDD5 /* CircularCarousel.framework */,
 				1D5AE77121E4B6460088B3D8 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -145,7 +143,7 @@
 		1DC1EA8021D0ED90002F244E = {
 			isa = PBXGroup;
 			children = (
-				1D498A60220E65F400E2BDD5 /* CircularCarousel.framework */,
+				1DD253F5221184AB00A118F1 /* CircularCarousel.framework */,
 				1DC1EA8B21D0ED90002F244E /* CircularCarousel Demo */,
 				1DC1EA8A21D0ED90002F244E /* Products */,
 				1D5AE76E21E4B2C50088B3D8 /* Frameworks */,
