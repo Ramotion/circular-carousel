@@ -1,5 +1,5 @@
 //
-//  ImageCollectionViewCell.swift
+//  TableCarouselView.swift
 //  CircularCarousel Demo
 //
 //  Created by Piotr Suwara on 19/1/19.
@@ -18,8 +18,6 @@ final class TableCarouselView: UITableViewCell,
     UITableViewDelegate,
     CircularCarouselDelegate,
     CircularCarouselDataSource {
-    
-    let numberOfRowsInTableView = 10
     
     var delegate: TableCarouselViewDelegate?
     
@@ -55,7 +53,7 @@ final class TableCarouselView: UITableViewCell,
         tableView.style(withDetail: .carousel)
         tableView.clipsToBounds = false
         
-        tableView.reloadData()
+        //tableView.reloadData()
         
         return tableView
     }
@@ -74,7 +72,7 @@ final class TableCarouselView: UITableViewCell,
             tableView.style(withDetail: .carousel)
             tableView.clipsToBounds = false
             
-            tableView.reloadData()
+            //tableView.reloadData()
             return tableView
         } else {
             let tableView = carouselItemTableView(atIndexPath: indexPath)
@@ -107,7 +105,7 @@ final class TableCarouselView: UITableViewCell,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRowsInTableView
+        return ViewConstants.numberOfTableViewRows
     }
     
     // MARK: -

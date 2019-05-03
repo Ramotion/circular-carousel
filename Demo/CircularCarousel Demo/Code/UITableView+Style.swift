@@ -18,14 +18,12 @@ extension UITableView {
         switch style {
         case .carousel:
             separatorColor = ViewConstants.Colors.tableViewSeperator
-            separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cellLayoutMarginsFollowReadableWidth = false
             isScrollEnabled = false
             allowsSelection = false
             
         case .primary:
             separatorColor = ViewConstants.Colors.tableViewSeperator
-            separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cellLayoutMarginsFollowReadableWidth = false
             backgroundColor = .clear
             allowsSelection = false
