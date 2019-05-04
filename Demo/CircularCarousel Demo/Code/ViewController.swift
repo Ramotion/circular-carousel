@@ -56,6 +56,11 @@ final class ViewController: UIViewController,
         // Setup table view controls
         tableView.register(UINib(nibName: ViewConstants.NibNames.tableCarousel, bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.tableCarousel)
         tableView.register(UINib(nibName: ViewConstants.NibNames.buttons, bundle: nil), forCellReuseIdentifier: ViewConstants.CellIdentifiers.buttons)
+        tableView.separatorInset.left = 0
+        tableView.bounds = CGRect(x: 0,
+                                  y: 0,
+                                  width: tableView.bounds.size.width,
+                                  height: tableView.bounds.size.height * 2)
     }
 
     // MARK: -
@@ -72,17 +77,20 @@ final class ViewController: UIViewController,
             return cell
             
         case ViewConstants.RowIndex.tableCarousel:
-            let cell: TableCarouselView = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.tableCarousel) as! TableCarouselView
-            
-            cell.delegate = self
-            
-            cell.carousel.panEnabled = false
-            cell.carousel.swipeEnabled = false
-            cell.carousel.reloadData()
-            
-            tableCarouselView = cell
-            
-            return cell
+            if let tableCarouselView = self.tableCarouselView {
+                // Cache the table Carousel view - There is only one
+                return tableCarouselView
+            } else {
+                let cell: TableCarouselView = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.tableCarousel) as! TableCarouselView
+                
+                cell.delegate = self
+                
+                cell.carousel.panEnabled = false
+                cell.carousel.swipeEnabled = false
+                cell.carousel.reloadData()
+                tableCarouselView = cell
+                return cell
+            }
         
         case ViewConstants.RowIndex.buttonCarousel:
             let cell: ButtonCarouselView = tableView.dequeueReusableCell(withIdentifier: ViewConstants.CellIdentifiers.buttons) as! ButtonCarouselView

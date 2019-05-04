@@ -52,6 +52,7 @@ final class TableCarouselView: UITableViewCell,
         tableView.tag = indexPath.row
         tableView.style(withDetail: .carousel)
         tableView.clipsToBounds = false
+        tableView.separatorInset.left = 0
         
         //tableView.reloadData()
         
