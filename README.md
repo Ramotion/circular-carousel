@@ -1,7 +1,7 @@
 <img src="https://github.com/Ramotion/folding-cell/blob/master/header.png">
 
 <a href="https://github.com/Ramotion/folding-cell">
-<img align="left" src="https://github.com/Ramotion/folding-cell/blob/master/Screenshots/foldingCell.gif" width="480" height="360" /></a>
+<img align="left" src="https://github.com/Ramotion/circular-carousel/blob/master/Screenshots/ios_circular_carousel.gif" width="480" height="360" /></a>
 
 <p><h1 align="left">CAROUSEL</h1></p>
 
@@ -100,77 +100,6 @@ fileprivate struct C {
   }
 }
 ```
-
-5.2) Add property for calculate cells height
-
-``` swift
-     var cellHeights = (0..<CELLCOUNT).map { _ in C.CellHeight.close }
-```
-
-5.3) Override method:
-``` swift
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
-    }
-```
-
-5.4) Added code to method:
-``` swift
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard case let cell as FoldingCell = tableView.cellForRowAtIndexPath(indexPath) else {
-          return
-        }
-
-        var duration = 0.0
-        if cellIsCollapsed {
-            cellHeights[indexPath.row] = Const.openCellHeight
-            cell.unfold(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {
-            cellHeights[indexPath.row] = Const.closeCellHeight
-            cell.unfold(false, animated: true, completion: nil)
-            duration = 0.8
-        }
-
-        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { _ in
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }, completion: nil)
-    }
-```
-5.5) Control if the cell is open or closed
-``` swift
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-
-        if case let cell as FoldingCell = cell {
-            if cellHeights![indexPath.row] == C.cellHeights.close {
-                foldingCell.selectedAnimation(false, animated: false, completion:nil)
-            } else {
-                foldingCell.selectedAnimation(true, animated: false, completion: nil)
-            }
-        }
-    }
-```
-
-6) Add this code to your new cell class
-``` swift
-    override func animationDuration(itemIndex:NSInteger, type:AnimationType)-> NSTimeInterval {
-
-        // durations count equal it itemCount
-        let durations = [0.33, 0.26, 0.26] // timing animation for each view
-        return durations[itemIndex]
-    }
-```
-
-## if don't use storyboard and xib files
-
-Create foregroundView and containerView from code (steps 2 - 3) look example:
-[Folding-cell-programmatically](https://github.com/ober01/Folding-cell-programmatically)
-
-## 🗂 Check this library on other language:
-<a href="https://github.com/Ramotion/folding-cell-android">
-<img src="https://github.com/ramotion/navigation-stack/raw/master/Android_Java@2x.png" width="178" height="81"></a>
-
 
 ## 📄 License
 
