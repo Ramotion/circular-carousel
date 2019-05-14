@@ -1,0 +1,16 @@
+# references:
+# * https://www.objc.io/issues/6-build-tools/travis-ci/
+# * https://github.com/supermarin/xcpretty#usage
+
+osx_image: xcode10.2
+language: objective-c
+
+# cache: cocoapods
+# podfile: Example/Podfile
+# before_install:
+# - gem install cocoapods # Since Travis is not always on latest version
+# - pod install --project-directory=Example
+
+xcode_project: Framework/CircularCarousel.xcodeproj
+xcode_scheme: CircularCarousel
+xcode_sdk: iphonesimulator12.2
