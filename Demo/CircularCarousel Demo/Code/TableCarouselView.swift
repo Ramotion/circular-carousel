@@ -54,8 +54,6 @@ final class TableCarouselView: UITableViewCell,
         tableView.clipsToBounds = false
         tableView.separatorInset.left = 0
         
-        //tableView.reloadData()
-        
         return tableView
     }
     
@@ -73,7 +71,6 @@ final class TableCarouselView: UITableViewCell,
             tableView.style(withDetail: .carousel)
             tableView.clipsToBounds = false
             
-            //tableView.reloadData()
             return tableView
         } else {
             let tableView = carouselItemTableView(atIndexPath: indexPath)

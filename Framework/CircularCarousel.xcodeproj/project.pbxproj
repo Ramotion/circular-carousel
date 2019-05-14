@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D0AA4C121E4AFFF00D5332F /* Circulararousel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D0AA4BF21E4AFFF00D5332F /* Circulararousel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D0AA4C121E4AFFF00D5332F /* CircularCarousel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D0AA4BF21E4AFFF00D5332F /* CircularCarousel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D0AA4CB21E4B06B00D5332F /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA4C721E4B06B00D5332F /* NSObjectExtension.swift */; };
 		1D0AA4CC21E4B06B00D5332F /* CircularCarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA4C821E4B06B00D5332F /* CircularCarouselDataSource.swift */; };
 		1D0AA4CD21E4B06B00D5332F /* CircularCarouselDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA4C921E4B06B00D5332F /* CircularCarouselDelegate.swift */; };
@@ -21,7 +21,7 @@
 
 /* Begin PBXFileReference section */
 		1D0AA4BC21E4AFFF00D5332F /* CircularCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CircularCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D0AA4BF21E4AFFF00D5332F /* Circulararousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Circulararousel.h; sourceTree = "<group>"; };
+		1D0AA4BF21E4AFFF00D5332F /* CircularCarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircularCarousel.h; sourceTree = "<group>"; };
 		1D0AA4C021E4AFFF00D5332F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D0AA4C721E4B06B00D5332F /* NSObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
 		1D0AA4C821E4B06B00D5332F /* CircularCarouselDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularCarouselDataSource.swift; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 				1D0AA4CA21E4B06B00D5332F /* CircularCarousel.swift */,
 				1D0AA4C821E4B06B00D5332F /* CircularCarouselDataSource.swift */,
 				1D0AA4C921E4B06B00D5332F /* CircularCarouselDelegate.swift */,
-				1D0AA4BF21E4AFFF00D5332F /* Circulararousel.h */,
+				1D0AA4BF21E4AFFF00D5332F /* CircularCarousel.h */,
 				1D0AA4C021E4AFFF00D5332F /* Info.plist */,
 				1D24A57721E77F9200C61617 /* CircularCarousel+Scroll.swift */,
 				1D24A57921E7865900C61617 /* CircularCarousel+Gesture.swift */,
@@ -86,7 +86,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0AA4C121E4AFFF00D5332F /* Circulararousel.h in Headers */,
+				1D0AA4C121E4AFFF00D5332F /* CircularCarousel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
