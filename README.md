@@ -153,14 +153,6 @@ To handle spacing between items depending on their offst from the center :
     }
 ```
 
-<!--![1.1](https://raw.githubusercontent.com/Ramotion/folding-cell/master/Tutorial-resources/1.1.png)-->
-
-<!--![1.2](https://raw.githubusercontent.com/Ramotion/folding-cell/master/Tutorial-resources/1.2.png)
-
-Your result should be something like this picture:
-
-![1.3](https://raw.githubusercontent.com/Ramotion/folding-cell/master/Tutorial-resources/1.3.png)-->
-
 That's it, the Carousel is good to go!
 
 ## 📄 License
