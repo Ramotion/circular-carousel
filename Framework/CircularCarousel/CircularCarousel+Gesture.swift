@@ -123,6 +123,8 @@ extension CircularCarousel {
             case .possible:
                 // Do nothing
                 break
+            @unknown default:
+                break // Do nothing
             }
         }
     }

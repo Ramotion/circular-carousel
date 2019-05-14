@@ -208,6 +208,7 @@ struct CircularCarouselConstants {
         }
     }
     
+    // Can only be set internally by the framework
     internal (set) public var numberOfVisibleItems: Int = 0
     internal (set) public var itemWidth: CGFloat = 0.0
     internal (set) public var offsetMultiplier: CGFloat = 1.0
@@ -218,7 +219,7 @@ struct CircularCarouselConstants {
     internal (set) public var dragging: Bool = false
     internal (set) public var scrolling: Bool = false
     
-    // private variables
+    // Internal variables available only to the framework
     internal var itemViews: Dictionary<Int, UIView> = Dictionary<Int, UIView>()
     internal var previousItemIndex: Int = 0
     internal var itemViewPool: Set<UIView> = Set<UIView>()
@@ -237,6 +238,7 @@ struct CircularCarouselConstants {
     internal var toggleTime: TimeInterval = 0.0
     internal var previousTranslation: CGFloat = 0.0
     
+    // Accessible in the class only
     private var panGesture: UIPanGestureRecognizer?
     private var swipeLeftGesture: UISwipeGestureRecognizer?
     private var swipeRightGesture: UISwipeGestureRecognizer?

@@ -45,7 +45,7 @@ final class ButtonCarouselView : UITableViewCell, CircularCarouselDataSource, Ci
     var selectedRoundedButtonIndex: Int = -1
     var numberOfButtons: Int = 3
     
-    weak var _carousel : CircularCarousel!
+    weak private var _carousel : CircularCarousel!
     @IBOutlet var carousel : CircularCarousel! {
         set {
             _carousel = newValue
