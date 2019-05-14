@@ -35,8 +35,8 @@ ___
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 9.0+
+- iOS 11.0+
+- Xcode 10.0+
 
 ## Installation
 
