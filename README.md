@@ -48,8 +48,6 @@ pod 'CircularCarousel'
 
 or just drag and drop the CircularCarousel directory to your project
 
-## Solution
-![Solution](https://raw.githubusercontent.com/Ramotion/folding-cell/master/Tutorial-resources/Solution.png)
 ## Usage
 
 1) Create a custom view that will be used as a carousel item. In this tutorial we will just use a blank UIView.
