@@ -44,7 +44,7 @@ ___
 Just add the CircularCarousel directory to your project.
 
 or use [CocoaPods](https://cocoapods.org) with Podfile:
-```
+```ruby
 pod 'CircularCarousel'
 ```
 
@@ -56,101 +56,101 @@ or just drag and drop the CircularCarousel directory to your project
 
 2) Create a view controller or container view that handles datasource and delegate responses for the contained Carousel. 
 
-```
-	final class ContainerView : UITableViewCell, CircularCarouselDataSource, CircularCarouselDelegate {
+```swift
+final class ContainerView : UITableViewCell, CircularCarouselDataSource, CircularCarouselDelegate {
 
-	}
+}
 ```
 
 2.1) Add a reference to the carousel control and the selection of a delegate and datasource to your Carousel control.
-``` 
-	private weak var _carousel : CircularCarousel!
-    @IBOutlet var carousel : CircularCarousel! {
-        set {
-            _carousel = newValue
-            _carousel.delegate = self
-            _carousel.dataSource = self
-        }
-        
-        get {
-            return _carousel
-        }
+```swift 
+private weak var _carousel : CircularCarousel!
+@IBOutlet var carousel : CircularCarousel! {
+    set {
+        _carousel = newValue
+        _carousel.delegate = self
+        _carousel.dataSource = self
     }
+        
+    get {
+        return _carousel
+    }
+}
 ```
 
 3) Implement the DataSource and Delegate functions. Some of the key functions are listed below.
 
 3.1) Datasource 
 
+```swift
+func numberOfItems(inCarousel carousel: CircularCarousel) -> Int {
+    return /* Number of carousel items */
+}
 ```
-	func numberOfItems(inCarousel carousel: CircularCarousel) -> Int {
-        return /* Number of carousel items */
+
+```swift
+func carousel(_: CircularCarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
+    var view = view as? UIVIew
+
+    if view == nil {
+    	view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     }
+
+    return view
+}
 ```
 
-```
-	func carousel(_: CircularCarousel, viewForItemAt indexPath: IndexPath, reuseView view: UIView?) -> UIView {
-    	var view = view as? UIVIew
-
-    	if view == nil {
-    		view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-    	}
-
-    	return view
-    }
-```
-
-``` 
-	func startingItemIndex(inCarousel carousel: CircularCarousel) -> Int {
-        return /* Insert starting item index */
-    }
+```swift 
+func startingItemIndex(inCarousel carousel: CircularCarousel) -> Int {
+    return /* Insert starting item index */
+}
 ```
 
 3.2) Delegate
 
 Select how you want the carousel to operate based on the control variables specified below :
-```
-	func carousel<CGFloat>(_ carousel: CircularCarousel, valueForOption option: CircularCarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
-	    switch option {
-        case .itemWidth:
-            return /* Select item width for carousel */
-        /*  Insert one of the following handlers :
-			case spacing
-			case fadeMin
-			case fadeMax
-			case fadeRange
-			case fadeMinAlpha
-			case offsetMultiplier
-			case itemWidth
-			case scaleMultiplier
-			case minScale
-			case maxScale
-        */
-        default:
-            return defaultValue
-        }
-	}
+```swift
+func carousel<CGFloat>(_ carousel: CircularCarousel, valueForOption option: CircularCarouselOption, withDefaultValue defaultValue: CGFloat) -> CGFloat {
+	switch option {
+    case .itemWidth:
+        return /* Select item width for carousel */
+    /*  Insert one of the following handlers :
+	case spacing
+	case fadeMin
+	case fadeMax
+	case fadeRange
+	case fadeMinAlpha
+	case offsetMultiplier
+	case itemWidth
+	case scaleMultiplier
+	case minScale
+	case maxScale
+    */
+    default:
+        return defaultValue
+    }
+}
 ```
 
 Handle the selection of a particular carousel item :
-```
-	func carousel(_ carousel: CircularCarousel, didSelectItemAtIndex index: Int) {
-        /* Handle selection of the selected carousel item */
-    }
+```swift
+func carousel(_ carousel: CircularCarousel, didSelectItemAtIndex index: Int) {
+    /* Handle selection of the selected carousel item */
+}
 ```
 
 Handle will begin scrolling :
-```
-	func carousel(_ carousel: CircularCarousel, willBeginScrollingToIndex index: Int) {
+```swift
+func carousel(_ carousel: CircularCarousel, willBeginScrollingToIndex index: Int) {
 
-	}
+}
 ```
 
 To handle spacing between items depending on their offst from the center : 
-```
-	func carousel(_ carousel: CircularCarousel, spacingForOffset offset: CGFloat) -> CGFloat {        
-        return /* Based on the offset from center, adjust the spacing of the item */
-    }
+```swift
+func carousel(_ carousel: CircularCarousel, spacingForOffset offset: CGFloat) -> CGFloat {        
+    return /* Based on the offset from center, adjust the spacing of the item */
+}
 ```
 
 That's it, the Carousel is good to go!
