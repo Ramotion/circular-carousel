@@ -62,7 +62,7 @@ final class ContainerView : UITableViewCell, CircularCarouselDataSource, Circula
 }
 ```
 
-    i. Add a reference to the carousel control and the selection of a delegate and datasource to your Carousel control.
+i. Add a reference to the carousel control and the selection of a delegate and datasource to your Carousel control.
 ```swift 
 private weak var _carousel : CircularCarousel!
 
@@ -81,7 +81,7 @@ private weak var _carousel : CircularCarousel!
 
 3. Implement the DataSource and Delegate functions. Some of the key functions are listed below.
 
-    i. Datasource 
+i. Datasource 
 
 ```swift
 func numberOfItems(inCarousel carousel: CircularCarousel) -> Int {
@@ -107,7 +107,7 @@ func startingItemIndex(inCarousel carousel: CircularCarousel) -> Int {
 }
 ```
 
-    ii. Delegate
+ii. Delegate
 
 Select how you want the carousel to operate based on the control variables specified below :
 ```swift
