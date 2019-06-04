@@ -52,9 +52,9 @@ or just drag and drop the `CircularCarousel` directory to your project
 
 ## Usage
 
-1. Create a custom view that will be used as a carousel item. In this tutorial we will just use a blank `UIView`.
+**1** Create a custom view that will be used as a carousel item. In this tutorial we will just use a blank `UIView`.
 
-2. Create a view controller or container view that handles datasource and delegate responses for the contained Carousel. 
+**2** Create a view controller or container view that handles datasource and delegate responses for the contained Carousel. 
 
 ```swift
 final class ContainerView : UITableViewCell, CircularCarouselDataSource, CircularCarouselDelegate {
@@ -62,7 +62,7 @@ final class ContainerView : UITableViewCell, CircularCarouselDataSource, Circula
 }
 ```
 
-i. Add a reference to the carousel control and the selection of a delegate and datasource to your Carousel control.
+**2.1** Add a reference to the carousel control and the selection of a delegate and datasource to your Carousel control.
 ```swift 
 private weak var _carousel : CircularCarousel!
 
@@ -79,9 +79,9 @@ private weak var _carousel : CircularCarousel!
 }
 ```
 
-3. Implement the DataSource and Delegate functions. Some of the key functions are listed below.
+**3** Implement the DataSource and Delegate functions. Some of the key functions are listed below.
 
-i. Datasource 
+**3.1** Datasource 
 
 ```swift
 func numberOfItems(inCarousel carousel: CircularCarousel) -> Int {
@@ -107,7 +107,7 @@ func startingItemIndex(inCarousel carousel: CircularCarousel) -> Int {
 }
 ```
 
-ii. Delegate
+**3.2** Delegate
 
 Select how you want the carousel to operate based on the control variables specified below :
 ```swift
